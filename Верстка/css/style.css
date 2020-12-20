@@ -1,0 +1,51 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Montserrat", sans-serif;
+}
+
+.container {
+  width: 65%;
+  margin: 0 auto;
+}
+
+header {
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: row;
+}
+header .logo {
+  font-size: 20px;
+  font-weight: 700;
+  align-items: center;
+  width: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: row;
+}
+header .menu {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: row;
+  width: 170px;
+}
+header .menu .menu-btn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: column;
+  height: 14px;
+}
+header .menu .menu-btn .menu-item {
+  width: 20px;
+  height: 1px;
+  background-color: #B798FF;
+}
+header .menu p {
+  font-weight: 400;
+  font-size: 16px;
+}

@@ -1,0 +1,46 @@
+@import "variables";
+@import "mixins";
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Montserrat', sans-serif;
+}
+.container {
+    width: 65%;
+    margin: 0 auto;
+}
+
+header {
+    height: 100px;
+    @include d-flex;
+
+    .logo {
+        font-size: 20px;
+        font-weight: 700;
+        align-items: center;
+        width: 200px;
+        @include d-flex;
+    }
+
+    .menu {
+        @include d-flex;
+        width: 170px;
+
+        .menu-btn {
+            @include d-flex($direction: column);
+            height: 14px;
+
+            .menu-item {
+                width: 20px;
+                height: 1px;
+                background-color: #B798FF;
+            }
+        }
+        p {
+            font-weight: 400;
+            font-size: 16px;
+        }
+    }
+}
+
