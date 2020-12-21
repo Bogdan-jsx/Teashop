@@ -42,5 +42,38 @@ header {
             font-size: 16px;
         }
     }
+    .phone-number {
+        font-weight: 700;
+        font-size: 16px;
+    }
+    .working-time, .shipping-and-payment {
+        font-weight: 400;
+        font-size: 16px;
+    }
+    .shipping-and-payment {
+        color: black;
+        text-decoration: none;
+    }
+    .search {
+        width: 175px;
+        padding: 10px 0 10px 0;
+        font-weight: 400;
+        font-size: 16px;
+        color: #A8A8A8;
+        border: none;
+        border-bottom: 1px solid #8B8B8B;
+    }
+    .basket {
+        @include d-flex;
+        width: 38px;
+        
+        p {
+            font-size: 14px;
+        }
+        span {
+            font-size: 18px;
+            color: #B798FF;
+        }
+    }
 }
 
