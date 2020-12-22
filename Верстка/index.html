@@ -9,10 +9,10 @@
     <title>Teashop.by</title>
 </head>
 <body>
-    <div class="container">
-        <header>
+    <header>
+        <div class="container">
             <div class="logo"><img src="img/logo.png" alt="Logo"><p>Teashop.by</p></div>
-            <div class="menu">
+            <div class="menu" onclick="toggleOpenMenu(this)">
                 <div class="menu-btn">
                     <div class="menu-item first"></div>
                     <div class="menu-item second"></div>
@@ -28,7 +28,41 @@
                 <span class="material-icons">shopping_cart</span>
                 <p class="basket-products-count">15</p>
             </div>
-        </header>
+        </div>
+    </header>
+    <div class="container">
+        <div id="menu-catalog" class="hidden">
+            <div class="catalog">
+                <ul class="main-list">
+                    <li class="main-list-item">Пуэр</li>
+                    <li class="main-list-item selected-item">Улун</li>
+                    <li class="main-list-item">Хэй ча (черный чай)</li>
+                    <li class="main-list-item">Красный чай</li>
+                    <li class="main-list-item">Зеленый чай</li>
+                    <li class="main-list-item">Белый чай</li>
+                    <li class="main-list-item">Желтый чай</li>
+                    <li class="main-list-item">Связанный чай</li>
+                    <li class="main-list-item">Японский чай</li>
+                    <li class="main-list-item">Матча</li>
+                    <li class="main-list-item">Тайский чай</li>
+                    <li class="main-list-item">Индийский чай</li>
+                    <li class="main-list-item">Цейлонский чай</li>
+                </ul>
+                <ul class="secondary-list">
+                    <li class="secondary-list-item"><a href="#">Уишаньский улун</a></li>
+                    <li class="secondary-list-item"><a href="#">Гуандунский улун</a></li>
+                    <li class="secondary-list-item"><a href="#">Тайваньский улун</a></li>
+                    <li class="secondary-list-item"><a href="#">Габа</a></li>
+                    <li class="secondary-list-item"><a href="#">Тайский улун</a></li>
+                    <li class="secondary-list-item"><a href="#">Все сорта</a></li>
+                </ul>
+            </div>
+        </div>
+        <main>
+            <img src="img/main-img.png" alt="">
+            <div class="content"></div>
+        </main>
     </div>
+    <script src="./js/main.js"></script>
 </body>
 </html>

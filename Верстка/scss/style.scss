@@ -5,6 +5,7 @@
     margin: 0;
     padding: 0;
     font-family: 'Montserrat', sans-serif;
+    list-style: none;
 }
 .container {
     width: 65%;
@@ -12,8 +13,15 @@
 }
 
 header {
-    height: 100px;
-    @include d-flex;
+    position: relative;
+    box-shadow: 0px 3px 84px rgba(0, 0, 0, 0.07);
+    z-index: 5;
+    
+    .container {
+        @include d-flex;
+        flex-wrap: wrap;
+        height: 100px;
+    }
 
     .logo {
         font-size: 20px;
@@ -26,6 +34,7 @@ header {
     .menu {
         @include d-flex;
         width: 170px;
+        cursor: pointer;
 
         .menu-btn {
             @include d-flex($direction: column);
@@ -35,11 +44,30 @@ header {
                 width: 20px;
                 height: 1px;
                 background-color: #B798FF;
+                transition: all .3s linear;
             }
         }
         p {
             font-weight: 400;
             font-size: 16px;
+        }
+    }
+    .menu-opened {
+        .menu-btn {
+            @include d-flex($direction: column, $align: start);
+
+            .menu-item {
+                background-color: #FFC000;
+            }
+            .first {
+                width: 22px;
+            }
+            .second {
+                width: 17px;
+            }
+            .third {
+                width: 11px;
+            }
         }
     }
     .phone-number {
@@ -77,3 +105,59 @@ header {
     }
 }
 
+#menu-catalog {
+    width: 100%;
+    padding: 35px 0 35px 0;
+    background-color: white;
+    position: relative;
+    z-index: 3;
+    height: 397px;
+
+    .catalog {
+        @include d-flex($justify: start, $align: start);
+        width: 50%;
+        
+        .main-list {
+            width: 300px;
+
+            .main-list-item {
+                font-size: 16px;
+                font-weight: 400px;
+                margin-bottom: 11px;
+                cursor: pointer;
+            }
+            .selected-item {
+                color: #FFC000;
+            }
+        }
+        .secondary-list-item {
+            margin-bottom: 11px;
+
+            a {
+                font-weight: 400;
+                font-size: 16px;
+                color: #8B8B8B;
+                text-decoration: none;
+            }   
+        }
+    }
+}
+.hidden {
+    display: none;
+}
+main {
+    height: 100%;
+
+    img {
+        width: 100%;
+        height: auto;
+    }
+    .content {
+        height: 400px;
+        width: 100%;
+        background-color: green;
+    }
+}
+main.shift {
+    margin-top: -467px;
+}

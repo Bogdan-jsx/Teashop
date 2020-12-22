@@ -2,6 +2,7 @@
   margin: 0;
   padding: 0;
   font-family: "Montserrat", sans-serif;
+  list-style: none;
 }
 
 .container {
@@ -10,11 +11,17 @@
 }
 
 header {
-  height: 100px;
+  position: relative;
+  box-shadow: 0px 3px 84px rgba(0, 0, 0, 0.07);
+  z-index: 5;
+}
+header .container {
   display: flex;
   align-items: center;
   justify-content: space-between;
   flex-direction: row;
+  flex-wrap: wrap;
+  height: 100px;
 }
 header .logo {
   font-size: 20px;
@@ -32,6 +39,7 @@ header .menu {
   justify-content: space-between;
   flex-direction: row;
   width: 170px;
+  cursor: pointer;
 }
 header .menu .menu-btn {
   display: flex;
@@ -44,10 +52,29 @@ header .menu .menu-btn .menu-item {
   width: 20px;
   height: 1px;
   background-color: #B798FF;
+  transition: all 0.3s linear;
 }
 header .menu p {
   font-weight: 400;
   font-size: 16px;
+}
+header .menu-opened .menu-btn {
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  flex-direction: column;
+}
+header .menu-opened .menu-btn .menu-item {
+  background-color: #FFC000;
+}
+header .menu-opened .menu-btn .first {
+  width: 22px;
+}
+header .menu-opened .menu-btn .second {
+  width: 17px;
+}
+header .menu-opened .menu-btn .third {
+  width: 11px;
 }
 header .phone-number {
   font-weight: 700;
@@ -83,4 +110,62 @@ header .basket p {
 header .basket span {
   font-size: 18px;
   color: #B798FF;
+}
+
+#menu-catalog {
+  width: 100%;
+  padding: 35px 0 35px 0;
+  background-color: white;
+  position: relative;
+  z-index: 3;
+  height: 397px;
+}
+#menu-catalog .catalog {
+  display: flex;
+  align-items: start;
+  justify-content: start;
+  flex-direction: row;
+  width: 50%;
+}
+#menu-catalog .catalog .main-list {
+  width: 300px;
+}
+#menu-catalog .catalog .main-list .main-list-item {
+  font-size: 16px;
+  font-weight: 400px;
+  margin-bottom: 11px;
+  cursor: pointer;
+}
+#menu-catalog .catalog .main-list .selected-item {
+  color: #FFC000;
+}
+#menu-catalog .catalog .secondary-list-item {
+  margin-bottom: 11px;
+}
+#menu-catalog .catalog .secondary-list-item a {
+  font-weight: 400;
+  font-size: 16px;
+  color: #8B8B8B;
+  text-decoration: none;
+}
+
+.hidden {
+  display: none;
+}
+
+main {
+  height: 100%;
+}
+main img {
+  width: 100%;
+  height: auto;
+}
+main .content {
+  height: 400px;
+  width: 100%;
+  background-color: green;
+}
+
+main.shift {
+  margin-top: -467px;
 }
