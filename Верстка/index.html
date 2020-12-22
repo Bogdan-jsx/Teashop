@@ -11,23 +11,28 @@
 <body>
     <header>
         <div class="container">
-            <div class="logo"><img src="img/logo.png" alt="Logo"><p>Teashop.by</p></div>
-            <div class="menu" onclick="toggleOpenMenu(this)">
-                <div class="menu-btn">
-                    <div class="menu-item first"></div>
-                    <div class="menu-item second"></div>
-                    <div class="menu-item third"></div>
-                </div>
-                <p>Чайный каталог</p>
-            </div>
-            <p class="phone-number">375 33 604 11 77</p>
-            <p class="working-time">с 10 до 21</p>
-            <a href="" class="shipping-and-payment">Доставка и оплата</a>
-            <input type="text" class="search" placeholder="Поиск по товарам">
-            <div class="basket">
-                <span class="material-icons">shopping_cart</span>
-                <p class="basket-products-count">15</p>
-            </div>
+            <div class="logo nav-item"><img src="img/logo.png" alt="Logo"><p>Teashop.by</p></div>
+            <div class="collapsed-menu-btn" onclick="toggleOpenCollapsedMenu()"><span class="material-icons">menu</span></div>
+            <nav>
+                <ul id="nav-menu-list">
+                    <li class="menu nav-item" onclick="toggleOpenMenu(this)">
+                        <div class="menu-btn">
+                            <div class="menu-item first"></div>
+                            <div class="menu-item second"></div>
+                            <div class="menu-item third"></div>
+                        </div>
+                        <p>Чайный каталог</p>
+                    </li>
+                    <li class="phone-number nav-item">375 33 604 11 77</li>
+                    <li class="working-time nav-item">с 10 до 21</li>
+                    <li class="nav-item"><a href="" class="shipping-and-payment">Доставка и оплата</a></li>
+                    <li><input type="text" class="search nav-item" placeholder="Поиск по товарам"></li>
+                    <li class="basket nav-item">
+                        <span class="material-icons">shopping_cart</span>
+                        <p class="basket-products-count">15</p>
+                    </li>
+                </ul>
+            </nav>
         </div>
     </header>
     <div class="container">

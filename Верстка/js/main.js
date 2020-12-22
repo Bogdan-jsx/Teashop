@@ -5,3 +5,7 @@ function toggleOpenMenu(menu) {
     menuCatalog.classList.toggle("hidden");
     mainBlock.classList.toggle("shift");
 }
+function toggleOpenCollapsedMenu() {
+    const menu = document.getElementById("nav-menu-list");
+    menu.classList.toggle("opened");
+}

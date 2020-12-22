@@ -9,6 +9,16 @@
   width: 65%;
   margin: 0 auto;
 }
+@media screen and (max-width: 1200px) {
+  .container {
+    width: 80%;
+  }
+}
+@media screen and (max-width: 700px) {
+  .container {
+    width: 96%;
+  }
+}
 
 header {
   position: relative;
@@ -21,7 +31,28 @@ header .container {
   justify-content: space-between;
   flex-direction: row;
   flex-wrap: wrap;
-  height: 100px;
+  flex-wrap: wrap;
+  padding: 30px 0 30px 0;
+}
+header .container nav {
+  width: 81%;
+}
+header .container nav ul {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: row;
+  flex-wrap: wrap;
+  transition: all 0.3s linear;
+}
+header .collapsed-menu-btn {
+  color: #B798FF;
+  background-color: #F0F0F0;
+  width: 100%;
+  text-align: center;
+  padding: 10px 0 5px 0;
+  cursor: pointer;
+  display: none;
 }
 header .logo {
   font-size: 20px;
@@ -32,12 +63,14 @@ header .logo {
   align-items: center;
   justify-content: space-between;
   flex-direction: row;
+  flex-wrap: wrap;
 }
 header .menu {
   display: flex;
   align-items: center;
   justify-content: space-between;
   flex-direction: row;
+  flex-wrap: wrap;
   width: 170px;
   cursor: pointer;
 }
@@ -46,6 +79,7 @@ header .menu .menu-btn {
   align-items: center;
   justify-content: space-between;
   flex-direction: column;
+  flex-wrap: wrap;
   height: 14px;
 }
 header .menu .menu-btn .menu-item {
@@ -63,6 +97,7 @@ header .menu-opened .menu-btn {
   align-items: start;
   justify-content: space-between;
   flex-direction: column;
+  flex-wrap: wrap;
 }
 header .menu-opened .menu-btn .menu-item {
   background-color: #FFC000;
@@ -102,6 +137,7 @@ header .basket {
   align-items: center;
   justify-content: space-between;
   flex-direction: row;
+  flex-wrap: wrap;
   width: 38px;
 }
 header .basket p {
@@ -110,6 +146,63 @@ header .basket p {
 header .basket span {
   font-size: 18px;
   color: #B798FF;
+}
+@media screen and (max-width: 1650px) {
+  header .container {
+    width: 75%;
+  }
+}
+@media screen and (max-width: 1400px) {
+  header .container {
+    width: 85%;
+  }
+  header .container nav {
+    width: 78%;
+  }
+}
+@media screen and (max-width: 1200px) {
+  header .container {
+    width: 96%;
+  }
+  header .logo {
+    font-size: 17px;
+    width: 180px;
+  }
+  header .menu p, header .phone-number, header .working-time, header .shipping-and-payment, header .search {
+    font-size: 14px;
+  }
+  header .menu {
+    width: 150px;
+  }
+  header .basket p {
+    font-size: 12px;
+  }
+  header .basket span {
+    font-size: 16px;
+  }
+}
+@media screen and (max-width: 950px) {
+  header .container {
+    flex-direction: column;
+  }
+  header .collapsed-menu-btn {
+    display: block;
+  }
+  header .container nav ul {
+    flex-direction: column-reverse;
+    height: 0;
+    display: none;
+  }
+  header .container nav ul.opened {
+    height: auto;
+    display: flex;
+  }
+  header .nav-item, header .collapsed-menu-btn {
+    margin-top: 20px;
+  }
+  header .logo {
+    margin-top: 0;
+  }
 }
 
 #menu-catalog {
@@ -125,6 +218,7 @@ header .basket span {
   align-items: start;
   justify-content: start;
   flex-direction: row;
+  flex-wrap: wrap;
   width: 50%;
 }
 #menu-catalog .catalog .main-list {
