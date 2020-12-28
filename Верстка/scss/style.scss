@@ -10,6 +10,7 @@
 .container {
     width: 65%;
     margin: 0 auto;
+    height: 100%;
 
     @media screen and (max-width: 1200px) {
         width: 80%;
@@ -324,14 +325,11 @@ header {
 }
 
 main {
-    height: 100%;
-
     img {
         width: 100%;
         height: auto;
     }
     .content {
-        height: 400px;
         width: 100%;
 
         .section {
@@ -449,4 +447,61 @@ main {
 }
 main.shift {
     margin-top: -467px;
+}
+
+footer {
+    margin-top: 50px;
+    background-color: #F0F0F0;
+    padding: 50px 0 50px 0;
+
+    .container {
+        @include d-flex($align: start);
+    }
+    
+    .address .metro, .contacts {
+        color: #927BC9;
+    }
+    .address, .descr, .contacts {
+        line-height: 220%;
+    }
+    .contacts {
+        >:first-child {
+            color: black;
+        }
+        // p {
+        //     margin-bottom: 9px;
+        // }
+    }
+    .descr, .social span {
+        color: #A8A8A8;
+    }
+    .social {
+        @include d-flex($direction: column);
+    }
+    .descr {
+        width: 30vw;
+    }
+    @media screen and (max-width: 890px) {
+        .descr {
+            width: 70vw;
+        }
+        .social {
+            margin-top: 20px;
+        }
+    }
+    @media screen and (max-width: 700px) {
+        .descr {
+            width: 85vw;
+        }
+    }
+    @media screen and (max-width: 500px) {
+        .container {
+            flex-direction: column;
+            align-items: center;
+        }
+        .social {
+            flex-direction: row;
+            width: 100px;
+        }
+    }
 }
