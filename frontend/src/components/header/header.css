@@ -1,0 +1,184 @@
+header {
+  position: relative;
+  box-shadow: 0px 3px 84px rgba(0, 0, 0, 0.07);
+  z-index: 5;
+}
+header .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: row;
+  flex-wrap: wrap;
+  flex-wrap: wrap;
+  padding: 30px 0 30px 0;
+}
+header .container nav {
+  width: 81%;
+}
+header .container nav ul {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: row;
+  flex-wrap: wrap;
+  transition: all 0.3s linear;
+}
+header .collapsed-menu-btn {
+  color: #B798FF;
+  background-color: #F0F0F0;
+  width: 100%;
+  text-align: center;
+  padding: 10px 0 5px 0;
+  cursor: pointer;
+  display: none;
+}
+header .logo {
+  font-size: 20px;
+  font-weight: 700;
+  align-items: center;
+  width: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+header .menu {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 170px;
+  cursor: pointer;
+}
+header .menu .menu-btn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: column;
+  flex-wrap: wrap;
+  height: 14px;
+}
+header .menu .menu-btn .menu-item {
+  width: 20px;
+  height: 1px;
+  background-color: #B798FF;
+  transition: all 0.3s linear;
+}
+header .menu p {
+  font-weight: 400;
+  font-size: 16px;
+}
+header .menu-opened .menu-btn {
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+header .menu-opened .menu-btn .menu-item {
+  background-color: #FFC000;
+}
+header .menu-opened .menu-btn .first {
+  width: 22px;
+}
+header .menu-opened .menu-btn .second {
+  width: 17px;
+}
+header .menu-opened .menu-btn .third {
+  width: 11px;
+}
+header .phone-number {
+  font-weight: 700;
+  font-size: 16px;
+}
+header .working-time, header .shipping-and-payment {
+  font-weight: 400;
+  font-size: 16px;
+}
+header .shipping-and-payment {
+  color: black;
+  text-decoration: none;
+}
+header .search {
+  width: 175px;
+  padding: 10px 0 10px 0;
+  font-weight: 400;
+  font-size: 16px;
+  color: #A8A8A8;
+  border: none;
+  border-bottom: 1px solid #8B8B8B;
+}
+header .basket {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 38px;
+}
+header .basket p {
+  font-size: 14px;
+}
+header .basket span {
+  font-size: 18px;
+  color: #B798FF;
+}
+@media screen and (max-width: 1650px) {
+  header .container {
+    width: 75%;
+  }
+}
+@media screen and (max-width: 1400px) {
+  header .container {
+    width: 85%;
+  }
+  header .container nav {
+    width: 78%;
+  }
+}
+@media screen and (max-width: 1200px) {
+  header .container {
+    width: 96%;
+  }
+  header .logo {
+    font-size: 17px;
+    width: 180px;
+  }
+  header .menu p, header .phone-number, header .working-time, header .shipping-and-payment, header .search {
+    font-size: 14px;
+  }
+  header .menu {
+    width: 150px;
+  }
+  header .basket p {
+    font-size: 12px;
+  }
+  header .basket span {
+    font-size: 16px;
+  }
+}
+@media screen and (max-width: 950px) {
+  header .container {
+    flex-direction: column;
+  }
+  header .collapsed-menu-btn {
+    display: block;
+  }
+  header .container nav ul {
+    flex-direction: column-reverse;
+    height: 0;
+    display: none;
+  }
+  header .container nav ul.opened {
+    height: auto;
+    display: flex;
+  }
+  header .nav-item, header .collapsed-menu-btn {
+    margin-top: 20px;
+  }
+  header .logo {
+    margin-top: 0;
+  }
+}

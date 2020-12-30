@@ -1,0 +1,102 @@
+@mixin d-flex ($align: center, $justify: space-between, $direction: row, $wrap: wrap) {
+    display: flex;
+    align-items: $align;
+    justify-content: $justify;
+    flex-direction: $direction;
+    flex-wrap: $wrap;
+}
+
+#menu-catalog {
+    @include d-flex($align: flex-start);
+    width: 100%;
+    padding: 35px 0 35px 0;
+    background-color: white;
+    position: relative;
+    z-index: 3;
+    height: 397px;
+
+    @media screen and (max-width: 550px) {
+        height: 450px;
+    }
+
+    .catalog {
+        @include d-flex($justify: start, $align: start);
+        width: 50%;
+
+        @media screen and (max-width: 1440px) {
+            width: 45%;
+            font-size: 14px;
+        }
+        @media screen and (max-width: 850px) {
+            width: 60%;
+        }
+        @media screen and (max-width: 550px) {
+            width: 90%;
+            margin: 0 auto;
+            font-size: 16px;
+        }
+        
+        .main-list {
+            width: 44%;
+
+            .main-list-item {
+                font-weight: 400px;
+                margin-bottom: 11px;
+                cursor: pointer;
+            }
+            .selected-item {
+                color: #FFC000;
+            }
+        }
+        .secondary-list {
+            width: 56%;
+
+            .secondary-list-item {
+                margin-bottom: 11px;
+    
+                a {
+                    font-weight: 400;
+                    color: #8B8B8B;
+                    text-decoration: none;
+                }   
+            }
+        }
+    }
+    .products-in-catalog {
+        @include d-flex;
+        width: 50%;
+
+        @media screen and (max-width: 1440px) {
+            width: 55%;
+        }
+
+        .product {
+            width: 46%;
+
+            @media screen and (max-width: 1440px) {
+                font-size: 14px;
+            }
+        }
+        
+        @media screen and (max-width: 850px) {
+            width: 40%;
+
+            >:last-child {
+                display: none;
+            }
+            .product {
+                width: 100%;
+                font-size: 16px;
+
+                .product-card-img {
+                    height: 23vw;
+                }
+            }
+        }
+        @media screen and (max-width: 550px) {
+            .product {
+                display: none;
+            }
+        }
+    }
+}

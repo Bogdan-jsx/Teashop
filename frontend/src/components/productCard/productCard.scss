@@ -1,0 +1,45 @@
+@mixin d-flex ($align: center, $justify: space-between, $direction: row, $wrap: wrap) {
+    display: flex;
+    align-items: $align;
+    justify-content: $justify;
+    flex-direction: $direction;
+    flex-wrap: $wrap;
+}
+
+.product {
+    color: black;
+    text-decoration: none;
+    font-size: 16px;
+    
+    .product-card-img {
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        width: 100%;
+        height: 11vw;
+        background-image: url(./tea-1);
+    }
+    .info {
+        @include d-flex;
+        margin-top: 20px;
+
+        .name {
+            margin-top: 13px;
+            color: #4F4F4F;
+        }
+        .discount {
+            color: #FE0000;
+        }
+        .original-cost {
+            color: #FE0000;
+            text-decoration: line-through;
+
+            p {
+                color: black;
+            }
+        }
+        strong {
+            font-size: 18px;
+        }
+    } 
+}
