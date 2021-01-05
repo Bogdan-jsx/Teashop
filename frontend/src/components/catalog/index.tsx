@@ -1,6 +1,6 @@
 import React from 'react';
 import "./catalog.css"
-import ProductCard from "../productCard";
+import { ProductCard } from "../productCard/index";
 
 interface CatalogProps {
     isCatalogOpened: boolean,

@@ -1,7 +1,7 @@
 import React from 'react';
 import "./productCard.css";
 
-export default function ProductCard() {
+export const ProductCard: React.FC = () => {
     return (
         <a href="#" className="product">
             <div className="product-card-img tea-10"></div>

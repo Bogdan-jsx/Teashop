@@ -13,6 +13,9 @@
 .hidden {
   display: none !important;
 }
+main.shift {
+  margin-top: -467px;
+}
 @media screen and (max-width: 1200px) {
   .container {
     width: 80%;

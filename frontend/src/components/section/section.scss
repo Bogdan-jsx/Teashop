@@ -1,0 +1,84 @@
+@import "../../mixins.scss";
+
+.section {
+    margin-top: 45px;
+
+    .section-info {
+        @include d-flex;
+        width: 335px;
+
+        .section-name {
+            font-weight: 600;
+            font-size: 26px;
+        }
+        .products-count {
+            font-weight: 400;
+            font-size: 16px;
+            color: #A8A8A8;
+            align-self: flex-start;
+        }
+        .all-products {
+            font-weight: 400;
+            font-size: 20px;
+            color: #927BC9;
+            text-decoration: none;
+            margin-left: 20px;
+        }
+        @media screen and (max-width: 360px) {
+            width: 310px;
+            margin: 0 auto;
+
+            .section-name {
+                font-size: 24px;
+            }
+            .all-products {
+                font-size: 18px
+            }
+        }
+    }
+    .products {
+        @include d-flex;
+        width: 100%;
+
+        .product {
+            width: 22.5%;
+            margin-top: 25px;
+
+            .product-card-img {
+                @media screen and (max-width: 1440px) {
+                    height: 15vw;
+                }
+                @media screen and (max-width: 1200px) {
+                    height: 18vw;
+                }
+                @media screen and (max-width: 850px) {
+                    height: 26vw;
+                }
+                @media screen and (max-width: 500px) {
+                    height: 60vw;
+                }
+            }
+        }
+        @media screen and (max-width: 1440px) {
+            .product {
+                width: 31%;
+            }
+            >:last-child {
+                display: none;
+            }
+        }
+        @media screen and (max-width: 850px) {
+            .product {
+                width: 48%;
+                display: block;
+            }
+        }
+        @media screen and (max-width: 500px) {
+            .product {
+                width: 90%;
+                display: block;
+            }
+            flex-direction: column;
+        }
+    }
+}
