@@ -3,6 +3,7 @@ import "./basketBlock.css";
 import { BasketProductCard } from "../basketProductCard/index";
 
 interface BasketProduct {
+    _id :number,
     price: number,
     discount: number,
     name: string,
@@ -13,14 +14,15 @@ interface BasketProduct {
 
 interface Props {
     basketProducts: Array<BasketProduct>,
+    editWeight: Function,
 }
 
-export const BasketBlock: React.FC<Props> = ({basketProducts}) => {
+export const BasketBlock: React.FC<Props> = ({basketProducts, editWeight}) => {
     return (
         <div className="basket-block">
-            <h1>Корзина<span className="basket-products-count">2</span></h1>
+            <h1>Корзина<span className="basket-products-count">{basketProducts.length}</span></h1>
             {basketProducts && basketProducts.map((item: BasketProduct) => {
-                return <BasketProductCard product={item} />
+                return <BasketProductCard product={item} key={item._id} editWeight={editWeight(item._id)} />
             })}
         </div>
     )
