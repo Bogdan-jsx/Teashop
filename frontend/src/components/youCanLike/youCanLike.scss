@@ -1,0 +1,15 @@
+@import "../../mixins.scss";
+
+.you-can-like {
+    margin-top: 45px;
+
+    .you-can-like-products {
+        @include d-flex;
+        margin-top: 25px;
+        width: 100%;
+
+        .product {
+            width: 22.5%;
+        }
+    }
+}

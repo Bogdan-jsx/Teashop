@@ -1,0 +1,29 @@
+.images-slider {
+  width: 57.5%;
+}
+.images-slider .selected-image, .images-slider .all-slider-images li div {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.images-slider .selected-image {
+  width: 100%;
+  height: 392px;
+}
+.images-slider .all-slider-images {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin-top: 20px;
+  width: 100%;
+}
+.images-slider .all-slider-images li {
+  width: 17.5%;
+}
+.images-slider .all-slider-images li div {
+  width: 100%;
+  height: 70px;
+  cursor: pointer;
+}

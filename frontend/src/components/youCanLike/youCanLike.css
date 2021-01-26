@@ -1,0 +1,15 @@
+.you-can-like {
+  margin-top: 45px;
+}
+.you-can-like .you-can-like-products {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin-top: 25px;
+  width: 100%;
+}
+.you-can-like .you-can-like-products .product {
+  width: 22.5%;
+}

@@ -1,0 +1,29 @@
+.order-form {
+  margin-top: 45px;
+  align-self: flex-start;
+}
+.order-form h2 {
+  font-weight: 600;
+  font-size: 26px;
+}
+.order-form table {
+  margin-top: 20px;
+}
+.order-form table tr > :first-child {
+  padding: 20px;
+  text-align: right;
+  color: #A8A8A8;
+}
+.order-form table tr > :last-child {
+  padding: 5px;
+}
+.order-form table tr > :last-child input {
+  padding: 15px;
+  width: 600px;
+  border: 1px solid #F0F0F0;
+}
+.order-form table tr .order-submit-button {
+  width: 140px !important;
+  background-color: white;
+  border: 1px solid #B798FF !important;
+}

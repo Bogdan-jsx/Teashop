@@ -3,9 +3,7 @@ import "./section.css";
 import { ProductCard } from "../productCard/index";
 
 interface Product {
-    priceRub: number,
-    priceUah: number,
-    originalPrice: number,
+    price: number,
     discount: number,
     name: string,
     image: string,

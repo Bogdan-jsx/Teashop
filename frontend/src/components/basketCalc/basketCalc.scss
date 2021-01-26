@@ -1,0 +1,32 @@
+.order-price {
+    margin-top: 25px;
+
+    tr {
+        :first-child {
+            color: #8b8b8b;
+            text-align: right;
+            padding: 10px;
+        }
+        :last-child {
+            color: #C8C8C8;
+            font-size: 28px;
+            font-weight: 600;
+            padding-left: 16px;
+        }
+    }
+    .total {
+        :first-child {
+            color: black;
+        }
+        :last-child {
+            color: #FFC000;
+        }
+    }
+}
+.free-delivery {
+    color: #8b8b8b;
+    font-size: 14px;
+    font-style: italic;
+    text-align: right;
+    margin-top: 13px;
+}

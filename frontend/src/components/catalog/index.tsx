@@ -3,9 +3,7 @@ import "./catalog.css"
 import { ProductCard } from "../productCard/index";
 
 interface Product {
-    priceRub: number,
-    priceUah: number,
-    originalPrice: number,
+    price: number,
     discount: number,
     name: string,
     image: string,
@@ -28,17 +26,13 @@ interface CatalogCategory {
 export const Catalog: React.FC<CatalogProps> = ({isCatalogOpened}) => {
     const productsInCatalog: Array<Product> = [
         {
-            priceRub: 260,
-            priceUah: 100,
-            originalPrice: 360,
+            price: 360,
             discount: 45,
             name: "Шу пуэр Лу Е Чунь «Гу Шу Чень Юнь», 2009 г., 357 гр. 2009 г., 3573.",
             image: "./tea-1",
         },
         {
-            priceRub: 260,
-            priceUah: 100,
-            originalPrice: 360,
+            price: 360,
             discount: 45,
             name: "Шу пуэр Лу Е Чунь «Гу Шу Чень Юнь», 2009 г., 357 гр. 2009 г., 3573.",
             image: "./tea-1",

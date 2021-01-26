@@ -28,7 +28,7 @@ export const Header: React.FC<HeaderProps> = ({isCatalogOpened, setIsCatalogOpen
     return (
         <header>
             <div className="container">
-                <div className="logo nav-item"><img src="img/logo.png" alt="Logo"/><p>Teashop.by</p></div>
+                <div className="logo nav-item"><img src={process.env.PUBLIC_URL + "/img/logo.png"} alt="Logo"/><p>Teashop.by</p></div>
                 <div className="collapsed-menu-btn" onClick={toggleCollapsedMenu.bind(null)}><span className="material-icons">menu</span></div>
                 <nav>
                     <ul id="nav-menu-list" className={isMenuOpened ? "opened" : ""}>

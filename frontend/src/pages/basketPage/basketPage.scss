@@ -1,0 +1,5 @@
+@import "../../mixins.scss";
+
+.basket {
+    @include d-flex($direction: column, $align: flex-end);
+}

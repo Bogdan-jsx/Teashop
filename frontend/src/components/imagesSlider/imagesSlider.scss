@@ -1,0 +1,30 @@
+@import "../../mixins.scss";
+
+.images-slider {
+    width: 57.5%;
+
+    .selected-image, .all-slider-images li div {
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+    .selected-image {
+        width: 100%;
+        height: 392px;  
+    }
+    .all-slider-images {
+        @include d-flex;
+        margin-top: 20px;
+        width: 100%;
+
+        li {
+            width: 17.5%;
+
+            div {
+                width: 100%;
+                height: 70px;
+                cursor: pointer;
+            }
+        }
+    }
+}
