@@ -1,0 +1,56 @@
+@import "../../mixins.scss";
+
+.filter-catalog {
+    padding: 22px;
+    border: 1px solid #F0F0F0;
+    width: 285px;
+
+    li {
+        cursor: pointer;
+        font-weight: 600;
+        padding: 5px;
+        @include d-flex($justify: start);
+
+        .sub-categories {
+            width: 100%;
+
+            .sub-category {
+                p {
+                    margin-left: 10px;
+                }
+                span {
+                    border: 1px solid #E6E6E6;
+                    width: 17px;
+                    height: 17px;
+                }
+            } 
+            .sub-category.selected {
+                span {
+                    border: 1px solid #FFC000;
+                    font-size: 15px;
+                }
+            }
+        }
+
+        span {
+            color: #B798FF;
+            margin-top: 5px;
+        }
+    }
+    li.selected {
+        >p, >span {
+            color: #FFC000;
+        }
+        
+    }
+    .clear-filters {
+        button {
+            border: 1px solid #B798FF;
+            background-color: white;
+            padding: 16px 42px;
+            color: #8B8B8B;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+    }
+}

@@ -41,8 +41,8 @@ export const BasketPage: React.FC = () => {
 
     function editWeight(id: number) {
         return function (weight: number) {
-            let temp = productsInBasket;
-            temp.forEach((item: BasketProduct) => {
+            let updatedBasket = [...productsInBasket];
+            updatedBasket.forEach((item: BasketProduct) => {
                 if (item._id === id) {
                     item.totalWeight = Number(weight);
                     const priceWithDiscount = item.price / 100 * item.discount;
@@ -50,8 +50,7 @@ export const BasketPage: React.FC = () => {
                     item.totalPrice = priceWithDiscount * multiplier;
                 }
             })
-            setBasketProducts(productsInBasket);
-            console.log(productsInBasket);
+            setBasketProducts(updatedBasket);
         }
     }
 

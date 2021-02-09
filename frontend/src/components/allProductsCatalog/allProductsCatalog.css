@@ -1,0 +1,45 @@
+.filter-catalog {
+  padding: 22px;
+  border: 1px solid #F0F0F0;
+  width: 285px;
+}
+.filter-catalog li {
+  cursor: pointer;
+  font-weight: 600;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.filter-catalog li .sub-categories {
+  width: 100%;
+}
+.filter-catalog li .sub-categories .sub-category p {
+  margin-left: 10px;
+}
+.filter-catalog li .sub-categories .sub-category span {
+  border: 1px solid #E6E6E6;
+  width: 17px;
+  height: 17px;
+}
+.filter-catalog li .sub-categories .sub-category.selected span {
+  border: 1px solid #FFC000;
+  font-size: 15px;
+}
+.filter-catalog li span {
+  color: #B798FF;
+  margin-top: 5px;
+}
+.filter-catalog li.selected > p, .filter-catalog li.selected > span {
+  color: #FFC000;
+}
+.filter-catalog .clear-filters button {
+  border: 1px solid #B798FF;
+  background-color: white;
+  padding: 16px 42px;
+  color: #8B8B8B;
+  cursor: pointer;
+  margin-top: 20px;
+}

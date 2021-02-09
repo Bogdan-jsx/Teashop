@@ -1,0 +1,21 @@
+@import "../../mixins.scss";
+
+.all-products-header {
+    width: 100%;
+    padding-left: 350px;
+    @include d-flex;
+    >div {
+        @include d-flex;
+        width: 180px;
+        padding: 30px;
+
+        h2 {
+            font-weight: 600;
+            font-size: 26px;
+        }
+        p {
+            color: #A8A8A8;
+            align-self: flex-start;
+        }
+    }
+}
