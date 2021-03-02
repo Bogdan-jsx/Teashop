@@ -10,7 +10,7 @@ const sequelize = new Sequelize(DB_NAME as string, MYSQL_USER as string, MYSQL_P
 });
 
 sequelize.addModels([
-    Category,
+    // Category,
     // Image,
     // Order,
     // Product,
