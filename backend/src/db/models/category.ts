@@ -1,4 +1,4 @@
-const { Column, DataType, Model, PrimaryKey, Table } = require("sequelize-typescript");
+import { Column, DataType, Model, PrimaryKey, Table } from "sequelize-typescript";
 
 interface CategoryAttr {
     name: string,
@@ -7,7 +7,7 @@ interface CategoryAttr {
 }
 
 @Table
-export class Category extends Model implements CategoryAttr {
+class Category extends Model implements CategoryAttr {
     @PrimaryKey
     @Column({
         type: DataType.UUID,
@@ -29,3 +29,5 @@ export class Category extends Model implements CategoryAttr {
     })
     alias!: string;
 }
+
+export default Category;

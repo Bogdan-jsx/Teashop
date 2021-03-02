@@ -1,12 +1,6 @@
-const { Sequelize, DataTypes } = require("sequelize");
-const { BelongsTo, Column, DataType, ForeignKey, HasMany, Model, PrimaryKey, Table } = require("sequelize-typescript");
-const { Product } = require("./product");
-const { Order } = require("./order");
-const sequelize = new Sequelize("Teashop", "TeashopAdmin", "6def3656DEF3656", {
-    dialect: "mssql",
-    host: "localhost",
-    port: "1433"
-});
+import { Column, DataType, ForeignKey, Model, Table } from "sequelize-typescript";
+import Product from "./product";
+import Order from "./order";
 
 interface ProductOrderAttr {
     productId: string,

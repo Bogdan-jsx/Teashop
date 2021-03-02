@@ -1,11 +1,5 @@
-const { Sequelize } = require("sequelize");
-const { BelongsTo, Column, DataType, ForeignKey, HasMany, Model, PrimaryKey, Table } = require("sequelize-typescript");
-const { SubCategory } = require("./subCategory");
-const sequelize = new Sequelize("Teashop", "TeashopAdmin", "6def3656DEF3656", {
-    dialect: "mssql",
-    host: "localhost",
-    port: "1433"
-});
+import { Column, DataType, ForeignKey, Model, PrimaryKey, Table } from "sequelize-typescript";
+import SubCategory from "./subCategory";
 
 interface ProductAttr {
     name: string,

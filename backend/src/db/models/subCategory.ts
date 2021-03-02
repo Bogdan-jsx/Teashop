@@ -1,6 +1,5 @@
-const { Sequelize, DataTypes } = require("sequelize");
-const { BelongsTo, Column, DataType, ForeignKey, HasMany, Model, PrimaryKey, Table } = require("sequelize-typescript");
-const { Category } = require("./category");
+import { Column, DataType, ForeignKey, Model, PrimaryKey, Table } from "sequelize-typescript";
+import Category from "./category";
 
 interface SubCategoryAttr {
     name: string,
