@@ -2,6 +2,7 @@ import React from "react";
 import "./basketCalc.css";
 
 interface BasketProduct {
+    _id: number,
     price: number,
     discount: number,
     name: string,
@@ -42,7 +43,7 @@ export const BasketCalc: React.FC<Props> = ({basketProducts}) => {
             </tr>
             <tr>
                 <td>Доставка</td>
-                <td>+150р</td>
+                <td>{total >= 1500 ? "+150р" : "+0р"}</td>
             </tr>
             <tr className="total">
                 <td>Итого</td>

@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { Link } from "react-router-dom";
+import { Logo } from "../logo/index";
 import "./header.css"
 
 interface HeaderProps {
@@ -28,7 +30,7 @@ export const Header: React.FC<HeaderProps> = ({isCatalogOpened, setIsCatalogOpen
     return (
         <header>
             <div className="container">
-                <div className="logo nav-item"><img src={process.env.PUBLIC_URL + "/img/logo.png"} alt="Logo"/><p>Teashop.by</p></div>
+                <Logo />
                 <div className="collapsed-menu-btn" onClick={toggleCollapsedMenu.bind(null)}><span className="material-icons">menu</span></div>
                 <nav>
                     <ul id="nav-menu-list" className={isMenuOpened ? "opened" : ""}>
@@ -42,7 +44,7 @@ export const Header: React.FC<HeaderProps> = ({isCatalogOpened, setIsCatalogOpen
                         </li>
                         <li className="phone-number nav-item">375 33 604 11 77</li>
                         <li className="working-time nav-item">с 10 до 21</li>
-                        <li className="nav-item"><a href="" className="shipping-and-payment">Доставка и оплата</a></li>
+                        <li className="nav-item"><Link to="#" className="shipping-and-payment">Доставка и оплата</Link></li>
                         <li><input type="text" className="search nav-item" placeholder="Поиск по товарам"/></li>
                         <li className="basket nav-item">
                             <span className="material-icons">shopping_cart</span>

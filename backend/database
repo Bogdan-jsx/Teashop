@@ -1,0 +1,23 @@
+Товар:
+    Name
+    Price
+    Discount
+    Images
+    Vendor Code
+    Effect
+    Appearance
+    Brew
+    Category (Type)
+    Taste
+
+Image:
+    id
+    Link
+
+Категория:
+    Name
+
+Подкатегории:
+    Name
+    Alias
+        
