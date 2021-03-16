@@ -1,7 +1,7 @@
 import { Column, DataType, ForeignKey, Model, PrimaryKey, Table } from "sequelize-typescript";
 import SubCategory from "./subCategory";
 
-interface ProductAttr {
+export interface ProductAttr {
     name: string,
     price: number,
     discount: number,
