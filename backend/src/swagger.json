@@ -1,0 +1,548 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "Backend of teashop documentation",
+    "version": "1.0.0",
+    "title": "Teashop",
+    "license": {
+      "name": "Apache 2.0",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+    }
+  },
+  "host": "localhost",
+  "basePath": "/",
+  "tags": [
+    {
+      "name": "Product",
+      "description": "Operations with products"
+    },
+    {
+      "name": "SubCategory",
+      "description": "All subcategories"
+    },
+    {
+      "name": "Category",
+      "description": "All categories"
+    }
+  ],
+  "schemes": [
+    "https",
+    "http"
+  ],
+  "paths": {
+    "/product/add": {
+      "post": {
+        "tags": [
+          "Product"
+        ],
+        "summary": "Add a new product",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Product object that needs to be added to the store",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ProductBasic"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful added product"
+          },
+          "404": {
+            "description": "Subcategory not found"
+          }
+        }
+      }
+    },
+    "/product/update/{id}": {
+      "put": {
+        "tags": [
+          "Product"
+        ],
+        "summary": "Update product",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Updated product ID",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "description": "New info for product",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ProductBasic"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Product successfully updated"
+          }
+        }
+      }
+    },
+    "/product/getOne/{id}": {
+      "get": {
+        "tags": [
+          "Product"
+        ],
+        "summary": "Get one product by ID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Product ID",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/ProductAttr"
+            },
+            "description": "Product successfuly found and returned"
+          },
+          "404": {
+            "description": "Product not found"
+          }
+        }
+      }
+    },
+    "/product/getMany": {
+      "get": {
+        "tags": [
+          "Product"
+        ],
+        "summary": "Get many products",
+        "parameters": [
+          {
+            "name": "from",
+            "in": "query",
+            "description": "Product searching start",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "name": "to",
+            "in": "query",
+            "description": "Product searching end",
+            "required": false,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/Products"
+            },
+            "description": "Products successfuly returned"
+          },
+          "404": {
+            "description": "Not found"
+          }
+        }
+      }
+    },
+    "/product/getManyBySub": {
+      "get": {
+        "tags": [
+          "Product"
+        ],
+        "summary": "Get many product by subcategory",
+        "parameters": [
+          {
+            "name": "from",
+            "in": "query",
+            "description": "Product searching start",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "name": "to",
+            "in": "query",
+            "description": "Product searching end",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "name": "subCategoryId",
+            "in": "query",
+            "description": "Subcategory ID for search products",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/Products"
+            },
+            "description": "Product successfuly found and returned"
+          },
+          "404": {
+            "description": "Subcategory or products not found"
+          }
+        }
+      }
+    },
+    "/subCategory": {
+      "post": {
+        "tags": [
+          "SubCategory"
+        ],
+        "summary": "Add new subcategory",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "description": "Subcategory for add",
+            "schema": {
+              "$ref": "#/definitions/SubCategoryBasic"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Subcategory successfully added"
+          },
+          "404": {
+            "description": "Category not found"
+          }
+        }
+      }
+    },
+    "/subCategory/{id}": {
+      "get": {
+        "tags": [
+          "SubCategory"
+        ],
+        "summary": "Get all subcategories for category",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "Category ID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/SubCategories"
+            },
+            "description": "Subcategories successfully found and return"
+          },
+          "404": {
+            "description": "Category not found"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "SubCategory"
+        ],
+        "summary": "Update some subcategory",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "Updated subcategory ID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Subcategory successfully updated"
+          },
+          "404": {
+            "description": "Subcategory not found"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "SubCategory"
+        ],
+        "summary": "Delete some subcategory",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "Deleted subcategory ID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Subcategory successfully deleted"
+          },
+          "404": {
+            "description": "Subcategory not found"
+          }
+        }
+      }
+    },
+    "/category": {
+      "post": {
+        "tags": [
+          "Category"
+        ],
+        "summary": "Add new category",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "description": "Category for add",
+            "schema": {
+              "$ref": "#/definitions/CategoryBasic"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Category successfully added"
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Category"
+        ],
+        "summary": "Get all categories",
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/Categories"
+            },
+            "description": "Categories successfully found and return"
+          }
+        }
+      }
+    },
+    "/category/{id}": {
+      "put": {
+        "tags": [
+          "Category"
+        ],
+        "summary": "Update some category",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "Updated category ID",
+            "type": "string"
+          },
+          {
+            "name": "newInfo",
+            "in": "body",
+            "required": true,
+            "description": "New info for category",
+            "schema": {
+              "$ref": "#/definitions/CategoryBasic"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Category successfully updated"
+          },
+          "404": {
+            "description": "Category not found"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Category"
+        ],
+        "summary": "Delete some category",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "ID of category for delete",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Category successfully deleted"
+          },
+          "404": {
+            "description": "Category not found or category has subcategories"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "ProductBasic": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "price": {
+          "type": "integer"
+        },
+        "discount": {
+          "type": "integer"
+        },
+        "vendorCode": {
+          "type": "integer"
+        },
+        "effect": {
+          "type": "string"
+        },
+        "appearance": {
+          "type": "string"
+        },
+        "brew": {
+          "type": "string"
+        },
+        "taste": {
+          "type": "string"
+        },
+        "weight": {
+          "type": "number"
+        },
+        "subCategoryId": {
+          "type": "string"
+        }
+      }
+    },
+    "ProductAttr": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "price": {
+          "type": "integer"
+        },
+        "discount": {
+          "type": "integer"
+        },
+        "vendorCode": {
+          "type": "integer"
+        },
+        "effect": {
+          "type": "string"
+        },
+        "appearance": {
+          "type": "string"
+        },
+        "brew": {
+          "type": "string"
+        },
+        "taste": {
+          "type": "string"
+        },
+        "weight": {
+          "type": "number"
+        },
+        "subCategoryId": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        }
+      }
+    },
+    "Products": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/ProductAttr"
+      }
+    },
+    "SubCategoryBasic": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "alias": {
+          "type": "string"
+        },
+        "categoryId": {
+          "type": "string"
+        }
+      }
+    },
+    "SubCategoryAttr": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "alias": {
+          "type": "string"
+        },
+        "categoryId": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        }
+      }
+    },
+    "SubCategories": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/SubCategoryAttr"
+      }
+    },
+    "CategoryBasic": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "alias": {
+          "type": "string"
+        }
+      }
+    },
+    "CategoryAttr": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "alias": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "subCategories": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/SubCategoryAttr"
+          }
+        }
+      }
+    },
+    "Categories": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/CategoryAttr"
+      }
+    }
+  }
+}

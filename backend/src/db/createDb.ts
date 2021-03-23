@@ -2,6 +2,9 @@ import mysql2 from 'mysql2/promise';
 
 const {DB_NAME, MYSQL_USER, MYSQL_PASSWORD, DB_HOST, MYSQL_PORT} = process.env;
 
+console.log(MYSQL_USER);
+console.log(MYSQL_PASSWORD);
+
 export default mysql2.createConnection({
     host: DB_HOST,
     port: +MYSQL_PORT!,

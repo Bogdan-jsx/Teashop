@@ -16,6 +16,8 @@ export async function create(productParams: ProductBasic) {
             ...productParams,
             id,
         })
+    } else {
+        return undefined;
     }
 }
 

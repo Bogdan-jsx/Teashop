@@ -1,4 +1,4 @@
-import { Column, DataType, ForeignKey, Model, PrimaryKey, } from "sequelize-typescript";
+import { Column, DataType, ForeignKey, Model, PrimaryKey, Table, } from "sequelize-typescript";
 import Status from "./status";
 
 
@@ -11,6 +11,7 @@ interface OrderAttr {
     status: string,
 }
 
+@Table
 class Order extends Model implements OrderAttr {
     @PrimaryKey
     @Column({

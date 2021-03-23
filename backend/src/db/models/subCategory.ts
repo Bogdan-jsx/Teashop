@@ -1,7 +1,7 @@
 import { Column, DataType, ForeignKey, Model, PrimaryKey, Table } from "sequelize-typescript";
 import Category from "./category";
 
-interface SubCategoryAttr {
+export interface SubCategoryAttr {
     name: string,
     alias: string,
     id: string,

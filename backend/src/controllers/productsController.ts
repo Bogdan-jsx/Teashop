@@ -4,8 +4,13 @@ import * as newsService from "../services/productService";
 const router = Router();
 
 router.post("/add", async (req, res) => {
+    console.log(req.body);
     const product = await newsService.create(req.body);
-    res.json(product);
+    if (product) {
+        res.json(product); 
+    } else {
+        res.status(404);
+    }
 })
 
 router.put("/update/:id", async (req, res) => {
@@ -38,3 +43,5 @@ router.get("/getManyBySub", async (req, res) => {
     const products = await newsService.findManyBySub(findParams.from, findParams.to, findParams.subCategoryId);
     res.json(products);
 })
+
+export default router;
