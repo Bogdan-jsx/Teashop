@@ -9,7 +9,7 @@
       "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
     }
   },
-  "host": "localhost",
+  "host": "localhost:3000",
   "basePath": "/",
   "tags": [
     {
@@ -23,10 +23,13 @@
     {
       "name": "Category",
       "description": "All categories"
+    },
+    {
+      "name": "Status",
+      "description": "Operations with statuses"
     }
   ],
   "schemes": [
-    "https",
     "http"
   ],
   "paths": {
@@ -388,6 +391,87 @@
           }
         }
       }
+    },
+    "/status": {
+      "post": {
+        "tags": [
+          "Status"
+        ],
+        "summary": "Add new status",
+        "parameters": [
+          {
+            "name": "name",
+            "in": "body",
+            "required": true,
+            "description": "Name for new status",
+            "schema": {
+              "$ref": "#/definitions/Status"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Status successfully added"
+          }
+        }
+      }
+    },
+    "/status/{id}": {
+      "put": {
+        "tags": [
+          "Status"
+        ],
+        "summary": "Update name of status",
+        "parameters": [
+          {
+            "name": "newName",
+            "in": "body",
+            "required": true,
+            "description": "New name for updated status",
+            "schema": {
+              "$ref": "#/definitions/Status"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "ID of updatable status",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Status successfully updated"
+          },
+          "404": {
+            "description": "Status not found"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Status"
+        ],
+        "summary": "Delete status",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "description": "ID of deletable status",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Status successfully deleted"
+          },
+          "404": {
+            "description": "Status not found"
+          }
+        }
+      }
     }
   },
   "definitions": {
@@ -542,6 +626,14 @@
       "type": "array",
       "items": {
         "$ref": "#/definitions/CategoryAttr"
+      }
+    },
+    "Status": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        }
       }
     }
   }

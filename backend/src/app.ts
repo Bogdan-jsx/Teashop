@@ -10,6 +10,7 @@ import createDb from "./db/createDb";
 
 async function start() {
     await createDb;
+    await import('./db/connection').then(module => module.default.sync());
 
     const app = express();
     

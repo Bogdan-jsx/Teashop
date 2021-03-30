@@ -16,13 +16,13 @@ const sequelize = new Sequelize(DB_NAME as string, MYSQL_USER as string, MYSQL_P
 });
 
 sequelize.addModels([
+    SubCategory,
     Category,
     Image,
     Order,
     Product,
     ProductOrder,
     Status,
-    SubCategory,
 ]);
 
 export default sequelize;

@@ -28,7 +28,7 @@ export async function updateCategory(id: string, newInfo: CategoryBasic) {
 
 export async function deleteCategory(id: string) {
     const category = await categoryRepository.findByPk(id);
-    if (category && !category.subCategories.length) {
+    if (category && !category.subCategories) {
         return await categoryRepository.destroy({ where: { id } });
     } else {
         return undefined;

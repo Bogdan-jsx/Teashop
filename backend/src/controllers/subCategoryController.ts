@@ -6,9 +6,9 @@ const router = Router();
 router.post("/", async (req, res) => {
     const subCategory = await subCategoryService.addSubCategory(req.body);
     if (subCategory) {
-        res.status(200);
+        res.sendStatus(200);
     } else {
-        res.status(404);
+        res.sendStatus(404);
     }
 })
 
@@ -22,7 +22,7 @@ router.get("/:id", async (req, res) => {
 })
 
 router.put("/:id", async (req, res) => {
-    const updateResult = await subCategoryService.updateSubCategory(req.params.id, req.body.newInfo);
+    const updateResult = await subCategoryService.updateSubCategory(req.params.id, req.body);
     if (updateResult != undefined) {
         res.sendStatus(200);
     } else {

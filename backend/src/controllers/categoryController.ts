@@ -14,7 +14,7 @@ router.get("/", async (req, res) => {
 })
 
 router.put("/:id", async (req, res) => {
-    const updateResult = await categoryService.updateCategory(req.params.id, req.body.newInfo);
+    const updateResult = await categoryService.updateCategory(req.params.id, req.body);
     if (updateResult != undefined) {
         res.sendStatus(200);
     } else {

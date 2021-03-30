@@ -9,15 +9,11 @@ const categoryRepository = connection.getRepository(Category);
 interface SubCategoryBasic extends Omit<SubCategoryAttr, "id">{}
 
 export async function addSubCategory(subCategoryParams: SubCategoryBasic) {
-    if (categoryRepository.findByPk(subCategoryParams.categoryId)) {
-        const id = uuidv4();
-        return subCategoryRepository.create({
-            ...subCategoryParams,
-            id,
-        })
-    } else {
-        return undefined;
-    }
+    const id = uuidv4();
+    return subCategoryRepository.create({
+        ...subCategoryParams,
+        id,
+    })
 }
 
 export async function getAllSubCategoriesForCategory(categoryId: string) {

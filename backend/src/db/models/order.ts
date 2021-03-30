@@ -2,7 +2,7 @@ import { Column, DataType, ForeignKey, Model, PrimaryKey, Table, } from "sequeli
 import Status from "./status";
 
 
-interface OrderAttr {
+export interface OrderAttr {
     name: string,
     phone: string,
     address: string,
