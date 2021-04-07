@@ -1,11 +1,11 @@
 import { Router } from "express";
-import * as newsService from "../services/productService";
+import * as productService from "../services/productService";
 
 const router = Router();
 
-router.post("/add", async (req, res) => {
+router.post("/", async (req, res) => {
     console.log(req.body);
-    const product = await newsService.create(req.body);
+    const product = await productService.create(req.body);
     if (product) {
         res.json(product); 
     } else {
@@ -13,15 +13,15 @@ router.post("/add", async (req, res) => {
     }
 })
 
-router.put("/update/:id", async (req, res) => {
+router.put("/:id", async (req, res) => {
     const { id } = req.params;
-    await newsService.update(req.body, id);
+    await productService.update(req.body, id);
     res.sendStatus(200);
 })
 
-router.get("/getOne/:id", async (req, res) => {
+router.get("/:id", async (req, res) => {
     const { id } = req.params;
-    const product = await newsService.findById(id);
+    const product = await productService.findById(id);
     res.json(product);
 })
 
@@ -30,7 +30,7 @@ router.get("/getMany", async (req, res) => {
         from: req.query.from,
         to: req.query.to,
     }
-    const products = await newsService.findMany(findParams.from, findParams.to);
+    const products = await productService.findMany(findParams.from, findParams.to);
     res.json(products);
 })
 
@@ -40,8 +40,12 @@ router.get("/getManyBySub", async (req, res) => {
         to: req.query.to,
         subCategoryId: req.query.subCategoryId,
     }
-    const products = await newsService.findManyBySub(findParams.from, findParams.to, findParams.subCategoryId);
+    const products = await productService.findManyBySub(findParams.from, findParams.to, findParams.subCategoryId);
     res.json(products);
+})
+
+router.delete("/:id", async (req, res) => {
+    await productService.deleteProduct(req.params.id);
 })
 
 export default router;

@@ -27,13 +27,21 @@
     {
       "name": "Status",
       "description": "Operations with statuses"
+    },
+    {
+      "name": "Order",
+      "description": "All orders"
+    },
+    {
+      "name": "ProductOrder",
+      "description": "All products in orders"
     }
   ],
   "schemes": [
     "http"
   ],
   "paths": {
-    "/product/add": {
+    "/product": {
       "post": {
         "tags": [
           "Product"
@@ -60,7 +68,33 @@
         }
       }
     },
-    "/product/update/{id}": {
+    "/product/{id}": {
+      "get": {
+        "tags": [
+          "Product"
+        ],
+        "summary": "Get one product by ID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Product ID",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/ProductAttr"
+            },
+            "description": "Product successfuly found and returned"
+          },
+          "404": {
+            "description": "Product not found"
+          }
+        }
+      },
       "put": {
         "tags": [
           "Product"
@@ -89,29 +123,24 @@
             "description": "Product successfully updated"
           }
         }
-      }
-    },
-    "/product/getOne/{id}": {
-      "get": {
+      },
+      "delete": {
         "tags": [
           "Product"
         ],
-        "summary": "Get one product by ID",
+        "summary": "Delete some product by ID",
         "parameters": [
           {
             "name": "id",
             "in": "path",
-            "description": "Product ID",
+            "description": "Deletable product ID",
             "required": true,
             "type": "string"
           }
         ],
         "responses": {
           "200": {
-            "schema": {
-              "$ref": "#/definitions/ProductAttr"
-            },
-            "description": "Product successfuly found and returned"
+            "description": "Product successfully deleted"
           },
           "404": {
             "description": "Product not found"
@@ -472,6 +501,191 @@
           }
         }
       }
+    },
+    "/order": {
+      "post": {
+        "tags": [
+          "Order"
+        ],
+        "summary": "Add new order",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Info of new order",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/OrderBasic"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/OrderAttr"
+            },
+            "description": "Order successfully added"
+          }
+        }
+      }
+    },
+    "/order/{id}": {
+      "put": {
+        "tags": [
+          "Order"
+        ],
+        "summary": "Update some order",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of updatable order",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "newInfo",
+            "in": "body",
+            "description": "New info for order",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/OrderBasic"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Order successfully updated"
+          },
+          "404": {
+            "description": "Order not found"
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Order"
+        ],
+        "summary": "Get one order by ID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Order ID",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Order successfully found and returned",
+            "schema": {
+              "$ref": "#/definitions/OrderAttr"
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Order"
+        ],
+        "summary": "Delete some order by ID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of deletable order",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Order successfully deleted"
+          },
+          "404": {
+            "description": "Order not found"
+          }
+        }
+      }
+    },
+    "/productOrder": {
+      "post": {
+        "tags": [
+          "ProductOrder"
+        ],
+        "summary": "Add new product order",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Info for new product order",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ProductOrderBasic"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/ProductOrderAttr"
+            },
+            "description": "New product order successfully added"
+          }
+        }
+      }
+    },
+    "/productOrder/{id}": {
+      "get": {
+        "tags": [
+          "ProductOrder"
+        ],
+        "summary": "Get one product order by ID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "required": true,
+            "description": "ID of product order for return"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/ProductOrderAttr"
+            },
+            "description": "Product order successfully found and returned"
+          },
+          "404": {
+            "description": "Product order not found"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "ProductOrder"
+        ],
+        "summary": "Delete some product order by ID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "required": true,
+            "description": "ID of product order for delete"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Product order successfully deleted"
+          },
+          "404": {
+            "description": "Product order not found"
+          }
+        }
+      }
     }
   },
   "definitions": {
@@ -632,6 +846,83 @@
       "type": "object",
       "properties": {
         "name": {
+          "type": "string"
+        }
+      }
+    },
+    "OrderBasic": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "phone": {
+          "type": "string"
+        },
+        "address": {
+          "type": "string"
+        },
+        "comment": {
+          "type": "string"
+        }
+      }
+    },
+    "OrderAttr": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "phone": {
+          "type": "string"
+        },
+        "address": {
+          "type": "string"
+        },
+        "comment": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        }
+      }
+    },
+    "ProductOrderBasic": {
+      "type": "object",
+      "properties": {
+        "productId": {
+          "type": "string"
+        },
+        "orderId": {
+          "type": "string"
+        },
+        "price": {
+          "type": "number"
+        },
+        "weight": {
+          "type": "number"
+        }
+      }
+    },
+    "ProductOrderAttr": {
+      "type": "object",
+      "properties": {
+        "productId": {
+          "type": "string"
+        },
+        "orderId": {
+          "type": "string"
+        },
+        "price": {
+          "type": "number"
+        },
+        "weight": {
+          "type": "number"
+        },
+        "id": {
           "type": "string"
         }
       }

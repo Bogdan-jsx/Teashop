@@ -8,6 +8,11 @@ router.post("/", async (req, res) => {
     res.json(status);
 })
 
+router.get("/:id", async (req, res) => {
+    const order = await orderService.getOrder(req.params.id);
+    res.json(order);
+})
+
 router.put("/:id", async (req, res) => {
     const updateResult = await orderService.updateOrder(req.body, req.params.id);
     if (updateResult) {

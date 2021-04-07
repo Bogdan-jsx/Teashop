@@ -11,6 +11,10 @@ export function addOrder(orderParams: OrderBasic) {
     return orderRepository.create({ id, ...orderParams });
 }
 
+export function getOrder(id: string) {
+    return orderRepository.findOne({ where: { id } });
+}
+
 export function updateOrder(newOrderParams: OrderBasic, id: string) {
     return orderRepository.update(newOrderParams, { where: { id } });
 }

@@ -4,6 +4,7 @@ import subCategoryController from "./subCategoryController";
 import categoryController from "./categoryController";
 import statusController from "./statusController";
 import orderController from "./orderController";
+import orderProductController from "./productOrderController";
 
 export default function configControllers(app: Express) {
     app.use("/product", productController);
@@ -11,4 +12,5 @@ export default function configControllers(app: Express) {
     app.use("/category", categoryController);
     app.use("/status", statusController);
     app.use("/order", orderController);
+    app.use("/orderProduct", orderProductController);
 }

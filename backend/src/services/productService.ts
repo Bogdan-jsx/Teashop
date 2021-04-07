@@ -41,3 +41,7 @@ export async function findManyBySub(from: number = 0, to: number = 15, subCatego
         return productRepository.findAll(parameters);
     }
 }
+
+export async function deleteProduct(id: string) {
+    return productRepository.destroy({ where: { id } });
+}
