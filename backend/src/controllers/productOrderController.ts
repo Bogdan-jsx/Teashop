@@ -1,29 +1,35 @@
 import { Router } from "express";
 import * as productOrderService from "../services/productOrderService";
+import handleErrorAsyncMiddleware from './../helpers/handleErrorAsyncMiddleware';
+import { productOrderValidation } from './../validationSchemas/productOrderValidation';
+import { uuidValidate } from './../validationSchemas/uuidValidate';
 
 const router = Router();
 
-router.post("/", async (req, res) => {
-    const newOrderProduct = await productOrderService.addProductOrder(req.body);
+router.post("/", handleErrorAsyncMiddleware(async (req, res) => {
+    const info = await productOrderValidation.validateAsync(req.body);
+    const newOrderProduct = await productOrderService.addProductOrder(info);
     res.json(newOrderProduct);
-})
+}))
 
-router.get("/:id", async (req, res) => {
-    const orderProduct = await productOrderService.getProductOrder(req.params.id);
+router.get("/:id", handleErrorAsyncMiddleware(async (req, res) => {
+    const id = await uuidValidate.validateAsync(req.params.id);
+    const orderProduct = await productOrderService.getProductOrder(id);
     if (orderProduct) {
         res.json(orderProduct);
     } else {
         res.sendStatus(404);
     }
-})
+}))
 
-router.delete("/:id", async (req, res) => {
-    const deleteResult = await productOrderService.deleteProductOrder(req.params.id);
+router.delete("/:id", handleErrorAsyncMiddleware(async (req, res) => {
+    const id = await uuidValidate.validateAsync(req.params.id);
+    const deleteResult = await productOrderService.deleteProductOrder(id);
     if (deleteResult) {
         res.sendStatus(200);
     } else {
         res.sendStatus(404);
     }
-})
+}))
 
 export default router;

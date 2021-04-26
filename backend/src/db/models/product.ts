@@ -1,5 +1,6 @@
-import { Column, DataType, ForeignKey, Model, PrimaryKey, Table } from "sequelize-typescript";
+import { Column, DataType, ForeignKey, HasMany, Model, PrimaryKey, Table } from "sequelize-typescript";
 import SubCategory from "./subCategory";
+import Image from './image';
 
 export interface ProductAttr {
     name: string,
@@ -13,6 +14,7 @@ export interface ProductAttr {
     weight: number,
     subCategoryId: string,
     id: string,
+    images: [Image]
 }
 
 @Table
@@ -77,6 +79,9 @@ class Product extends Model implements ProductAttr {
 
     @ForeignKey(() => SubCategory)
     subCategoryId!: string;
+
+    @HasMany(() => Image, { onDelete: "cascade" })
+    images!: [Image];
 }
 
 export default Product;

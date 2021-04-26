@@ -31,7 +31,7 @@ class Category extends Model implements CategoryAttr {
     alias!: string;
 
     @HasMany(() => SubCategory, {onDelete: "cascade"})
-    subCategories!: [SubCategory]
+    subCategories!: SubCategory[];
 }
 
 export default Category;

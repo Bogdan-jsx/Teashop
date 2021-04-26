@@ -1,42 +1,42 @@
 import { Router } from 'express';
 import * as subCategoryService from "../services/subCategoryService";
+import handleErrorAsyncMiddleware from './../helpers/handleErrorAsyncMiddleware';
+import { uuidValidate } from './../validationSchemas/uuidValidate';
+import { subCategoryBasic } from './../validationSchemas/subCategoryBasic';
 
 const router = Router();
 
-router.post("/", async (req, res) => {
-    const subCategory = await subCategoryService.addSubCategory(req.body);
-    if (subCategory) {
-        res.sendStatus(200);
-    } else {
-        res.sendStatus(404);
-    }
-})
+router.post("/", handleErrorAsyncMiddleware(async (req, res) => {
+    const info = await subCategoryBasic.validateAsync(req.body);
+    const subCategory = await subCategoryService.addSubCategory(info);
+    res.json(subCategory);
+}))
 
-router.get("/:id", async (req, res) => {
-    const subCategories = await subCategoryService.getAllSubCategoriesForCategory(req.params.id);
+router.get("/:id", handleErrorAsyncMiddleware(async (req, res) => {
+    const id = await uuidValidate.validateAsync(req.params.id);
+    const subCategories = await subCategoryService.getAllSubCategoriesForCategory(id);
     if (subCategories) {
         res.json(subCategories);
     } else {
         res.sendStatus(404);
     }
-})
+}))
 
-router.put("/:id", async (req, res) => {
-    const updateResult = await subCategoryService.updateSubCategory(req.params.id, req.body);
-    if (updateResult != undefined) {
-        res.sendStatus(200);
-    } else {
-        res.sendStatus(404);
-    }
-})
+router.put("/:id", handleErrorAsyncMiddleware(async (req, res) => {
+    const info = await subCategoryBasic.validateAsync(req.body);
+    const id = await uuidValidate.validateAsync(req.params.id);
+    const updateResult = await subCategoryService.updateSubCategory(id, info);
+    res.json(updateResult);
+}))
 
-router.delete("/:id", async (req, res) => {
-    const deleteResult = await subCategoryService.deleteSubCategory(req.params.id);
+router.delete("/:id", handleErrorAsyncMiddleware(async (req, res) => {
+    const id = await uuidValidate.validateAsync(req.params.id);
+    const deleteResult = await subCategoryService.deleteSubCategory(id);
     if (deleteResult != undefined) {
         res.sendStatus(200);
     } else {
         res.sendStatus(404);
     }
-})
+}))
 
 export default router;

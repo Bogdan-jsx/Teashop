@@ -1,8 +1,10 @@
 import {v4 as uuidv4} from "uuid";
 import connection from "../db/connection";
 import Category, {CategoryAttr} from './../db/models/category';
+import SubCategory from "../db/models/subCategory";
 
 const categoryRepository = connection.getRepository(Category);
+const subCategoryRepository = connection.getRepository(SubCategory);
 
 interface CategoryBasic extends Omit<CategoryAttr, "id" | "subCategories">{}
 
@@ -15,7 +17,7 @@ export async function addCategory(categoryParams: CategoryBasic) {
 }
 
 export async function getAllCategories() {
-    return await categoryRepository.findAll()
+    return await categoryRepository.findAll({ include: [subCategoryRepository] })
 }
 
 export async function updateCategory(id: string, newInfo: CategoryBasic) {

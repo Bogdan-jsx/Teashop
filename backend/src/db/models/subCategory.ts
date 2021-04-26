@@ -1,4 +1,5 @@
 import { BelongsTo, Column, DataType, ForeignKey, Model, PrimaryKey, Table } from "sequelize-typescript";
+import { UUIDV4 } from "sequelize/types";
 import Category from "./category";
 
 export interface SubCategoryAttr {
@@ -32,6 +33,10 @@ class SubCategory extends Model implements SubCategoryAttr {
     alias!: string;
 
     @ForeignKey(() => Category)
+    @Column({
+        type: DataType.UUID,
+        allowNull: false,
+    })
     categoryId!: string;
 }
 

@@ -291,6 +291,14 @@
             "required": true,
             "type": "string",
             "description": "Updated subcategory ID"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/SubCategoryBasic"
+            }
           }
         ],
         "responses": {
