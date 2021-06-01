@@ -8,7 +8,7 @@ export const productBasic = Joi.object({
     price: Joi.number(),
 
     discount: Joi.number()
-        .min(1)
+        .min(0)
         .max(99),
 
     vendorCode: Joi.number(),
@@ -30,6 +30,8 @@ export const productBasic = Joi.object({
         .max(20),
     
     weight: Joi.number(),
+
+    images: Joi.array(),
 
     subCategoryId: uuidValidate,
 })

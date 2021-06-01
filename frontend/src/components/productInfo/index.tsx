@@ -1,21 +1,9 @@
 import React from "react";
 import "./productInfo.css"
-
-interface FullProductInfo {
-    title: String,
-    vendorCode: String,
-    price: number,
-    discount: number,
-    effect: String,
-    appearance: String,
-    howToBrew: String,
-    type: String,
-    taste: String
-    images: Array<String>,
-}
+import { Product } from "../../interafaces";
 
 interface Props {
-    info: FullProductInfo,
+    info: Product,
 }
 
 export const ProductInfo: React.FC<Props> = ({info}) => {
@@ -27,7 +15,7 @@ export const ProductInfo: React.FC<Props> = ({info}) => {
 
     return (
         <div className="product-info">
-            <h1 className="product-name">{info.title}</h1>
+            <h1 className="product-name">{info.name}</h1>
             <p className="vendor-code">Артикул <span>{info.vendorCode}</span></p>
             <div className="product-price">
                 <p className="currently-price">{price}р</p>
@@ -47,11 +35,11 @@ export const ProductInfo: React.FC<Props> = ({info}) => {
                 </tr>
                 <tr>
                     <td className="characteristic-name">Как заварить</td>
-                    <td className="characteristic-value">{info.howToBrew}</td>
+                    <td className="characteristic-value">{info.brew}</td>
                 </tr>
                 <tr>
                     <td className="characteristic-name">Тип чая</td>
-                    <td className="characteristic-value">{info.type}</td>
+                    <td className="characteristic-value"></td>
                 </tr>
                 <tr>
                     <td className="characteristic-name">Вкус</td>

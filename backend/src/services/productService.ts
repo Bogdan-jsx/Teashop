@@ -3,9 +3,11 @@ import connection from "../db/connection";
 import Product from "../db/models/product";
 import SubCategory from "../db/models/subCategory";
 import { ProductAttr } from "../db/models/product";
+import Image from './../db/models/image';
 
 const productRepository = connection.getRepository(Product);
 const subCategoryRepository = connection.getRepository(SubCategory);
+const imagesRepository = connection.getRepository(Image);
 
 interface ProductBasic extends Omit<ProductAttr, "id">{}
 
@@ -26,18 +28,28 @@ export async function update(productParams: ProductBasic, id: string) {
 }
 
 export async function findById(id: string) {
-    return productRepository.findByPk(id);
+    return productRepository.findByPk(id, { include: [imagesRepository] });
 }
 
 export async function findMany(from: number = 0, to: number = 15) {
-    const parameters: any = {offset: from, limit: to};
+    console.log("service");
+    let parameters: any;
+    if (from > 0) {
+        console.log(1);
+        parameters.offset = from;
+    }
+    if (to > 0) {
+        console.log(2);
+        parameters.limit = to;
+    }
     return productRepository.findAll(parameters);
 }
 
 export async function findManyBySub(from: number = 0, to: number = 15, subCategoryId: string) {
     if (subCategoryRepository.findByPk(subCategoryId)) {
-        const parameters: any = {offset: from, limit: to};
+        let parameters: any = {offset: from, limit: to};
         parameters.where = {subCategoryId};
+        console.log(parameters);
         return productRepository.findAll(parameters);
     }
 }

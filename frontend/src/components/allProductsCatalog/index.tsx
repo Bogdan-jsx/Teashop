@@ -1,17 +1,7 @@
 import React, { useState } from "react";
 import "./allProductsCatalog.css";
 import { SubCategories } from "../subCategories/index";
-
-interface Subcategory {
-    name: string,
-    _id: number,
-}
-
-interface CatalogCategory {
-    name: string,
-    subcategories: Array<Subcategory>,
-    _id: number,
-}
+import { Subcategory, CatalogCategory } from "../../interafaces";
 
 export const AllProductsCatalog: React.FC = () => {
     const [selectedCategories, setSelectedCategories] = useState<string[]>([])
@@ -21,75 +11,86 @@ export const AllProductsCatalog: React.FC = () => {
     const categories: Array<CatalogCategory> = [
         {
             name: "Пуэр",
-            _id: 1,
-            subcategories: [
+            id: "1",
+            subCategories: [
                 {
                     name: "Уишаньский улун",
-                    _id: 2,
+                    alias: "abc123",
+                    id: "2",
                 },
                 {
                     name: "Гуандунский улун",
-                    _id: 3,
+                    alias: "abc123",
+                    id: "3",
                 },
                 {
                     name: "Тайваньский улун",
-                    _id: 4,
+                    alias: "abc123",
+                    id: "4",
                 }
             ],
         },
         {
             name: "Улун",
-            _id: 5,
-            subcategories: [
+            id: "5",
+            subCategories: [
                 {
                     name: "Уишаньский улун1",
-                    _id: 6,
+                    alias: "abc123",
+                    id: "6",
                 },
                 {
                     name: "Гуандунский улун1",
-                    _id: 7,
+                    alias: "abc123",
+                    id: "7",
                 }
             ],
         },
         {
             name: "Хэй ча (черный чай)",
-            _id: 8,
-            subcategories: [
+            id: "8",
+            subCategories: [
                 {
                     name: "Уишаньский улун2",
-                    _id: 9,
+                    alias: "abc123",
+                    id: "9",
                 },
                 {
                     name: "Гуандунский улун2",
-                    _id: 10,
+                    alias: "abc123",
+                    id: "10",
                 }
             ],
         },
         {
             name: "Красный чай",
-            _id: 11,
-            subcategories: [
+            id: "11",
+            subCategories: [
                 {
                     name: "Уишаньский улун3",
-                    _id: 12,
+                    alias: "abc123",
+                    id: "12",
                 },
                 {
                     name: "Гуандунский улун3",
-                    _id: 13,
+                    alias: "abc123",
+                    id: "13",
                 }
             ],
         },
         {
             name: "Зеленый чай",
-            _id: 14,
-            subcategories: [
+            id: "14",
+            subCategories: [
                 {
                     name: "Уишаньский улун4",
-                    _id: 15,
+                    alias: "abc123",
+                    id: "15",
                 },
                 {
                     name: "Гуандунский улун4",
-                    _id: 16,
+                    alias: "abc123",
+                    id: "16",
                 }
             ],
         },
@@ -115,7 +116,7 @@ export const AllProductsCatalog: React.FC = () => {
             updatedSelectedSubs.splice(subIndex, 1);
             setSelectedSubCategories(updatedSelectedSubs);
             let areThereOtherSubs = false;
-            category.subcategories.forEach((item: Subcategory) => {
+            category.subCategories.forEach((item: Subcategory) => {
                 if (selectedSubCategories.indexOf(item.name) != -1) {
                     areThereOtherSubs = true;
                 }
@@ -142,7 +143,7 @@ export const AllProductsCatalog: React.FC = () => {
     return (
         <ul className="filter-catalog">
             {categories && categories.map((item: CatalogCategory) => {
-                return <li key={item._id} 
+                return <li key={item.id} 
                     className={selectedCategories.indexOf(item.name) != -1 ? "selected" : ""}>
                     <span className="material-icons">
                         {openedCategory === item.name ? "keyboard_arrow_up" : "keyboard_arrow_down"}

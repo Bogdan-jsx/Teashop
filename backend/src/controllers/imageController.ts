@@ -8,7 +8,7 @@ const upload = multer({ storage: multer.memoryStorage() })
 const router = Router();
 
 router.post("/", upload.single("img"), handleErrorAsyncMiddleware(async (req, res) => {
-    const imgId = await imageService.addImage(req.file);
+    const imgId = await imageService.addImage(req.file, req.body.productId);
     res.json(imgId);
 }))
 

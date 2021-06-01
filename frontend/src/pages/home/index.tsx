@@ -1,82 +1,23 @@
-import React, { useState } from 'react';
+import React, { useEffect } from 'react';
 import "./home.css";
 import { FullHeader } from "../../components/fullHeader/index";
-import { Section } from "../../components/section/index"
+import { Section } from "../../components/section/index";
 import { Footer } from "../../components/footer/index";
+import { CatalogCategory, SectionAttr } from "../../interafaces";
 
-interface Product {
-    price: number,
-    discount: number,
-    name: string,
-    image: string,
+interface Props {
+    categories: CatalogCategory[],
+    mainProducts: SectionAttr[],
+    loadMain: (subCategoryId: string) => void,
+    loadCategories: () => void,
 }
 
-interface Section {
-    name: string,
-    products: Array<Product>,
-}
-
-export const HomePage: React.FC = () => {
-    const mostPopularProducts: Array<Section> = [
-        {
-            name: "Пуэр",
-            products: [
-                {
-                    price: 360,
-                    discount: 0,
-                    name: "Шу пуэр Лу Е Чунь «Гу Шу Чень Юнь», 2009 г., 357 гр. 2009 г., 3573.",
-                    image: "./tea-1",
-                },
-                {
-                    price: 360,
-                    discount: 45,
-                    name: "Шу пуэр Лу Е Чунь «Гу Шу Чень Юнь», 2009 г., 357 гр. 2009 г., 3573.",
-                    image: "./tea-1",
-                },
-                {
-                    price: 360,
-                    discount: 45,
-                    name: "Шу пуэр Лу Е Чунь «Гу Шу Чень Юнь», 2009 г., 357 гр. 2009 г., 3573.",
-                    image: "./tea-1",
-                },
-                {
-                    price: 360,
-                    discount: 45,
-                    name: "Шу пуэр Лу Е Чунь «Гу Шу Чень Юнь», 2009 г., 357 гр. 2009 г., 3573.",
-                    image: "./tea-1",
-                }
-            ]
-        },
-        {
-            name: "Пуэр",
-            products: [
-                {
-                    price: 360,
-                    discount: 45,
-                    name: "Шу пуэр Лу Е Чунь «Гу Шу Чень Юнь», 2009 г., 357 гр. 2009 г., 3573.",
-                    image: "./tea-1",
-                },
-                {
-                    price: 360,
-                    discount: 45,
-                    name: "Шу пуэр Лу Е Чунь «Гу Шу Чень Юнь», 2009 г., 357 гр. 2009 г., 3573.",
-                    image: "./tea-1",
-                },
-                {
-                    price: 360,
-                    discount: 45,
-                    name: "Шу пуэр Лу Е Чунь «Гу Шу Чень Юнь», 2009 г., 357 гр. 2009 г., 3573.",
-                    image: "./tea-1",
-                },
-                {
-                    price: 360,
-                    discount: 45,
-                    name: "Шу пуэр Лу Е Чунь «Гу Шу Чень Юнь», 2009 г., 357 гр. 2009 г., 3573.",
-                    image: "./tea-1",
-                }
-            ]
-        }
-    ] 
+export const HomePage: React.FC<Props> = ({ categories, mainProducts, loadMain, loadCategories }) => {
+    useEffect(() => loadCategories(), [loadCategories]);
+    useEffect(() => {
+        loadMain(categories[1]?.subCategories[0]?.id);
+        loadMain(categories[1]?.subCategories[1]?.id);
+    }, [categories, loadMain, loadCategories])
 
     return (
         <>
@@ -85,8 +26,8 @@ export const HomePage: React.FC = () => {
                 <main>
                     <img src="img/main-img.png" />
                     <div className="content">
-                        {mostPopularProducts && mostPopularProducts.map(item => {
-                            return <Section section={item} />
+                        {mainProducts && mainProducts.map(item => {
+                            return <Section section={item} key={item.name} />
                         })}
                     </div>
                 </main>

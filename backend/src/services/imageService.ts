@@ -4,7 +4,7 @@ import Image from '../db/models/image';
 
 const imageRepository = connection.getRepository(Image);
 
-export async function addImage(img: Express.Multer.File) {
+export async function addImage(img: Express.Multer.File, productId: string) {
     const id = uuidv4();
     const newImg = await imageRepository.create({
         id,
@@ -12,6 +12,7 @@ export async function addImage(img: Express.Multer.File) {
         type: img.mimetype,
         data: img.buffer,
         name: img.originalname,
+        productId,
     })
     return newImg.id;
 }

@@ -1,21 +1,10 @@
 import React from "react";
 import "./section.css";
 import { ProductCard } from "../productCard/index";
-
-interface Product {
-    price: number,
-    discount: number,
-    name: string,
-    image: string,
-}
-
-interface Section {
-    name: string,
-    products: Array<Product>,
-}
+import { SectionAttr } from "../../interafaces";
 
 interface Props {
-    section: Section, 
+    section: SectionAttr, 
 }
 
 export const Section: React.FC<Props> = ({section}) => {
@@ -23,12 +12,12 @@ export const Section: React.FC<Props> = ({section}) => {
         <div className="section">
             <div className="section-info">
                 <h2 className="section-name">{section.name}</h2>
-                <div className="products-count">85</div>
+                <div className="products-count">{section.count}</div>
                 <a href="#" className="all-products">Смотреть все товары</a><br/>
             </div>
             <div className="products">
                 {section.products && section.products.map(item => {
-                    return <ProductCard product={item} />
+                    return <ProductCard product={item} key={item.id} />
                 })}
             </div>
         </div>

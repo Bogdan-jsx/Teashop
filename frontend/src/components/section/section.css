@@ -40,15 +40,22 @@
 }
 .section .products {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
+  align-items: top;
+  justify-content: flex-start;
   flex-direction: row;
   flex-wrap: wrap;
   width: 100%;
 }
+.section .products .product:first-child {
+  margin-left: 0;
+}
 .section .products .product {
   width: 22.5%;
   margin-top: 25px;
+  margin-left: 3.3%;
+}
+.section .products .product > div {
+  width: 100%;
 }
 @media screen and (max-width: 1440px) {
   .section .products .product .product-card-img {

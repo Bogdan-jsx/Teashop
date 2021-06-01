@@ -14,7 +14,7 @@ export interface ProductAttr {
     weight: number,
     subCategoryId: string,
     id: string,
-    images: [Image]
+    images: [string],
 }
 
 @Table
@@ -78,10 +78,16 @@ class Product extends Model implements ProductAttr {
     weight!: number;
 
     @ForeignKey(() => SubCategory)
+    @Column({
+        type: DataType.UUID,
+        allowNull: false,
+    })
     subCategoryId!: string;
 
-    @HasMany(() => Image, { onDelete: "cascade" })
-    images!: [Image];
+    @Column({
+        type: DataType.ARRAY,
+    })
+    images!: [string];
 }
 
 export default Product;

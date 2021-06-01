@@ -37,12 +37,21 @@
         }
     }
     .products {
-        @include d-flex;
+        @include d-flex($justify: flex-start, $align: top);
         width: 100%;
+
+        .product:first-child {
+            margin-left: 0;
+        }
 
         .product {
             width: 22.5%;
             margin-top: 25px;
+            margin-left: 3.3%;
+
+            >div {
+                width: 100%;
+            }
 
             .product-card-img {
                 @media screen and (max-width: 1440px) {

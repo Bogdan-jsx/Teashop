@@ -39,4 +39,10 @@ router.delete("/:id", handleErrorAsyncMiddleware(async (req, res) => {
     }
 }))
 
+router.get("/count/:id", handleErrorAsyncMiddleware(async (req, res) => {
+    const id = await uuidValidate.validateAsync(req.params.id);
+    const count = await subCategoryService.countProducts(id);
+    res.json(count);
+}))
+
 export default router;

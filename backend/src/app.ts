@@ -10,6 +10,7 @@ import configControllers from './controllers/index'
 import createDb from "./db/createDb";
 import winston from "winston";
 import dailyRotateFile from "winston-daily-rotate-file";
+import cors from "cors";
 
 async function start() {
     await createDb;
@@ -27,6 +28,8 @@ async function start() {
 
     const app = express();
     
+    app.use(cors());
+
     app.use(bodyParser.json());
     app.use(bodyParser.urlencoded({extended: true}));
     app.use("/api", swaggerUi.serve, swaggerUi.setup(swaggerOptions))
@@ -34,7 +37,6 @@ async function start() {
     configControllers(app);
 
     app.use(( err: ResponseError, req: Request, res: Response, next: NextFunction) => {
-        console.log(123)
         logger.log({
             level: "error",
             message: err.message,

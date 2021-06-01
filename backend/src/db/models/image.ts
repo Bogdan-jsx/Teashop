@@ -2,7 +2,6 @@ import { Column, DataType, ForeignKey, Model, PrimaryKey, Table } from "sequeliz
 import Product  from "./product";
 
 interface ImageAttr {
-    productId: string,
     id: string,
     data: Buffer,
     size: string,
@@ -12,9 +11,6 @@ interface ImageAttr {
 
 @Table
 class Image extends Model implements ImageAttr {
-    @ForeignKey(() => Product)
-    productId!: string;
-
     @PrimaryKey
     @Column({
         type: DataType.UUID,

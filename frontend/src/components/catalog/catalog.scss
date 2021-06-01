@@ -57,7 +57,7 @@
         }
     }
     .products-in-catalog {
-        @include d-flex;
+        @include d-flex($align: top);
         width: 50%;
 
         @media screen and (max-width: 1440px) {

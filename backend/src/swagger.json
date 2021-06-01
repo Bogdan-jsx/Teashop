@@ -60,7 +60,10 @@
         ],
         "responses": {
           "200": {
-            "description": "Successful added product"
+            "description": "Successful added product",
+            "schema": {
+              "$ref": "#/definitions/ProductAttr"
+            }
           },
           "404": {
             "description": "Subcategory not found"
