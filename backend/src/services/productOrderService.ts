@@ -14,6 +14,10 @@ export async function addProductOrder(productOrder: ProductOrderBasic) {
     })
 }
 
+export async function editWeight(weight: number, id: number) {
+    return productOrderRepository.update({ weight }, { where: { id } })
+}
+
 export async function getProductOrder(id: string) {
     return productOrderRepository.findOne({ where: { id } });
 }

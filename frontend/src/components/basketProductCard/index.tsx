@@ -1,45 +1,35 @@
 import React, { useRef } from "react";
 import "./basketProductCard.css";
-
-interface BasketProduct {
-    _id: number,
-    price: number,
-    discount: number,
-    name: string,
-    image: string,
-    totalWeight: number,
-    totalPrice: Number,
-}
+import { Product } from './../../interafaces';
 
 interface Props {
-    product: BasketProduct,
-    editWeight: Function,
+    product: Product,
 }
 
-export const BasketProductCard: React.FC<Props> = ({product, editWeight}) => {    
+export const BasketProductCard: React.FC<Props> = ({product}) => {    
     const discount: number = product.discount;
     let price: number = product.price;
     if (discount != 0) {
         price = price - price / 100 * discount;
     }
 
+    const totalPrice = product.weight / 100 * price;
+
     const weightInput = useRef<HTMLInputElement>(null);
 
     function onWeightChange(e: React.KeyboardEvent) {
-        console.log(123);
         if (e.code === "Enter") {
-            console.log(123);
             if (weightInput.current === null) return;
             
             const newWeight = weightInput.current.value;
             console.log(newWeight);
-            editWeight(newWeight);
+            // editWeight(newWeight);
         }
     }  
 
     return (
         <div className="basket-product-card">
-            <div className="image" style={{backgroundImage: `url(${process.env.PUBLIC_URL + "/img" + product.image})`}}></div>
+            <div className="image" style={{backgroundImage: `url(${"http://localhost:3000/image/" + product.images[0]})`}}></div>
             <div className="basket-product-info">
                 <div className="product-price">
                     <p className="currently-price">{price}р  /</p>
@@ -50,8 +40,8 @@ export const BasketProductCard: React.FC<Props> = ({product, editWeight}) => {
                 <p className="product-name">{product.name}</p>
             </div>
             
-            <p className="total-weight"><input defaultValue={product.totalWeight} onKeyPress={onWeightChange} ref={weightInput} type="number" max="1000" />гр</p>
-            <p className="total-price">{product.totalPrice}р</p>
+            <p className="total-weight"><input defaultValue={product.weight} onKeyPress={onWeightChange} ref={weightInput} type="number" max="1000" />гр</p>
+            <p className="total-price">{totalPrice}р</p>
             <span className="material-icons delete-item">clear</span>
         </div>
     )

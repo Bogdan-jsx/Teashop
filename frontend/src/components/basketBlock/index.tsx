@@ -1,28 +1,24 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./basketBlock.css";
 import { BasketProductCard } from "../basketProductCard/index";
-
-interface BasketProduct {
-    _id :number,
-    price: number,
-    discount: number,
-    name: string,
-    image: string,
-    totalWeight: number,
-    totalPrice: Number,
-}
+import { BasketProductBasic, Product } from './../../interafaces';
 
 interface Props {
-    basketProducts: Array<BasketProduct>,
-    editWeight: Function,
+    loadBasketProducts: (productsBasic: BasketProductBasic[]) => void,
+    basketProducts: Product[],
 }
 
-export const BasketBlock: React.FC<Props> = ({basketProducts, editWeight}) => {
+export const BasketBlock: React.FC<Props> = ({ loadBasketProducts, basketProducts }) => {
+    const basketProductsJson = localStorage.getItem("basket");
+    const basketProductsBasic = basketProductsJson !== null ? JSON.parse(basketProductsJson) : [];
+
+    useEffect(() => loadBasketProducts(basketProductsBasic), [loadBasketProducts]);
+
     return (
         <div className="basket-block">
             <h1>Корзина<span className="basket-products-count">{basketProducts.length}</span></h1>
-            {basketProducts && basketProducts.map((item: BasketProduct) => {
-                return <BasketProductCard product={item} key={item._id} editWeight={editWeight(item._id)} />
+            {basketProducts && basketProducts.map((item: Product) => {
+                return <BasketProductCard product={item} key={item.id} />
             })}
         </div>
     )

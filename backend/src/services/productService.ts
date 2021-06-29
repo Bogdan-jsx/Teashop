@@ -42,7 +42,7 @@ export async function findMany(from: number = 0, to: number = 15) {
 
 export async function findManyBySub(from: number = 0, to: number = 15, subCategoryIds: Array<string>, sort?: string) {
     let parameters: any = {offset: from, limit: to};
-    console.log("subCategories: ", subCategoryIds, " type: ", typeof subCategoryIds);
+    // console.log("subCategories: ", subCategoryIds, " type: ", typeof subCategoryIds);
     if (subCategoryIds[0] != undefined && subCategoryIds != ['']) {
         parameters.where = { 
             subCategoryId: {
@@ -51,9 +51,9 @@ export async function findManyBySub(from: number = 0, to: number = 15, subCatego
         };
     }
     if (sort != "popular" && sort != undefined) {
-        parameters.order = [Sequelize.fn(`${sort === 'cheap' ? 'min' : 'max'}`, Sequelize.col("price"))];
+        parameters.order = [[ Sequelize.literal(`price - price / 100 * discount ${sort === 'cheap' ? 'ASC' : 'DESC'}`) ]]; //"price - price / 100 * discount", `${sort === 'cheap' ? 'ASC' : 'DESC'}`
     }
-    console.log(parameters);
+    // console.log(parameters);
     return productRepository.findAll(parameters);
 }
 

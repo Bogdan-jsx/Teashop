@@ -3,6 +3,7 @@ import { categoriesReducer } from './catalog/reducers';
 import { homeReducer } from './home/reducers';
 import { productReducer } from "./product/reducers";
 import { allProductsCatalogReducer } from './allProducts/reducers';
+import { basketReducer } from './basket/reducers';
 
 
 export default combineReducers({
@@ -10,4 +11,5 @@ export default combineReducers({
     homeReducer,
     productReducer,
     allProductsCatalogReducer,
+    basketReducer,
 })

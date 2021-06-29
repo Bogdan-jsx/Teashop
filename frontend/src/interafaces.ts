@@ -31,3 +31,8 @@ export interface SectionAttr {
     count: number,
     products: Product[],
 }
+
+export interface BasketProductBasic {
+    id: string,
+    weight: number,
+}

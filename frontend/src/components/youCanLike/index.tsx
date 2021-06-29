@@ -12,13 +12,13 @@ interface Props {
 
 export const YouCanLike: React.FC<Props> = ({loadYouCanLike, youCanLikeProducts, subCategoryId, id}) => {
     useEffect(() => loadYouCanLike(subCategoryId), [subCategoryId, loadYouCanLike]);
-
+    
     return (
         <div className="you-can-like">
             <h1>Вам может понравиться</h1>
             <div className="you-can-like-products">
                 {youCanLikeProducts && youCanLikeProducts.map((item: Product) => {
-                    return item.id != id ?  <ProductCard product={item} key={item.id} /> : ""
+                    return item.id != id ? <ProductCard product={item} key={item.id} /> : ""
                 })}
             </div>
         </div>

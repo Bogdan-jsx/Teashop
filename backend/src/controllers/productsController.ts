@@ -74,7 +74,6 @@ router.get("/getManyBySub", handleErrorAsyncMiddleware(async (req, res) => {
     const subCategoryIds = Array.isArray(req.query.subCategoryIds) ? req.query.subCategoryIds : [req.query.subCategoryIds];
     const sortBy = req.query.sortBy as string;
     const products = await productService.findManyBySub(from, to, subCategoryIds as string[], sortBy);
-    console.log(products);
     if (products) {
         for (const product of products) {
             product.images = JSON.parse(product.images);

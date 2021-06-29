@@ -2,7 +2,7 @@ import React from "react";
 import "./basketCalc.css";
 
 interface BasketProduct {
-    _id: number,
+    id: number,
     price: number,
     discount: number,
     name: string,

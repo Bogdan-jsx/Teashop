@@ -45,9 +45,9 @@ export const putYouCanLike = (products: Array<Product>) => {
 }
 
 export const loadYouCanLike = (subCategoryId: string) => (dispatch: any) => {
-    fetch(`http://localhost:3000/product/getManyBySub?from=0&to=4&subCategoryId=${subCategoryId}`)
+    fetch(`http://localhost:3000/product/getManyBySub?from=0&to=4&subCategoryIds=${subCategoryId}`)
         .then(res => res.json())
         .then(json => {
-            dispatch(putYouCanLike(json.products));
+            dispatch(putYouCanLike(json));
         })
 }

@@ -6,11 +6,23 @@ interface Props {
     info: Product,
 }
 
+interface BasketItem {
+    id: string,
+    weight: number,
+}
+
 export const ProductInfo: React.FC<Props> = ({info}) => {
     const discount: number = info.discount;
     let price: number = info.price;
     if (discount != 0) {
         price = price - price / 100 * discount;
+    }
+
+    const toBasket = () => {
+        let basketJson = localStorage.getItem("basket");
+        let basket = basketJson !== null ? JSON.parse(basketJson) as Array<BasketItem> : [];
+        basket.push({ id: info.id, weight: 100 });
+        localStorage.setItem("basket", JSON.stringify(basket));
     }
 
     return (
@@ -23,7 +35,7 @@ export const ProductInfo: React.FC<Props> = ({info}) => {
                 <p className="original-price"><span>{discount != 0 ? `${info.price}р` : ""}</span></p>
                 <p className="discount">{discount != 0 ? `-${discount}%` : ""}</p>
             </div>
-            <div className="to-basket">В корзину</div>
+            <div className="to-basket" onClick={toBasket.bind(null)} >В корзину</div>
             <table className="tea-info">
                 <tbody>
                     <tr>
