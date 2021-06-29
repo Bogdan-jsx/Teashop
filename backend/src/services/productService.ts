@@ -1,9 +1,12 @@
 import {v4 as uuidv4} from "uuid";
+import { Op } from "sequelize";
 import connection from "../db/connection";
 import Product from "../db/models/product";
 import SubCategory from "../db/models/subCategory";
 import { ProductAttr } from "../db/models/product";
 import Image from './../db/models/image';
+import sequelize from './../db/connection';
+import { Sequelize } from 'sequelize-typescript';
 
 const productRepository = connection.getRepository(Product);
 const subCategoryRepository = connection.getRepository(SubCategory);
@@ -14,6 +17,7 @@ interface ProductBasic extends Omit<ProductAttr, "id">{}
 export async function create(productParams: ProductBasic) {
     if (subCategoryRepository.findByPk(productParams.subCategoryId)) {
         const id = uuidv4();
+        productParams.images = JSON.stringify(productParams.images);
         return productRepository.create({
             ...productParams,
             id,
@@ -28,30 +32,29 @@ export async function update(productParams: ProductBasic, id: string) {
 }
 
 export async function findById(id: string) {
-    return productRepository.findByPk(id, { include: [imagesRepository] });
+    return productRepository.findByPk(id);
 }
 
 export async function findMany(from: number = 0, to: number = 15) {
-    console.log("service");
-    let parameters: any;
-    if (from > 0) {
-        console.log(1);
-        parameters.offset = from;
-    }
-    if (to > 0) {
-        console.log(2);
-        parameters.limit = to;
-    }
+    let parameters: any = { offset: from, limit: to };
     return productRepository.findAll(parameters);
 }
 
-export async function findManyBySub(from: number = 0, to: number = 15, subCategoryId: string) {
-    if (subCategoryRepository.findByPk(subCategoryId)) {
-        let parameters: any = {offset: from, limit: to};
-        parameters.where = {subCategoryId};
-        console.log(parameters);
-        return productRepository.findAll(parameters);
+export async function findManyBySub(from: number = 0, to: number = 15, subCategoryIds: Array<string>, sort?: string) {
+    let parameters: any = {offset: from, limit: to};
+    console.log("subCategories: ", subCategoryIds, " type: ", typeof subCategoryIds);
+    if (subCategoryIds[0] != undefined && subCategoryIds != ['']) {
+        parameters.where = { 
+            subCategoryId: {
+                [Op.or]: subCategoryIds,
+            }
+        };
     }
+    if (sort != "popular" && sort != undefined) {
+        parameters.order = [Sequelize.fn(`${sort === 'cheap' ? 'min' : 'max'}`, Sequelize.col("price"))];
+    }
+    console.log(parameters);
+    return productRepository.findAll(parameters);
 }
 
 export async function deleteProduct(id: string) {

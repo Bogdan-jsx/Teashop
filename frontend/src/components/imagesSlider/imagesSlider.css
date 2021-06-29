@@ -13,14 +13,18 @@
 .images-slider .all-slider-images {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-start;
   flex-direction: row;
   flex-wrap: wrap;
   margin-top: 20px;
   width: 100%;
 }
+.images-slider .all-slider-images li:first-child {
+  margin-left: 0;
+}
 .images-slider .all-slider-images li {
   width: 17.5%;
+  margin-left: 3.125%;
 }
 .images-slider .all-slider-images li div {
   width: 100%;

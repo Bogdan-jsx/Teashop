@@ -12,11 +12,21 @@ router.post("/", handleErrorAsyncMiddleware(async (req, res) => {
     res.json(subCategory);
 }))
 
-router.get("/:id", handleErrorAsyncMiddleware(async (req, res) => {
+router.get("/allForCategory/:id", handleErrorAsyncMiddleware(async (req, res) => {
     const id = await uuidValidate.validateAsync(req.params.id);
     const subCategories = await subCategoryService.getAllSubCategoriesForCategory(id);
     if (subCategories) {
         res.json(subCategories);
+    } else {
+        res.sendStatus(404);
+    }
+}))
+
+router.get("/one/:id", handleErrorAsyncMiddleware(async (req, res) => {
+    const id = await uuidValidate.validateAsync(req.params.id);
+    const subCategory = await subCategoryService.getSubCategory(id);
+    if (subCategory) {
+        res.json(subCategory);
     } else {
         res.sendStatus(404);
     }

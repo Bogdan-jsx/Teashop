@@ -6,7 +6,7 @@ export interface ProductAttr {
     name: string,
     price: number,
     discount: number,
-    vendorCode: number,
+    vendorCode: string,
     effect: string,
     appearance: string,
     brew: string,
@@ -14,7 +14,7 @@ export interface ProductAttr {
     weight: number,
     subCategoryId: string,
     id: string,
-    images: [string],
+    images: string,
 }
 
 @Table
@@ -49,7 +49,7 @@ class Product extends Model implements ProductAttr {
         type: DataType.INTEGER,
         allowNull: false,
     })
-    vendorCode!: number;
+    vendorCode!: string;
 
     @Column({
         type: DataType.STRING,
@@ -85,9 +85,9 @@ class Product extends Model implements ProductAttr {
     subCategoryId!: string;
 
     @Column({
-        type: DataType.ARRAY,
+        type: DataType.STRING,
     })
-    images!: [string];
+    images!: string;
 }
 
 export default Product;

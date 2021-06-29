@@ -26,7 +26,7 @@ export const putCatalogProducts = (products: Array<object>) => {
 }
 
 export const loadCatalogProducts = () => (dispatch: any) => {
-    fetch("http://localhost:3000/product/getMany?to=2")
+    fetch("http://localhost:3000/product/getMany?from=0&to=2")
         .then(res => res.json())
         .then(json => {
             dispatch(putCatalogProducts(json));

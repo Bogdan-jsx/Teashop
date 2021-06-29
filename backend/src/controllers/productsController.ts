@@ -26,7 +26,14 @@ router.put("/:id", handleErrorAsyncMiddleware(async (req, res) => {
 
 router.get("/one/:id", handleErrorAsyncMiddleware(async (req, res) => {
     const id = await uuidValidate.validateAsync(req.params.id);
-    const product = await productService.findById(id);
+    let product = await productService.findById(id);
+    // let result;
+    if (product) {
+        product.images = JSON.parse(product.images); 
+        // const subCategory = await subCategoryService.getSubCategory(product.subCategoryId);
+        // result = {...product/*, type: subCategory?.name*/};
+    }
+    console.log(product);
     res.json(product);
 }))
 
@@ -35,18 +42,25 @@ router.get("/getMany", handleErrorAsyncMiddleware(async (req, res) => {
         from: Number(req.query.from),
         to: Number(req.query.to),
     }
-    const products = await productService.findMany(findParams.from, findParams.to);
+    let products = await productService.findMany(findParams.from, findParams.to);
+    for (const product of products) {
+        product.images = JSON.parse(product.images);
+    }
     res.json(products);
 }))
 
-router.get("/getManyBySub", handleErrorAsyncMiddleware(async (req, res) => {
+router.get("/getSection", handleErrorAsyncMiddleware(async (req, res) => {
     const findParams: any = {
         from: Number(req.query.from),
         to: Number(req.query.to),
         subCategoryId: req.query.subCategoryId,
     }
-    console.log(findParams);
-    const products = await productService.findManyBySub(findParams.from, findParams.to, findParams.subCategoryId);
+    let products = await productService.findManyBySub(findParams.from, findParams.to, [findParams.subCategoryId]);
+    if (products) {
+        for (const product of products) {
+            product.images = JSON.parse(product.images);
+        }
+    }
     const sub = await subCategoryService.getSubCategory(findParams.subCategoryId);
     const count = await subCategoryService.countProducts(findParams.subCategoryId);
     const name = sub?.name;
@@ -54,9 +68,25 @@ router.get("/getManyBySub", handleErrorAsyncMiddleware(async (req, res) => {
     res.json(result);
 }))
 
+router.get("/getManyBySub", handleErrorAsyncMiddleware(async (req, res) => {
+    const from = Number(req.query.from);
+    const to = Number(req.query.to);
+    const subCategoryIds = Array.isArray(req.query.subCategoryIds) ? req.query.subCategoryIds : [req.query.subCategoryIds];
+    const sortBy = req.query.sortBy as string;
+    const products = await productService.findManyBySub(from, to, subCategoryIds as string[], sortBy);
+    console.log(products);
+    if (products) {
+        for (const product of products) {
+            product.images = JSON.parse(product.images);
+        }
+    }
+    res.json(products);
+}))
+
 router.delete("/:id", handleErrorAsyncMiddleware(async (req, res) => {
     const id = await uuidValidate.validateAsync(req.params.id);
     await productService.deleteProduct(id);
+    res.sendStatus(200)
 }))
 
 export default router;

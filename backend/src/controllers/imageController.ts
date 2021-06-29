@@ -2,6 +2,7 @@ import multer from "multer"
 import { Router } from "express";
 import * as imageService from "../services/imageService";
 import handleErrorAsyncMiddleware from './../helpers/handleErrorAsyncMiddleware';
+import { Readable } from "stream";
 
 const upload = multer({ storage: multer.memoryStorage() })
 
@@ -14,7 +15,10 @@ router.post("/", upload.single("img"), handleErrorAsyncMiddleware(async (req, re
 
 router.get("/:id", handleErrorAsyncMiddleware(async (req, res) => {
     const img = await imageService.getImage(req.params.id);
-    res.json(img);
+    if (img) {
+        res.setHeader('Content-Type', img.type);
+        res.end(img.data);
+    } 
 }))
 
 router.delete("/:id", handleErrorAsyncMiddleware(async (req, res) => {

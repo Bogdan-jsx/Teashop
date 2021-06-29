@@ -6,11 +6,12 @@ interface Props {
     products: Product[],
 }
 
-export const AllProductsBlock: React.FC<Props> = ({products}) => {
+export const AllProductsBlock: React.FC<Props> = ({ products }) => {
+    console.log(products)
     return (
         <div className="all-products-block">
             {products && products.map((item: Product) => {
-                return <ProductCard product={item}/>
+                return <ProductCard product={item} key={item.id} />
             })}
         </div>
     );

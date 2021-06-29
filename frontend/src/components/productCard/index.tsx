@@ -17,7 +17,7 @@ export const ProductCard: React.FC<Props> = ({product}) => {
     return (
         <Link to={`/product/${product.id}`} className="product">
             <div>
-                <div className="product-card-img tea-10" style={{ backgroundImage: `url(http://localhost/image/${product.images[0]})` }}></div>
+                <div className="product-card-img tea-10" style={{ backgroundImage: `url(http://localhost:3000/image/${product.images[0]})` }}></div>
                 <div className="info">
                     <p className="cost"><strong>{price}р</strong> / 100гр</p>
                     <span className="original-cost"><p>{discount != 0 ? `${product.price}р` : ''}</p></span>

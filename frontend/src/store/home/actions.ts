@@ -10,7 +10,7 @@ export const putMain = (main: Object) => {
 }
 
 export const loadMain = (subCategoryId: string) => (dispatch: any) => {
-    fetch(`http://localhost:3000/product/getManyBySub?subCategoryId=${subCategoryId}&from=0&to=4`)
+    fetch(`http://localhost:3000/product/getSection?subCategoryId=${subCategoryId}&from=0&to=4`)
         .then(res => res.json())
         .then(json => {
             dispatch(putMain(json));

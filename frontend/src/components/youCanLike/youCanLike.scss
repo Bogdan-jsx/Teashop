@@ -2,14 +2,20 @@
 
 .you-can-like {
     margin-top: 45px;
+    width: 100%;
 
     .you-can-like-products {
-        @include d-flex;
+        @include d-flex($justify: flex-start);
         margin-top: 25px;
         width: 100%;
 
+        .product:first-child {
+            margin-left: 0;
+        }
+
         .product {
             width: 22.5%;
+            margin-left: 3.33%;
         }
     }
 }

@@ -25,26 +25,28 @@ export const ProductInfo: React.FC<Props> = ({info}) => {
             </div>
             <div className="to-basket">В корзину</div>
             <table className="tea-info">
-                <tr>
-                    <td className="characteristic-name">Действие чая</td>
-                    <td className="characteristic-value">{info.effect}</td>
-                </tr>
-                <tr>
-                    <td className="characteristic-name">Внешний вид</td>
-                    <td className="characteristic-value">{info.appearance}</td>
-                </tr>
-                <tr>
-                    <td className="characteristic-name">Как заварить</td>
-                    <td className="characteristic-value">{info.brew}</td>
-                </tr>
-                <tr>
-                    <td className="characteristic-name">Тип чая</td>
-                    <td className="characteristic-value"></td>
-                </tr>
-                <tr>
-                    <td className="characteristic-name">Вкус</td>
-                    <td className="characteristic-value">{info.taste}</td>
-                </tr>
+                <tbody>
+                    <tr>
+                        <td className="characteristic-name">Действие чая</td>
+                        <td className="characteristic-value">{info.effect}</td>
+                    </tr>
+                    <tr>
+                        <td className="characteristic-name">Внешний вид</td>
+                        <td className="characteristic-value">{info.appearance}</td>
+                    </tr>
+                    <tr>
+                        <td className="characteristic-name">Как заварить</td>
+                        <td className="characteristic-value">{info.brew}</td>
+                    </tr>
+                    <tr>
+                        <td className="characteristic-name">Тип чая</td>
+                        <td className="characteristic-value">{info.type}</td>
+                    </tr>
+                    <tr>
+                        <td className="characteristic-name">Вкус</td>
+                        <td className="characteristic-value">{info.taste}</td>
+                    </tr>
+                </tbody>
             </table>
         </div>
     )

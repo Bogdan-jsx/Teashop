@@ -17,7 +17,6 @@ const HomeContainer: React.FC<Props> = (props) => {
 }
 
 const mapStateToProps = (state: any) => {
-    console.log(state);
     return {
         categories: state.categoriesReducer.categories,
         mainProducts: state.homeReducer.mainProducts,

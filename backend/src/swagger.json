@@ -60,10 +60,7 @@
         ],
         "responses": {
           "200": {
-            "description": "Successful added product",
-            "schema": {
-              "$ref": "#/definitions/ProductAttr"
-            }
+            "description": "Successful added product"
           },
           "404": {
             "description": "Subcategory not found"
@@ -713,7 +710,7 @@
           "type": "integer"
         },
         "vendorCode": {
-          "type": "integer"
+          "type": "string"
         },
         "effect": {
           "type": "string"
@@ -732,6 +729,12 @@
         },
         "subCategoryId": {
           "type": "string"
+        },
+        "images": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
         }
       }
     },
@@ -748,7 +751,7 @@
           "type": "integer"
         },
         "vendorCode": {
-          "type": "integer"
+          "type": "string"
         },
         "effect": {
           "type": "string"

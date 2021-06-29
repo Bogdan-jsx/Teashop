@@ -11,6 +11,7 @@ export interface Product {
     id: string,
     subCategoryId: string,
     weight: number,
+    type: string,
 }
 
 export interface Subcategory {
