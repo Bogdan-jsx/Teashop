@@ -1,14 +1,9 @@
 import React from "react";
 import "./productInfo.css"
-import { Product } from "../../interafaces";
+import { Product, BasketProductBasic } from "../../interafaces";
 
 interface Props {
     info: Product,
-}
-
-interface BasketItem {
-    id: string,
-    weight: number,
 }
 
 export const ProductInfo: React.FC<Props> = ({info}) => {
@@ -20,9 +15,14 @@ export const ProductInfo: React.FC<Props> = ({info}) => {
 
     const toBasket = () => {
         let basketJson = localStorage.getItem("basket");
-        let basket = basketJson !== null ? JSON.parse(basketJson) as Array<BasketItem> : [];
-        basket.push({ id: info.id, weight: 100 });
-        localStorage.setItem("basket", JSON.stringify(basket));
+        let basket = basketJson !== null ? JSON.parse(basketJson) as Array<BasketProductBasic> : [];
+        if (basket.findIndex(item => item.id == info.id) === -1) {
+            basket.push({ id: info.id, weight: 100 });
+            localStorage.setItem("basket", JSON.stringify(basket));
+            alert("Товар добавлен в корзину")
+        } else {
+            alert("Этот товар уже есть у вас в корзине")
+        }
     }
 
     return (

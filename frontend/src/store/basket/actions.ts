@@ -13,15 +13,15 @@ export const putBasketProducts = (products: Product[]) => {
 
 export const loadBasketProducts = (productsBasic: BasketProductBasic[]) => async (dispatch: any) => {
     let products: Product[] = [];
-    for (const product of productsBasic) {
-        await fetch(`http://localhost:3000/product/one/${product.id}`)
-            .then(res => res.json())
-            .then(json => {
-                json.weight = product.weight;
-                console.log("1: ", json)
-                products.push(json);
-            })
-    }
-    console.log("2: ", products)
+    // if (productsBasic[0] !== null) {
+        for (const product of productsBasic) {
+            await fetch(`http://localhost:3000/product/one/${product.id}`)
+                .then(res => res.json())
+                .then(json => {
+                    json.weight = product.weight;
+                    products.push(json);
+                })
+        } 
+    // }
     dispatch(putBasketProducts(products));
 }

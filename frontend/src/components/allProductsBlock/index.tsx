@@ -7,7 +7,6 @@ interface Props {
 }
 
 export const AllProductsBlock: React.FC<Props> = ({ products }) => {
-    console.log(products)
     return (
         <div className="all-products-block">
             {products && products.map((item: Product) => {

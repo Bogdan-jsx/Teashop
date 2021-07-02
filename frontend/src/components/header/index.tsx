@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from "react-router-dom";
 import { Logo } from "../logo/index";
-import "./header.css"
+import "./header.css";
 
 interface HeaderProps {
     isCatalogOpened: boolean,
@@ -10,6 +10,16 @@ interface HeaderProps {
 
 export const Header: React.FC<HeaderProps> = ({isCatalogOpened, setIsCatalogOpened}) => {
     const [isMenuOpened, setIsMenuOpened] = useState<boolean>(false);
+    const [basketProductsCount, setBasketProductsCount] = useState<number>(0);
+
+    useEffect(() => {
+        const basketJson = localStorage.getItem("basket");
+        let basket = [];
+        if (basketJson !== null) {
+            basket = JSON.parse(basketJson);
+        }
+        setBasketProductsCount(basket.length);
+    }, [setBasketProductsCount]);
 
     function toggleCollapsedMenu(): void {
         if (isMenuOpened) {
@@ -47,8 +57,10 @@ export const Header: React.FC<HeaderProps> = ({isCatalogOpened, setIsCatalogOpen
                         <li className="nav-item"><Link to="#" className="shipping-and-payment">Доставка и оплата</Link></li>
                         <li><input type="text" className="search nav-item" placeholder="Поиск по товарам"/></li>
                         <li className="basket nav-item">
-                            <span className="material-icons">shopping_cart</span>
-                            <p className="basket-products-count">15</p>
+                            <Link to="/basket">
+                                <span className="material-icons">shopping_cart</span>
+                                <p className="basket-products-count">{basketProductsCount}</p>
+                            </Link>
                         </li>
                     </ul>
                 </nav>

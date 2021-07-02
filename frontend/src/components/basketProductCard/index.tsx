@@ -1,19 +1,21 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import "./basketProductCard.css";
-import { Product } from './../../interafaces';
+import { Product, BasketProductBasic } from './../../interafaces';
 
 interface Props {
     product: Product,
+    deleteItem: (id: string) => void,
+    setBasketJson: (value: string) => void,
 }
 
-export const BasketProductCard: React.FC<Props> = ({product}) => {    
+export const BasketProductCard: React.FC<Props> = ({product, deleteItem, setBasketJson}) => {
     const discount: number = product.discount;
     let price: number = product.price;
     if (discount != 0) {
         price = price - price / 100 * discount;
     }
 
-    const totalPrice = product.weight / 100 * price;
+    const [totalPrice, setTotalPrice] = useState<number>(product.weight / 100 * price);
 
     const weightInput = useRef<HTMLInputElement>(null);
 
@@ -21,9 +23,20 @@ export const BasketProductCard: React.FC<Props> = ({product}) => {
         if (e.code === "Enter") {
             if (weightInput.current === null) return;
             
-            const newWeight = weightInput.current.value;
-            console.log(newWeight);
-            // editWeight(newWeight);
+            weightInput.current.blur();
+            const newWeight = Number(weightInput.current.value);
+            const basketJson = localStorage.getItem("basket");
+            let basket = basketJson !== null ? JSON.parse(basketJson) : [];
+            basket = basket.map((item: BasketProductBasic) => {
+                if (item.id === product.id) {
+                    item.weight = newWeight;
+                }
+                return item;
+            })
+            localStorage.setItem("basket", JSON.stringify(basket));
+            product.weight = newWeight;
+            setTotalPrice(product.weight / 100 * price);
+            setBasketJson(JSON.stringify(basket));
         }
     }  
 
@@ -40,9 +53,9 @@ export const BasketProductCard: React.FC<Props> = ({product}) => {
                 <p className="product-name">{product.name}</p>
             </div>
             
-            <p className="total-weight"><input defaultValue={product.weight} onKeyPress={onWeightChange} ref={weightInput} type="number" max="1000" />гр</p>
+            <p className="total-weight"><input defaultValue={product.weight} onKeyPress={onWeightChange} ref={weightInput} type="number" max="1000" min="100" />гр</p>
             <p className="total-price">{totalPrice}р</p>
-            <span className="material-icons delete-item">clear</span>
+            <span className="material-icons delete-item" onClick={deleteItem.bind(null, product.id)} >clear</span>
         </div>
     )
 }

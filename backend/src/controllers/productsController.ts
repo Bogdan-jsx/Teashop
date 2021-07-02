@@ -33,7 +33,6 @@ router.get("/one/:id", handleErrorAsyncMiddleware(async (req, res) => {
         // const subCategory = await subCategoryService.getSubCategory(product.subCategoryId);
         // result = {...product/*, type: subCategory?.name*/};
     }
-    console.log(product);
     res.json(product);
 }))
 

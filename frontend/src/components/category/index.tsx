@@ -10,12 +10,6 @@ interface Props {
 
 export const Category: React.FC<Props> = ({ category, selectedSubs, setSelectedSubs }) => {
     const [isOpened, setIsOpened] = useState<boolean>(false);
-    const [activeSubCategoryCount, setActiveSubCategoryCount] = useState<number>(0);
-
-    // const setActive = (value: boolean) => {
-    //     const increment = value ? 1 : -1;
-    //     setActiveSubCategoryCount(activeSubCategoryCount + increment);
-    // }
 
     const toggleOpened = () => {
         isOpened ? setIsOpened(false) : setIsOpened(true);

@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import "./basketPage.css";
 import { FullHeader } from "../../components/fullHeader/index";
-import { BasketCalc } from "../../components/basketCalc/index";
 import { OrderForm } from "../../components/orderForm/index";
 import { Footer } from "../../components/footer/index";
 import BasketBlockContainer from './../../components/basketBlock/container';
+import BasketCalcContainer from './../../components/basketCalc/container';
 
 interface BasketProduct {
     id: number,
@@ -58,7 +58,7 @@ export const BasketPage: React.FC = () => {
             <FullHeader />
             <div className="container basket">
                 <BasketBlockContainer />
-                {/* <BasketCalc basketProducts={productsInBasket} /> */}
+                <BasketCalcContainer />
                 <OrderForm />
             </div>
             <Footer />

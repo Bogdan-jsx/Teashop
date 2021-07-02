@@ -20,6 +20,10 @@ export const Catalog: React.FC<Props> = ({isCatalogOpened, categories, catalogPr
         setSelectedItem(item.name);
     }
 
+    const selectSub = (id: string) => {
+        sessionStorage.setItem("subCategory", id);
+    }
+
     return (
         <div id="menu-catalog" className={isCatalogOpened ? "" : "hidden"}>
             <div className="catalog">
@@ -30,7 +34,7 @@ export const Catalog: React.FC<Props> = ({isCatalogOpened, categories, catalogPr
                 </ul>
                 <ul className="secondary-list">
                     {categories && categories.filter((item: CatalogCategory) => item.name === selectedItem)[0]?.subCategories.map(item => {
-                        return <li key={item.id} className="secondary-list-item"><Link to="#">{item.name}</Link></li>
+                        return <li key={item.id} className="secondary-list-item" onClick={selectSub.bind(null, item.id)}><Link to="/catalog" >{item.name}</Link></li>
                     })}
                 </ul>
             </div>
