@@ -1,0 +1,26 @@
+@import "../../mixins.scss";
+
+.shipping {
+    margin-top: 32px;
+
+    .shipping-blocks {
+        @include d-flex();
+
+        .block {
+            width: 48%;
+            margin-bottom: 27px;
+
+            img {
+                width: 100%;
+            }
+
+            h3 {
+                margin-top: 14px;
+            }
+
+            p {
+                margin-top: 5px;
+            }
+        }
+    }
+}

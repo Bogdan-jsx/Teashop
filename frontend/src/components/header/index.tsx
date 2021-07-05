@@ -54,7 +54,7 @@ export const Header: React.FC<HeaderProps> = ({isCatalogOpened, setIsCatalogOpen
                         </li>
                         <li className="phone-number nav-item">375 33 604 11 77</li>
                         <li className="working-time nav-item">с 10 до 21</li>
-                        <li className="nav-item"><Link to="#" className="shipping-and-payment">Доставка и оплата</Link></li>
+                        <li className="nav-item"><Link to="/shipping-payment" className="shipping-and-payment">Доставка и оплата</Link></li>
                         <li><input type="text" className="search nav-item" placeholder="Поиск по товарам"/></li>
                         <li className="basket nav-item">
                             <Link to="/basket">

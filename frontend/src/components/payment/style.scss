@@ -1,0 +1,58 @@
+@import "../../mixins.scss";
+
+.payment {
+    position: relative;
+
+    .payment-blocks {
+        @include d-flex();
+        position: relative;
+        margin-top: 24px;
+
+        .block:first-child {
+            img {
+                width: 451px;
+                right: 21px;
+                bottom: 22px;
+            }
+
+            div {
+                margin-top: -27px;
+            }
+        }
+
+        .block:last-child {
+            img {
+                width: 430px;
+                right: 0;
+                bottom: 13px;
+            }
+
+            div {
+                margin-top: -17px;
+            }
+        }
+
+        .block {
+            position: relative;
+            width: 31.25%;
+            box-shadow: 0px 3px 84px rgba(0, 0, 0, 0.07);
+            height: 515px;
+
+            img {
+                position: relative;
+                width: 439px;
+                right: 9px;
+                bottom: 5px;
+            }
+
+            div {
+                margin-top: -10px;
+                padding: 44px;
+
+                p {
+                    margin-top: 12px;
+                }
+            }
+        }
+    }
+}
