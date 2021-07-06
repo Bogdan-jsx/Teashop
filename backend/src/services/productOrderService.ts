@@ -7,15 +7,8 @@ const productOrderRepository = connection.getRepository(ProductOrder);
 interface ProductOrderBasic extends Omit<ProductOrderAttr, "id">{};
 
 export async function addProductOrder(productOrder: ProductOrderBasic) {
-    const id = uuidv4();
-    return productOrderRepository.create({
-        ...productOrder,
-        id
-    })
-}
-
-export async function editWeight(weight: number, id: number) {
-    return productOrderRepository.update({ weight }, { where: { id } })
+    console.log(productOrder);
+    return productOrderRepository.create(productOrder)
 }
 
 export async function getProductOrder(id: string) {

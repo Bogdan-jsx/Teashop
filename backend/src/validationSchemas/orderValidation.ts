@@ -1,4 +1,5 @@
 import Joi from "joi";
+import { orderProductBasicValidation } from "./orderProductBasicValidation";
 
 const phoneValidation = Joi.extend(require("joi-phone-number"));
 
@@ -14,5 +15,7 @@ export const orderValidation = Joi.object({
         .max(40),
 
     comment: Joi.string()
-        .max(150)
+        .max(150),
+    
+    basket: Joi.array().items(orderProductBasicValidation),
 })

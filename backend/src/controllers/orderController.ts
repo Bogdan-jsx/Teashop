@@ -1,14 +1,24 @@
 import { Router } from "express";
 import * as orderService from "../services/orderService";
+import * as productService from "../services/productService";
+import * as orderProductService from "../services/productOrderService";
 import handleErrorAsyncMiddleware from './../helpers/handleErrorAsyncMiddleware';
 import { orderValidation } from './../validationSchemas/orderValidation';
 import { uuidValidate } from './../validationSchemas/uuidValidate';
+import Product from "../db/models/product";
 
 const router = Router();
 
 router.post("/", handleErrorAsyncMiddleware(async (req, res) => {
     const info = await orderValidation.validateAsync(req.body);
+    const basketProducts = info.basket;
+    delete info.basket;
     const order = await orderService.addOrder(info);
+    for (const product of basketProducts) {
+        const fullProduct = await productService.findById(product.id);
+        const orderProduct = { productId: product.id as string, orderId: order.id as string, weight: product.weight as number, price: fullProduct?.price as number };
+        await orderProductService.addProductOrder(orderProduct);
+    }
     res.json(order);
 }))
 

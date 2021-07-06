@@ -7,15 +7,24 @@ export interface ProductOrderAttr {
     orderId: string,
     price: number,
     weight: number,
-    id: string,
 }
 
 @Table
 class ProductOrder extends Model implements ProductOrderAttr {
     @ForeignKey(() => Product)
+    @PrimaryKey
+    @Column({
+        allowNull: false,
+        type: DataType.UUID,
+    })
     productId!: string;
     
     @ForeignKey(() => Order)
+    @PrimaryKey
+    @Column({
+        allowNull: false,
+        type: DataType.UUID,
+    })
     orderId!: string;
 
     @Column({
@@ -29,15 +38,6 @@ class ProductOrder extends Model implements ProductOrderAttr {
         allowNull: false,
     })
     weight!: number;
-    
-    @PrimaryKey
-    @Column({
-        type: DataType.UUID,
-        allowNull: false,
-        unique: true,
-        defaultValue: DataType.UUIDV4,
-    })
-    id!: string;
 }
 
 export default ProductOrder;

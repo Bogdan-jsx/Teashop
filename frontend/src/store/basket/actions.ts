@@ -25,3 +25,13 @@ export const loadBasketProducts = (productsBasic: BasketProductBasic[]) => async
     // }
     dispatch(putBasketProducts(products));
 }
+
+export const sendOrder = (basket: BasketProductBasic[], name: string, phone: string, comment: string, address: string) => () => {
+    fetch("http://localhost:3000/order/", {
+        method: "POST",
+        headers: {
+            'Content-Type': 'application/json;charset=utf-8'
+        },
+        body: JSON.stringify({basket, name, phone, comment, address}),
+    })
+}

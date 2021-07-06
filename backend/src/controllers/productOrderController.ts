@@ -12,11 +12,6 @@ router.post("/", handleErrorAsyncMiddleware(async (req, res) => {
     res.json(newOrderProduct);
 }))
 
-router.put("/editWeight", handleErrorAsyncMiddleware(async (req, res) => {
-    const newWeight = req.query.weight;
-    
-}))
-
 router.get("/:id", handleErrorAsyncMiddleware(async (req, res) => {
     const id = await uuidValidate.validateAsync(req.params.id);
     const orderProduct = await productOrderService.getProductOrder(id);
