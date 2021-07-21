@@ -5,7 +5,7 @@ import * as orderProductService from "../services/productOrderService";
 import handleErrorAsyncMiddleware from './../helpers/handleErrorAsyncMiddleware';
 import { orderValidation } from './../validationSchemas/orderValidation';
 import { uuidValidate } from './../validationSchemas/uuidValidate';
-import Product from "../db/models/product";
+import { Statuses } from "../db/models/order";
 
 const router = Router();
 
@@ -13,6 +13,7 @@ router.post("/", handleErrorAsyncMiddleware(async (req, res) => {
     const info = await orderValidation.validateAsync(req.body);
     const basketProducts = info.basket;
     delete info.basket;
+    info.status = Statuses.inProcessing;
     const order = await orderService.addOrder(info);
     for (const product of basketProducts) {
         const fullProduct = await productService.findById(product.id);

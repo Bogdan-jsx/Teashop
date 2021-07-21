@@ -1,0 +1,17 @@
+.results-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 285px;
+  margin-top: 30px;
+}
+.results-header h2 {
+  font-weight: 600;
+  font-size: 26px;
+}
+.results-header p {
+  color: #A8A8A8;
+  align-self: flex-start;
+}

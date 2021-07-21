@@ -7,7 +7,6 @@ const productOrderRepository = connection.getRepository(ProductOrder);
 interface ProductOrderBasic extends Omit<ProductOrderAttr, "id">{};
 
 export async function addProductOrder(productOrder: ProductOrderBasic) {
-    console.log(productOrder);
     return productOrderRepository.create(productOrder)
 }
 

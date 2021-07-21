@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { BasketPage } from "./index";
+import { Product } from './../../interafaces';
 
 interface Props {
     isBasketEmpty: boolean,

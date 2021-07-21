@@ -1,7 +1,8 @@
 import { Product } from './../../interafaces';
 
 export enum AllProductsAction {
-    LOAD_ALL_PRODUCTS_BY_SUBS = "LOAD_ALL_PRODUCTS_BYSUBS",
+    LOAD_ALL_PRODUCTS_BY_SUBS = "LOAD_ALL_PRODUCTS_BY_SUBS",
+    PUT_SEARCH_RESULT = "PUT_SEARCH_RESULT",
 }
 
 export const putAllProductsBySubs = (products: Product[]) => {
@@ -24,3 +25,18 @@ export const loadAllProductsBySubs = (subCategories: string[], sortBy: "cheap" |
             dispatch(putAllProductsBySubs(json));
         })
 }   
+
+export const putSearchResult = (products: Product[]) => {
+    return {
+        type: AllProductsAction.PUT_SEARCH_RESULT,
+        payload: products,
+    }
+}
+
+export const loadSearchResult = (searchReq: string) => (dispatch: any) => {
+    fetch(`http://localhost:3000/product/getManyByName?from=0&to=15&searchReq=${searchReq}`)
+        .then(res => res.json())
+        .then(json => {
+            dispatch(putSearchResult(json));
+        })
+}

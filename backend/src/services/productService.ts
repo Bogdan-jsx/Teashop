@@ -57,6 +57,12 @@ export async function findManyBySub(from: number = 0, to: number = 15, subCatego
     return productRepository.findAll(parameters);
 }
 
+export async function findManyByName(from: number = 0, to: number = 15, searchReq: string) {
+    let parameters: any = {offset: from, limit: to};
+    parameters.where = { name: { [Op.regexp]: `${searchReq}` } };
+    return productRepository.findAll(parameters);
+}
+
 export async function deleteProduct(id: string) {
     return productRepository.destroy({ where: { id } });
 }

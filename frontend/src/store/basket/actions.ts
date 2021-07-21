@@ -26,7 +26,7 @@ export const loadBasketProducts = (productsBasic: BasketProductBasic[]) => async
     dispatch(putBasketProducts(products));
 }
 
-export const sendOrder = (basket: BasketProductBasic[], name: string, phone: string, comment: string, address: string) => () => {
+export const sendOrder = (basket: BasketProductBasic[], name: string, phone: string, comment: string, address: string) => (dispatch: any) => {
     fetch("http://localhost:3000/order/", {
         method: "POST",
         headers: {
@@ -34,4 +34,5 @@ export const sendOrder = (basket: BasketProductBasic[], name: string, phone: str
         },
         body: JSON.stringify({basket, name, phone, comment, address}),
     })
+    dispatch(putBasketProducts([]));
 }

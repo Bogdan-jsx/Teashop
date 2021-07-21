@@ -1,12 +1,14 @@
 import React, { FormEvent, useRef } from "react";
 import "./orderForm.css";
-import { BasketProductBasic } from './../../interafaces';
+import { BasketProductBasic, Product } from './../../interafaces';
+import { putBasketProducts } from "../../store/basket/actions";
 
 interface Props {
     sendOrder: (basket: BasketProductBasic[], name: string, phone: string, comment: string, address: string) => void,
+    setIsModal: (value: boolean) => void,
 }
 
-export const OrderForm: React.FC<Props> = ({ sendOrder }) => {
+export const OrderForm: React.FC<Props> = ({ sendOrder, setIsModal }) => {
     const name = useRef<HTMLInputElement>(null);
     const phoneNumber = useRef<HTMLInputElement>(null);
     const comment = useRef<HTMLInputElement>(null);
@@ -24,6 +26,7 @@ export const OrderForm: React.FC<Props> = ({ sendOrder }) => {
         sendOrder(basket, nameValue, phoneValue, commentValue, addressValue);
 
         localStorage.setItem("basket", "[]");
+        setIsModal(true);
     }
 
     return (
@@ -31,26 +34,28 @@ export const OrderForm: React.FC<Props> = ({ sendOrder }) => {
             <h2>Оформление заказа</h2>
             <form action="" method="post" onSubmit={submitOrder}>
                 <table>
-                    <tr>
-                        <td>Имя</td>
-                        <td><input type="text" placeholder="Никита" required ref={name} /></td>
-                    </tr>
-                    <tr>
-                        <td>Телефон</td>
-                        <td><input type="tel" placeholder="375 29 126 41 90" required ref={phoneNumber} /></td>
-                    </tr>
-                    <tr>
-                        <td>Комментарий</td>
-                        <td><input type="text" placeholder="Просьба доставить с 8 до 12" ref={comment} /></td>
-                    </tr>
-                    <tr>
-                        <td>Адрес доставки</td>
-                        <td><input type="text" placeholder="Минск, Аэродромная, 36" required ref={address} /></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td><input type="submit" value="Оформить" className="order-submit-button" /></td>
-                    </tr>
+                    <tbody>
+                        <tr>
+                            <td>Имя</td>
+                            <td><input type="text" placeholder="Никита" required ref={name} /></td>
+                        </tr>
+                        <tr>
+                            <td>Телефон</td>
+                            <td><input type="tel" placeholder="375 29 126 41 90" required ref={phoneNumber} /></td>
+                        </tr>
+                        <tr>
+                            <td>Комментарий</td>
+                            <td><input type="text" placeholder="Просьба доставить с 8 до 12" ref={comment} /></td>
+                        </tr>
+                        <tr>
+                            <td>Адрес доставки</td>
+                            <td><input type="text" placeholder="Минск, Аэродромная, 36" required ref={address} /></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td><input type="submit" value="Оформить" className="order-submit-button" /></td>
+                        </tr>
+                    </tbody>
                 </table>
             </form>
             

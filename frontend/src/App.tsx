@@ -5,6 +5,7 @@ import ProductContainer from "./pages/product/container";
 import AllProductsPageContainer from "./pages/allProductsPage/container";
 import BasketPageContainer from './pages/basketPage/container';
 import { ShippingAndPaymentPage } from './pages/shippingAndPaymentPage/index';
+import SearchProductsPageContainer from './pages/searchProductsPage/container';
 
 const App: React.FC = () => {
   return (
@@ -15,6 +16,7 @@ const App: React.FC = () => {
         <Route path="/basket" exact component={BasketPageContainer} />
         <Route path="/catalog" exact component={AllProductsPageContainer} />
         <Route path="/shipping-payment" exact component={ShippingAndPaymentPage} />
+        <Route path="/search" component={SearchProductsPageContainer} />
         <Route path="/" exact component={HomeContainer} />
       </Switch>
     </BrowserRouter>
@@ -23,4 +25,4 @@ const App: React.FC = () => {
 
 export default App;
 
-//Нужно сделать изменение веса продукта в корзине и оформление заказа. А также нужна верстка страницы "Доставка и оплата"
+//Нужно сделать очистку корзины после оформления заказа, переделать статусы заказа на enum, попробовать сделать лоадеры и обработку ошибок на фронте.

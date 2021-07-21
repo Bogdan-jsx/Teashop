@@ -81,6 +81,19 @@ router.get("/getManyBySub", handleErrorAsyncMiddleware(async (req, res) => {
     res.json(products);
 }))
 
+router.get("/getManyByName", handleErrorAsyncMiddleware(async (req, res) => {
+    const from = Number(req.query.from);
+    const to = Number(req.query.to);
+    const searchReq = req.query.searchReq as string;
+    const products = await productService.findManyByName(from, to, searchReq);
+    if (products) {
+        for (const product of products) {
+            product.images = JSON.parse(product.images);
+        }
+    }
+    res.json(products);
+}))
+
 router.delete("/:id", handleErrorAsyncMiddleware(async (req, res) => {
     const id = await uuidValidate.validateAsync(req.params.id);
     await productService.deleteProduct(id);

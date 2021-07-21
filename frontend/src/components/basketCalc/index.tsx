@@ -27,22 +27,24 @@ export const BasketCalc: React.FC<Props> = ({basketProducts}) => {
     return (
         <>
         <table className="order-price">
-            <tr>
-                <td>Общая сумма</td>
-                <td>{totalPrice}р</td>
-            </tr>
-            <tr>
-                <td>Общая скидка</td>
-                <td>-{totalDiscount}р</td>
-            </tr>
-            <tr>
-                <td>Доставка</td>
-                <td>{!isFreeDelivery ? "+150р" : "+0р"}</td>
-            </tr>
-            <tr className="total">
-                <td>Итого</td>
-                <td>{total}р</td>
-            </tr>
+            <tbody>
+                <tr>
+                    <td>Общая сумма</td>
+                    <td>{totalPrice}р</td>
+                </tr>
+                <tr>
+                    <td>Общая скидка</td>
+                    <td>-{totalDiscount}р</td>
+                </tr>
+                <tr>
+                    <td>Доставка</td>
+                    <td>{!isFreeDelivery ? "+150р" : "+0р"}</td>
+                </tr>
+                <tr className="total">
+                    <td>Итого</td>
+                    <td>{total}р</td>
+                </tr>
+            </tbody>
         </table>
         <p className="free-delivery">Бесплатная доставка при покупке от 1 500р</p>
         </>

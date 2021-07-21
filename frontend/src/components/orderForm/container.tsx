@@ -1,11 +1,12 @@
 import React from "react";
 import { connect } from "react-redux";
-import { sendOrder } from "../../store/basket/actions";
+import { sendOrder, putBasketProducts } from "../../store/basket/actions";
 import { OrderForm } from "./index";
-import { BasketProductBasic } from './../../interafaces';
+import { BasketProductBasic, Product } from './../../interafaces';
 
 interface Props {
     sendOrder: (basket: BasketProductBasic[], name: string, phone: string, comment: string, address: string) => void,
+    setIsModal: (value: boolean) => void,
 }
 
 const OrderFormContainer: React.FC<Props> = (props) => ( <OrderForm {...props} /> );

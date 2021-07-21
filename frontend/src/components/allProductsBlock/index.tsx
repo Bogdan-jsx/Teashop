@@ -1,6 +1,7 @@
 import React from 'react';
 import { ProductCard } from "../productCard/index";
 import { Product } from "../../interafaces";
+import "./style.css";
 
 interface Props {
     products: Product[],

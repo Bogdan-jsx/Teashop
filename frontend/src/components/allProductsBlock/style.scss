@@ -1,0 +1,19 @@
+@import "../../mixins.scss";
+
+.all-products-block {
+    width: 70%;
+    @include d-flex($justify: flex-start);
+
+    .product {
+        width: 30%;
+        margin-top: 40px;
+        margin-left: 48px;
+
+        > div {
+            width: 100%;
+        }  
+    }
+    .product:first-child {
+        margin-left: 0;
+    }
+}

@@ -1,12 +1,19 @@
 import { Column, DataType, ForeignKey, Model, PrimaryKey, Table, } from "sequelize-typescript";
 import Status from "./status";
 
+export enum Statuses {
+    inProcessing = "In processing",
+    confirmed = "Confirmed",
+    rejected = "Rejected",
+    inDelivery = "In delivery",
+    completed = "Completed",
+}
 
 export interface OrderAttr {
     name: string,
     phone: string,
     address: string,
-    comment: string,
+    comment?: string,
     id: string,
     status: string,
 }
@@ -43,9 +50,12 @@ class Order extends Model implements OrderAttr {
     @Column({
         type: DataType.STRING,
     })
-    comment!: string;
+    comment?: string;
 
-    @ForeignKey(() => Status)
+    @Column({
+        type: DataType.STRING,
+        allowNull: false,
+    })
     status!: string;
 }
 

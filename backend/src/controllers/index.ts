@@ -11,8 +11,8 @@ export default function configControllers(app: Express) {
     app.use("/product", productController);
     app.use("/subCategory", subCategoryController);
     app.use("/category", categoryController);
-    app.use("/status", statusController);
+    // app.use("/status", statusController);
     app.use("/order", orderController);
-    app.use("/orderProduct", productOrderController);
+    app.use("/productOrder", productOrderController);
     app.use("/image", imageController);
 }

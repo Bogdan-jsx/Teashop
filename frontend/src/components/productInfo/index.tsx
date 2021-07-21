@@ -1,12 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import "./productInfo.css"
 import { Product, BasketProductBasic } from "../../interafaces";
+import { ModalProductToBasket } from './../modalProductToBasket/index';
 
 interface Props {
     info: Product,
 }
 
 export const ProductInfo: React.FC<Props> = ({info}) => {
+    const [isModal, setIsModal] = useState<boolean>(false);
+    const [isSuccessful, setIsSuccessful] = useState<boolean>(true);
+
     const discount: number = info.discount;
     let price: number = info.price;
     if (discount != 0) {
@@ -19,9 +23,11 @@ export const ProductInfo: React.FC<Props> = ({info}) => {
         if (basket.findIndex(item => item.id == info.id) === -1) {
             basket.push({ id: info.id, weight: 100 });
             localStorage.setItem("basket", JSON.stringify(basket));
-            alert("Товар добавлен в корзину")
+            setIsSuccessful(true);
+            setIsModal(true);
         } else {
-            alert("Этот товар уже есть у вас в корзине")
+            setIsSuccessful(false);
+            setIsModal(true);
         }
     }
 
@@ -60,6 +66,7 @@ export const ProductInfo: React.FC<Props> = ({info}) => {
                     </tr>
                 </tbody>
             </table>
+            {isModal ? <ModalProductToBasket setIsModal={setIsModal} isSuccessful={isSuccessful} /> : "" }
         </div>
     )
 }
