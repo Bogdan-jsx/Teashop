@@ -9,9 +9,11 @@ interface Props {
     isCatalogOpened: boolean,
     catalogProducts: Array<Product>,
     loadCatalogProducts: () => void,
+    loadCategories: () => void,
 }
 
-export const Catalog: React.FC<Props> = ({isCatalogOpened, categories, catalogProducts, loadCatalogProducts}) => {
+export const Catalog: React.FC<Props> = ({isCatalogOpened, categories, catalogProducts, loadCatalogProducts, loadCategories}) => {
+    useEffect(() => loadCategories(), [loadCategories]);
     useEffect(() => loadCatalogProducts(), [loadCatalogProducts]);
 
     const [selectedItem, setSelectedItem] = useState<string>(categories[0]?.name)

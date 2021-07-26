@@ -63,7 +63,7 @@ router.get("/getSection", handleErrorAsyncMiddleware(async (req, res) => {
     const sub = await subCategoryService.getSubCategory(findParams.subCategoryId);
     const count = await subCategoryService.countProducts(findParams.subCategoryId);
     const name = sub?.name;
-    const result = { name, count, products }
+    const result = { name, count, products, id: sub?.id }
     res.json(result);
 }))
 

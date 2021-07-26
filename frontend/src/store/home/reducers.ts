@@ -1,8 +1,8 @@
-import { stat } from "fs"
 import { HomeActions } from "./actions"
 
 const initialState = {
     mainProducts: [],
+    isLoading: false,
 }
 
 export const homeReducer = (state = initialState, action: { type: HomeActions, payload: any }) => {
@@ -10,7 +10,12 @@ export const homeReducer = (state = initialState, action: { type: HomeActions, p
         case HomeActions.PUT_MAIN_PRODUCTS:
             return {
                 ...state,
-                mainProducts: state?.mainProducts.length < 2 ? [...state?.mainProducts, action.payload] : [action.payload],
+                mainProducts: action.payload,
+            }
+        case HomeActions.SET_IS_LOADING:
+            return {
+                ...state,
+                isLoading: action.payload,
             }
         default:
             return state

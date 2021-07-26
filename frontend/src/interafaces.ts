@@ -30,6 +30,7 @@ export interface SectionAttr {
     name: string,
     count: number,
     products: Product[],
+    id: string,
 }
 
 export interface BasketProductBasic {

@@ -10,8 +10,8 @@ export const putCategories = (categories: Array<object>) => {
     }
 }
 
-export const loadCategories = () => (dispatch: any) => {
-    fetch("http://localhost:3000/category/")
+export const loadCategories = () => async (dispatch: any) => {
+    await fetch("http://localhost:3000/category/")
         .then(res => res.json())
         .then(json => {
             dispatch(putCategories(json))

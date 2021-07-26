@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from "react-redux";
 import { Catalog } from "./index";
-import { loadCatalogProducts } from './../../store/catalog/actions';
+import { loadCatalogProducts, loadCategories } from './../../store/catalog/actions';
 import { Product, CatalogCategory } from "../../interafaces";
 
 interface ContainerProps {
@@ -9,6 +9,7 @@ interface ContainerProps {
     isCatalogOpened: boolean,
     catalogProducts: Array<Product>,
     loadCatalogProducts: () => void,
+    loadCategories: () => void,
 }
 
 const CatalogContainer: React.FC<ContainerProps> = (props) => {
@@ -24,6 +25,7 @@ const mapStateToProps = (state: any) => {
 
 const mapDispatchToProps = {
     loadCatalogProducts,
+    loadCategories,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(CatalogContainer);
