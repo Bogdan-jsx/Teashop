@@ -1,13 +1,7 @@
 import React from 'react';
 import { Link } from "react-router-dom"
 import "./productCard.css";
-
-interface Product {
-    price: number,
-    discount: number,
-    name: string,
-    image: string,
-}
+import { Product } from "../../interafaces";
 
 interface Props {
     product: Product,
@@ -21,16 +15,16 @@ export const ProductCard: React.FC<Props> = ({product}) => {
     }
 
     return (
-        <Link to="/product/123" className="product">
+        <Link to={`/product/${product.id}`} className="product">
             <div>
-                <div className="product-card-img tea-10"></div>
+                <div className="product-card-img tea-10" style={{ backgroundImage: `url(http://localhost:3000/image/${product.images[0]})` }}></div>
                 <div className="info">
                     <p className="cost"><strong>{price}р</strong> / 100гр</p>
                     <span className="original-cost"><p>{discount != 0 ? `${product.price}р` : ''}</p></span>
                     <p className="discount">{discount != 0 ? `-${discount}%` : ""}</p>
                     <span className="material-icons">shopping_cart</span>
-                    <p className="name">{product.name}</p>
                 </div>
+                <p className="name">{product.name}</p>
             </div>
         </Link>
     );

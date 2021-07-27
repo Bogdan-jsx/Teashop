@@ -1,0 +1,4 @@
+{"level":"error","message":"\"comment\" is not allowed to be empty"}
+{"level":"error","message":"\"comment\" is not allowed to be empty"}
+{"level":"error","message":"\"\"phone\"\" did not seem to be a phone number"}
+{"level":"error","message":"\"name\" length must be less than or equal to 35 characters long"}

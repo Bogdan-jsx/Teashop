@@ -1,13 +1,14 @@
-const { Column, DataType, Model, PrimaryKey, Table } = require("sequelize-typescript");
+import { Column, DataType, Model, PrimaryKey, Table, HasMany } from "sequelize-typescript";
+import SubCategory from "./subCategory";
 
-interface CategoryAttr {
+export interface CategoryAttr {
     name: string,
     alias: string,
     id: string,
 }
 
 @Table
-export class Category extends Model implements CategoryAttr {
+class Category extends Model implements CategoryAttr {
     @PrimaryKey
     @Column({
         type: DataType.UUID,
@@ -28,4 +29,9 @@ export class Category extends Model implements CategoryAttr {
         allowNull: false,
     })
     alias!: string;
+
+    @HasMany(() => SubCategory, {onDelete: "cascade"})
+    subCategories!: SubCategory[];
 }
+
+export default Category;

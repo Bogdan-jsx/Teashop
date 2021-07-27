@@ -1,0 +1,41 @@
+#modal-order-submited {
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.10);
+    z-index: 9999;
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    div {
+        background-color: white;
+        width: 700px;
+        height: 300px;
+        margin: 300px auto;
+        border-radius: 10px;
+        padding: 20px;
+
+        p {
+            font-size: 25px;
+            text-align: center;
+            margin-top: 40px;
+        }
+        button {
+            font-size: 25px;
+            padding: 5px 20px;
+            border: none;
+            border-radius: 5px;
+            border-bottom: 3px solid rgb(204, 204, 204);
+            border-right: 3px solid rgb(204, 204, 204);
+            position: relative;
+            margin-top: 100px;
+            margin-left: calc((100% - 74px) / 2);
+            cursor: pointer;
+        }
+        button:active {
+            border: none; 
+            margin-top: 103px;
+            margin-left: calc((100% - 68px) / 2);   
+        }
+    }
+}

@@ -1,24 +1,27 @@
 import React from 'react';
 import { ProductCard } from "../productCard/index";
-
-interface Product {
-    _id: number,
-    price: number,
-    discount: number,
-    name: string,
-    image: string,
-}
+import { Product } from "../../interafaces";
+import "./style.css";
+import { Loader } from '../loader';
+import { Error } from '../error/index';
 
 interface Props {
     products: Product[],
+    isLoading: boolean,
+    isError: boolean,
 }
 
-export const AllProductsBlock: React.FC<Props> = ({products}) => {
+export const AllProductsBlock: React.FC<Props> = ({ products, isLoading, isError }) => {
     return (
         <div className="all-products-block">
-            {products && products.map((item: Product) => {
-                return <ProductCard product={item}/>
-            })}
+            {isLoading ? 
+                <Loader/> :
+                    !isError ?
+                        products && products.map((item: Product) => {
+                            return <ProductCard product={item} key={item.id} />
+                        }) :
+                            <Error/>
+            }
         </div>
     );
 }

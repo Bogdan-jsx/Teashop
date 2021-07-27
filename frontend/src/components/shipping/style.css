@@ -1,0 +1,23 @@
+.shipping {
+  margin-top: 32px;
+}
+.shipping .shipping-blocks {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.shipping .shipping-blocks .block {
+  width: 48%;
+  margin-bottom: 27px;
+}
+.shipping .shipping-blocks .block img {
+  width: 100%;
+}
+.shipping .shipping-blocks .block h3 {
+  margin-top: 14px;
+}
+.shipping .shipping-blocks .block p {
+  margin-top: 5px;
+}

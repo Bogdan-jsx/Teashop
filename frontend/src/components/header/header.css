@@ -112,18 +112,19 @@ header .search {
   border: none;
   border-bottom: 1px solid #8B8B8B;
 }
-header .basket {
+header .basket > a {
   display: flex;
   align-items: center;
   justify-content: space-between;
   flex-direction: row;
   flex-wrap: wrap;
   width: 38px;
+  text-decoration: none;
 }
-header .basket p {
+header .basket > a p {
   font-size: 14px;
 }
-header .basket span {
+header .basket > a span {
   font-size: 18px;
   color: #B798FF;
 }

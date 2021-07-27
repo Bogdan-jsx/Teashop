@@ -1,18 +1,9 @@
 import React from "react";
 import "./basketCalc.css";
-
-interface BasketProduct {
-    _id: number,
-    price: number,
-    discount: number,
-    name: string,
-    image: string,
-    totalWeight: number,
-    totalPrice: number,
-}
+import { Product } from './../../interafaces';
 
 interface Props {
-    basketProducts: Array<BasketProduct>,
+    basketProducts: Array<Product>,
 }
 
 export const BasketCalc: React.FC<Props> = ({basketProducts}) => {
@@ -21,34 +12,39 @@ export const BasketCalc: React.FC<Props> = ({basketProducts}) => {
     let total = 0;
 
     for (let product of basketProducts) {
-        let multiplier = product.totalWeight / 100;
+        let multiplier = product.weight / 100;
         totalPrice += product.price * multiplier;
         totalDiscount += product.price * multiplier / 100 * product.discount;
     }
     total = totalPrice - totalDiscount;
+    let isFreeDelivery: boolean = false;
     if (total < 1500) {
+        isFreeDelivery = false;
         total += 150;
+    } else {
+        isFreeDelivery = true;
     }
-
     return (
         <>
         <table className="order-price">
-            <tr>
-                <td>Общая сумма</td>
-                <td>{totalPrice}р</td>
-            </tr>
-            <tr>
-                <td>Общая скидка</td>
-                <td>-{totalDiscount}р</td>
-            </tr>
-            <tr>
-                <td>Доставка</td>
-                <td>{total >= 1500 ? "+150р" : "+0р"}</td>
-            </tr>
-            <tr className="total">
-                <td>Итого</td>
-                <td>{total}р</td>
-            </tr>
+            <tbody>
+                <tr>
+                    <td>Общая сумма</td>
+                    <td>{totalPrice}р</td>
+                </tr>
+                <tr>
+                    <td>Общая скидка</td>
+                    <td>-{totalDiscount}р</td>
+                </tr>
+                <tr>
+                    <td>Доставка</td>
+                    <td>{!isFreeDelivery ? "+150р" : "+0р"}</td>
+                </tr>
+                <tr className="total">
+                    <td>Итого</td>
+                    <td>{total}р</td>
+                </tr>
+            </tbody>
         </table>
         <p className="free-delivery">Бесплатная доставка при покупке от 1 500р</p>
         </>

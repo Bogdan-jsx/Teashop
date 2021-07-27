@@ -1,58 +1,37 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./allProductsPage.css";
 import { FullHeader } from "../../components/fullHeader/index";
-import { AllProductsCatalog } from "../../components/allProductsCatalog/index";
-import { AllProductsHeader } from "../../components/allProductsHeader/index";
-import { AllProductsBlock } from "../../components/allProductsBlock/index";
+import AllProductsCatalogContainer from "../../components/allProductsCatalog/container";
 import { Footer } from "../../components/footer/index";
+import AllProductsBlockContainer from './../../components/allProductsBlock/container';
+import AllProductsHeaderContainer from './../../components/allProductsHeader/container';
+import { Loader } from "../../components/loader";
 
-interface Product {
-    _id: number,
-    price: number,
-    discount: number,
-    name: string,
-    image: string,
+interface Props {
+    loadAllProductsBySubs: (subCategories: string[], sortBy: SortType) => void,
 }
 
-export const AllProductsPage: React.FC = () => {
-    const products: Product[] = [
-        {
-            _id: 1,
-            price: 360,
-            discount: 0,
-            name: "Шу пуэр Лу Е Чунь «Гу Шу Чень Юнь», 2009 г., 357 гр. 2009 г., 3573.",
-            image: "./tea-1",
-        },
-        {
-            _id: 2,
-            price: 360,
-            discount: 45,
-            name: "Шу пуэр Лу Е Чунь «Гу Шу Чень Юнь», 2009 г., 357 гр. 2009 г., 3573.",
-            image: "./tea-1",
-        },
-        {
-            _id: 3,
-            price: 360,
-            discount: 45,
-            name: "Шу пуэр Лу Е Чунь «Гу Шу Чень Юнь», 2009 г., 357 гр. 2009 г., 3573.",
-            image: "./tea-1",
-        },
-        {
-            _id: 4,
-            price: 360,
-            discount: 45,
-            name: "Шу пуэр Лу Е Чунь «Гу Шу Чень Юнь», 2009 г., 357 гр. 2009 г., 3573.",
-            image: "./tea-1",
-        }
-    ];
+type SortType = "cheap" | "expensive" | "popular";
+
+export const AllProductsPage: React.FC<Props> = ({ loadAllProductsBySubs }) => {
+    const [sort, setSort] = useState<SortType>("popular");
+    const [selectedSubs, setSelectedSubs] = useState<string[]>([]);
+
+    useEffect(() => {
+        const subId = sessionStorage.getItem("subCategory");
+        setSelectedSubs(subId ? [subId] : []);
+    }, [setSelectedSubs, sessionStorage.getItem("subCategory")]);
+
+    useEffect(() => loadAllProductsBySubs(selectedSubs, sort), [selectedSubs, setSelectedSubs, sort, setSort]);
+
     return (
         <>
             <FullHeader />
             <div className="container all-products-container">
-                <AllProductsHeader /> 
+                <AllProductsHeaderContainer setSort={setSort} /> 
                 <div className="all-products-body">
-                    <AllProductsCatalog />
-                    <AllProductsBlock products={products} />
+                    <AllProductsCatalogContainer selectedSubs={selectedSubs} setSelectedSubs={setSelectedSubs} />
+                    <AllProductsBlockContainer />
                 </div>  
             </div>
             <Footer />

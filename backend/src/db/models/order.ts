@@ -1,21 +1,24 @@
-const { Sequelize, DataTypes } = require("sequelize");
-const { BelongsTo, Column, DataType, ForeignKey, HasMany, Model, PrimaryKey, Table } = require("sequelize-typescript");
-const { Status } = require("./status");
-const sequelize = new Sequelize("Teashop", "TeashopAdmin", "6def3656DEF3656", {
-    dialect: "mssql",
-    host: "localhost",
-    port: "1433"
-});
+import { Column, DataType, ForeignKey, Model, PrimaryKey, Table, } from "sequelize-typescript";
+import Status from "./status";
 
-interface OrderAttr {
+export enum Statuses {
+    inProcessing = "In processing",
+    confirmed = "Confirmed",
+    rejected = "Rejected",
+    inDelivery = "In delivery",
+    completed = "Completed",
+}
+
+export interface OrderAttr {
     name: string,
     phone: string,
     address: string,
-    comment: string,
+    comment?: string,
     id: string,
     status: string,
 }
 
+@Table
 class Order extends Model implements OrderAttr {
     @PrimaryKey
     @Column({
@@ -47,9 +50,12 @@ class Order extends Model implements OrderAttr {
     @Column({
         type: DataType.STRING,
     })
-    comment!: string;
+    comment?: string;
 
-    @ForeignKey(() => Status)
+    @Column({
+        type: DataType.STRING,
+        allowNull: false,
+    })
     status!: string;
 }
 

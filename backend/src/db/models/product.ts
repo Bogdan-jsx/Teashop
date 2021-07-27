@@ -1,17 +1,12 @@
-const { Sequelize } = require("sequelize");
-const { BelongsTo, Column, DataType, ForeignKey, HasMany, Model, PrimaryKey, Table } = require("sequelize-typescript");
-const { SubCategory } = require("./subCategory");
-const sequelize = new Sequelize("Teashop", "TeashopAdmin", "6def3656DEF3656", {
-    dialect: "mssql",
-    host: "localhost",
-    port: "1433"
-});
+import { Column, DataType, ForeignKey, HasMany, Model, PrimaryKey, Table } from "sequelize-typescript";
+import SubCategory from "./subCategory";
+import Image from './image';
 
-interface ProductAttr {
+export interface ProductAttr {
     name: string,
     price: number,
     discount: number,
-    vendorCode: number,
+    vendorCode: string,
     effect: string,
     appearance: string,
     brew: string,
@@ -19,6 +14,7 @@ interface ProductAttr {
     weight: number,
     subCategoryId: string,
     id: string,
+    images: string,
 }
 
 @Table
@@ -53,7 +49,7 @@ class Product extends Model implements ProductAttr {
         type: DataType.INTEGER,
         allowNull: false,
     })
-    vendorCode!: number;
+    vendorCode!: string;
 
     @Column({
         type: DataType.STRING,
@@ -82,7 +78,16 @@ class Product extends Model implements ProductAttr {
     weight!: number;
 
     @ForeignKey(() => SubCategory)
+    @Column({
+        type: DataType.UUID,
+        allowNull: false,
+    })
     subCategoryId!: string;
+
+    @Column({
+        type: DataType.STRING,
+    })
+    images!: string;
 }
 
 export default Product;

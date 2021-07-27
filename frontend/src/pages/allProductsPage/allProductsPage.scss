@@ -7,17 +7,4 @@
         @include d-flex($align: flex-start);
         width: 100%;
     }
-    .all-products-block {
-        width: 70%;
-        @include d-flex;
-
-        .product {
-            width: 30%;
-            margin-top: 40px;
-
-            > div {
-                width: 100%;
-            }  
-        }
-    }
 }

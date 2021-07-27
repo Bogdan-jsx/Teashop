@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Header } from "../header/index";
-import { Catalog } from "../catalog/index";
+import CatalogContainer from "../catalog/container";
 
 export const FullHeader: React.FC = () => {
     const [isCatalogOpened, setIsCatalogOpened] = useState<boolean>(false);
@@ -9,7 +9,7 @@ export const FullHeader: React.FC = () => {
         <>
         <Header isCatalogOpened={isCatalogOpened} setIsCatalogOpened={setIsCatalogOpened} />
         <div className="container">
-            <Catalog isCatalogOpened={isCatalogOpened} />
+            <CatalogContainer isCatalogOpened={isCatalogOpened} />
         </div>
         </>
     )

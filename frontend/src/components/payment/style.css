@@ -1,0 +1,47 @@
+.payment {
+  position: relative;
+}
+.payment .payment-blocks {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: row;
+  flex-wrap: wrap;
+  position: relative;
+  margin-top: 24px;
+}
+.payment .payment-blocks .block:first-child img {
+  width: 451px;
+  right: 21px;
+  bottom: 22px;
+}
+.payment .payment-blocks .block:first-child div {
+  margin-top: -27px;
+}
+.payment .payment-blocks .block:last-child img {
+  width: 430px;
+  right: 0;
+  bottom: 13px;
+}
+.payment .payment-blocks .block:last-child div {
+  margin-top: -17px;
+}
+.payment .payment-blocks .block {
+  position: relative;
+  width: 31.25%;
+  box-shadow: 0px 3px 84px rgba(0, 0, 0, 0.07);
+  height: 515px;
+}
+.payment .payment-blocks .block img {
+  position: relative;
+  width: 439px;
+  right: 9px;
+  bottom: 5px;
+}
+.payment .payment-blocks .block div {
+  margin-top: -10px;
+  padding: 44px;
+}
+.payment .payment-blocks .block div p {
+  margin-top: 12px;
+}

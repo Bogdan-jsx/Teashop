@@ -1,15 +1,5 @@
 import React from 'react';
-
-interface Subcategory {
-    name: string,
-    _id: number,
-}
-
-interface CatalogCategory {
-    name: string,
-    subcategories: Array<Subcategory>,
-    _id: number,
-}
+import { Subcategory, CatalogCategory } from "../../interafaces";
 
 interface Props {
     category: CatalogCategory,
@@ -20,8 +10,8 @@ interface Props {
 export const SubCategories: React.FC<Props> = ({category, toggleCategory, selectedSubs}) => {
     return (
         <ul className="sub-categories">
-            {category && category.subcategories.map((item: Subcategory) => {
-                return <li onClick={toggleCategory.bind(null, category, item.name)} key={item._id} 
+            {category && category.subCategories.map((item: Subcategory) => {
+                return <li onClick={toggleCategory.bind(null, category, item.name)} key={item.id} 
                             className={selectedSubs.indexOf(item.name) != -1 ? "selected sub-category" : "sub-category"}>
                             <span className="material-icons">{selectedSubs.indexOf(item.name) != -1 ? "done" : ""}</span>
                             <p>{item.name}</p>

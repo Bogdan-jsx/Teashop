@@ -13,12 +13,17 @@
         height: 392px;  
     }
     .all-slider-images {
-        @include d-flex;
+        @include d-flex($justify: flex-start);
         margin-top: 20px;
         width: 100%;
 
+        li:first-child {
+            margin-left: 0;
+        }
+
         li {
             width: 17.5%;
+            margin-left: 3.125%;
 
             div {
                 width: 100%;

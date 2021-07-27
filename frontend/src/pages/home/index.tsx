@@ -1,94 +1,63 @@
-import React, { useState } from 'react';
+import React, { useEffect } from 'react';
 import "./home.css";
 import { FullHeader } from "../../components/fullHeader/index";
-import { Section } from "../../components/section/index"
+import { Section } from "../../components/section/index";
 import { Footer } from "../../components/footer/index";
+import { CatalogCategory, SectionAttr } from "../../interafaces";
+import { Loader } from '../../components/loader';
+import { Link } from 'react-router-dom';
+import { Error } from './../../components/error/index';
 
-interface Product {
-    price: number,
-    discount: number,
-    name: string,
-    image: string,
+interface Props {
+    categories: CatalogCategory[],
+    mainProducts: SectionAttr[],
+    isLoading: boolean,
+    loadMain: (subCategoryIds: string[]) => void,
+    isError: boolean,
 }
 
-interface Section {
-    name: string,
-    products: Array<Product>,
-}
-
-export const HomePage: React.FC = () => {
-    const mostPopularProducts: Array<Section> = [
-        {
-            name: "Пуэр",
-            products: [
-                {
-                    price: 360,
-                    discount: 0,
-                    name: "Шу пуэр Лу Е Чунь «Гу Шу Чень Юнь», 2009 г., 357 гр. 2009 г., 3573.",
-                    image: "./tea-1",
-                },
-                {
-                    price: 360,
-                    discount: 45,
-                    name: "Шу пуэр Лу Е Чунь «Гу Шу Чень Юнь», 2009 г., 357 гр. 2009 г., 3573.",
-                    image: "./tea-1",
-                },
-                {
-                    price: 360,
-                    discount: 45,
-                    name: "Шу пуэр Лу Е Чунь «Гу Шу Чень Юнь», 2009 г., 357 гр. 2009 г., 3573.",
-                    image: "./tea-1",
-                },
-                {
-                    price: 360,
-                    discount: 45,
-                    name: "Шу пуэр Лу Е Чунь «Гу Шу Чень Юнь», 2009 г., 357 гр. 2009 г., 3573.",
-                    image: "./tea-1",
+export const HomePage: React.FC<Props> = ({ categories, mainProducts, isLoading, loadMain, isError }) => {
+    useEffect(() => {
+        if (categories[0]) {
+            let subIds = [];
+            let sectionsLeft = 2;
+            for (const category of categories) {
+                for (const sub of category.subCategories) {
+                    subIds.push(sub.id);
+                    sectionsLeft--;
+                    if (sectionsLeft === 0) {
+                        break;
+                    }
                 }
-            ]
-        },
-        {
-            name: "Пуэр",
-            products: [
-                {
-                    price: 360,
-                    discount: 45,
-                    name: "Шу пуэр Лу Е Чунь «Гу Шу Чень Юнь», 2009 г., 357 гр. 2009 г., 3573.",
-                    image: "./tea-1",
-                },
-                {
-                    price: 360,
-                    discount: 45,
-                    name: "Шу пуэр Лу Е Чунь «Гу Шу Чень Юнь», 2009 г., 357 гр. 2009 г., 3573.",
-                    image: "./tea-1",
-                },
-                {
-                    price: 360,
-                    discount: 45,
-                    name: "Шу пуэр Лу Е Чунь «Гу Шу Чень Юнь», 2009 г., 357 гр. 2009 г., 3573.",
-                    image: "./tea-1",
-                },
-                {
-                    price: 360,
-                    discount: 45,
-                    name: "Шу пуэр Лу Е Чунь «Гу Шу Чень Юнь», 2009 г., 357 гр. 2009 г., 3573.",
-                    image: "./tea-1",
-                }
-            ]
+            }
+            loadMain(subIds);
         }
-    ] 
+    }, [categories, loadMain ])
+
+    const onButtonClick = () => {
+        sessionStorage.setItem("subCategory", "");
+    }
 
     return (
         <>
             <FullHeader />
             <div className="container">
                 <main>
-                    <img src="img/main-img.png" />
-                    <div className="content">
-                        {mostPopularProducts && mostPopularProducts.map(item => {
-                            return <Section section={item} />
-                        })}
+                    <div className="main-img" style={ { backgroundImage: `url(${process.env.PUBLIC_URL + "/img/mainImg.png"})` } }>
+                        <div className="see-all-products">
+                            <Link to="/catalog" onClick={onButtonClick.bind(null)} >Посмотреть ассортимент</Link>
+                        </div>
                     </div>
+                    {isLoading ? 
+                        <Loader /> :
+                            !isError ?
+                                <div className="content">
+                                    {mainProducts && mainProducts.map(item => {
+                                        return <Section section={item} key={item.name} />
+                                    })}
+                                </div> :
+                                    <Error/>
+                    }
                 </main>
             </div>
             <Footer />

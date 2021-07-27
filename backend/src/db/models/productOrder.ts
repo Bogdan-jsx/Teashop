@@ -1,14 +1,8 @@
-const { Sequelize, DataTypes } = require("sequelize");
-const { BelongsTo, Column, DataType, ForeignKey, HasMany, Model, PrimaryKey, Table } = require("sequelize-typescript");
-const { Product } = require("./product");
-const { Order } = require("./order");
-const sequelize = new Sequelize("Teashop", "TeashopAdmin", "6def3656DEF3656", {
-    dialect: "mssql",
-    host: "localhost",
-    port: "1433"
-});
+import { Column, DataType, ForeignKey, Model, PrimaryKey, Table } from "sequelize-typescript";
+import Product from "./product";
+import Order from "./order";
 
-interface ProductOrderAttr {
+export interface ProductOrderAttr {
     productId: string,
     orderId: string,
     price: number,
@@ -18,9 +12,19 @@ interface ProductOrderAttr {
 @Table
 class ProductOrder extends Model implements ProductOrderAttr {
     @ForeignKey(() => Product)
+    @PrimaryKey
+    @Column({
+        allowNull: false,
+        type: DataType.UUID,
+    })
     productId!: string;
     
     @ForeignKey(() => Order)
+    @PrimaryKey
+    @Column({
+        allowNull: false,
+        type: DataType.UUID,
+    })
     orderId!: string;
 
     @Column({

@@ -66,7 +66,7 @@
 }
 #menu-catalog .products-in-catalog {
   display: flex;
-  align-items: center;
+  align-items: top;
   justify-content: space-between;
   flex-direction: row;
   flex-wrap: wrap;

@@ -5,3 +5,9 @@
   flex-direction: column;
   flex-wrap: wrap;
 }
+.basket .basket-empty {
+  align-self: flex-start;
+  margin-top: 30px;
+  margin-left: 20px;
+  font-size: 20px;
+}
