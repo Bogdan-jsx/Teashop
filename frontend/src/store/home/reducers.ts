@@ -3,6 +3,7 @@ import { HomeActions } from "./actions"
 const initialState = {
     mainProducts: [],
     isLoading: false,
+    isError: false,
 }
 
 export const homeReducer = (state = initialState, action: { type: HomeActions, payload: any }) => {
@@ -16,6 +17,11 @@ export const homeReducer = (state = initialState, action: { type: HomeActions, p
             return {
                 ...state,
                 isLoading: action.payload,
+            }
+        case HomeActions.SET_IS_ERROR:
+            return {
+                ...state,
+                isError: action.payload,
             }
         default:
             return state

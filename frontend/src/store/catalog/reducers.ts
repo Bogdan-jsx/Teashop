@@ -3,6 +3,8 @@ import { CategoryAction } from './actions';
 const initialState = {
     categories: [],
     catalogProducts: [],
+    isCategoriesError: false,
+    isProductsError: false,
 }
 
 export const categoriesReducer = (state = initialState, action: { type: CategoryAction, payload: any }) => {
@@ -16,6 +18,16 @@ export const categoriesReducer = (state = initialState, action: { type: Category
             return {
                 ...state,
                 catalogProducts: action.payload,
+            }
+        case CategoryAction.SET_CATEGORIES_ERROR:
+            return {
+                ...state,
+                isCategoriesError: action.payload,
+            }
+        case CategoryAction.SET_PRODUCTS_ERROR:
+            return {
+                ...state,
+                isProductsError: action.payload,
             }
         default:
             return state

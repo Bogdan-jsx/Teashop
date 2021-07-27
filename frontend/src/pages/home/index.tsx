@@ -5,17 +5,18 @@ import { Section } from "../../components/section/index";
 import { Footer } from "../../components/footer/index";
 import { CatalogCategory, SectionAttr } from "../../interafaces";
 import { Loader } from '../../components/loader';
-import mainImg from "../../../public/img/mainImg.png";
 import { Link } from 'react-router-dom';
+import { Error } from './../../components/error/index';
 
 interface Props {
     categories: CatalogCategory[],
     mainProducts: SectionAttr[],
     isLoading: boolean,
     loadMain: (subCategoryIds: string[]) => void,
+    isError: boolean,
 }
 
-export const HomePage: React.FC<Props> = ({ categories, mainProducts, isLoading, loadMain }) => {
+export const HomePage: React.FC<Props> = ({ categories, mainProducts, isLoading, loadMain, isError }) => {
     useEffect(() => {
         if (categories[0]) {
             let subIds = [];
@@ -49,11 +50,13 @@ export const HomePage: React.FC<Props> = ({ categories, mainProducts, isLoading,
                     </div>
                     {isLoading ? 
                         <Loader /> :
-                        <div className="content">
-                            {mainProducts && mainProducts.map(item => {
-                                return <Section section={item} key={item.name} />
-                            })}
-                        </div>
+                            !isError ?
+                                <div className="content">
+                                    {mainProducts && mainProducts.map(item => {
+                                        return <Section section={item} key={item.name} />
+                                    })}
+                                </div> :
+                                    <Error/>
                     }
                 </main>
             </div>

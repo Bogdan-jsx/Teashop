@@ -8,6 +8,8 @@ interface Props {
     products: Product[],
     location: any,
     loadSearchResult: (searchReq: string) => void,
+    isLoading: boolean,
+    isError: boolean,
 }
 
 const SearchProductsPageContainer: React.FC<Props> = (props) => ( <SearchProductsPage {...props} /> );
@@ -15,6 +17,8 @@ const SearchProductsPageContainer: React.FC<Props> = (props) => ( <SearchProduct
 const mapStateToProps = (state: any) => {
     return {
         products: state.allProductsCatalogReducer.searchResultProducts,
+        isLoading: state.allProductsCatalogReducer.isLoading,
+        isError: state.allProductsCatalogReducer.isError,
     }
 }
 

@@ -2,13 +2,17 @@ import React, { useEffect, useState } from "react";
 import "./basketBlock.css";
 import { BasketProductCard } from "../basketProductCard/index";
 import { BasketProductBasic, Product } from './../../interafaces';
+import { Loader } from "../loader/index";
+import { Error } from './../error/index';
 
 interface Props {
     loadBasketProducts: (productsBasic: BasketProductBasic[]) => void,
     basketProducts: Product[],
+    isLoading: boolean,
+    isError: boolean,
 }
 
-export const BasketBlock: React.FC<Props> = ({ loadBasketProducts, basketProducts }) => {
+export const BasketBlock: React.FC<Props> = ({ loadBasketProducts, basketProducts, isLoading, isError }) => {
     let json = localStorage.getItem("basket");
     const [basketProductsJson, setBasketProductsJson] = useState<string>(json ? json : "[]");
 
@@ -32,9 +36,14 @@ export const BasketBlock: React.FC<Props> = ({ loadBasketProducts, basketProduct
     return (
         <div className="basket-block">
             <h1>Корзина<span className="basket-products-count">{basketProducts.length}</span></h1>
-            {basketProducts && basketProducts.map((item: Product) => {
-                return <BasketProductCard product={item} key={item.id} deleteItem={deleteItem} setBasketJson={setBasketProductsJson} />
-            })}
+            {isLoading ? 
+                <Loader/> :
+                    !isError ?
+                        basketProducts && basketProducts.map((item: Product) => {
+                            return <BasketProductCard product={item} key={item.id} deleteItem={deleteItem} setBasketJson={setBasketProductsJson} />
+                        }) :
+                            <Error />
+            }
         </div>
     )
 }

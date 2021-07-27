@@ -9,11 +9,17 @@ interface Props {
     loadCategories: () => void,
     selectedSubs: string[],
     setSelectedSubs: (value: string[]) => void,
+    isError: boolean,
 }
 
 const AllProductCatalogContainer: React.FC<Props> = (props) => ( <AllProductsCatalog {...props} /> )
 
-const mapStateToProps = (state: any) => ( { categories: state.categoriesReducer.categories } );
+const mapStateToProps = (state: any) => { 
+    return {
+        categories: state.categoriesReducer.categories,
+        isError: state.categoriesReducer.isCategoriesError,
+    } 
+};
 
 const mapDispatchToProps = {
     loadCategories

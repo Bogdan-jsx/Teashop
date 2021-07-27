@@ -9,9 +9,11 @@ interface Props {
     products: Product[],
     location: any,
     loadSearchResult: (searchReq: string) => void,
+    isLoading: boolean,
+    isError: boolean,
 }
 
-export const SearchProductsPage: React.FC<Props> = ({products, location, loadSearchResult}) => {
+export const SearchProductsPage: React.FC<Props> = ({products, location, loadSearchResult, isLoading, isError}) => {
     useEffect(() => {
         const searchParams = new URLSearchParams(location.search);
         const searchQuery = searchParams.getAll("q")[0];
@@ -26,7 +28,7 @@ export const SearchProductsPage: React.FC<Props> = ({products, location, loadSea
                     <h2>Результаты поиска</h2>
                     <p>{products.length}</p>
                 </div>
-                <AllProductsBlock products={products} />
+                <AllProductsBlock products={products} isLoading={isLoading} isError={isError} />
              </div>
             <Footer />
         </>

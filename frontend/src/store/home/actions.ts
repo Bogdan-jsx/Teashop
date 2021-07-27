@@ -1,6 +1,7 @@
 export enum HomeActions {
     PUT_MAIN_PRODUCTS = "PUT_MAIN_PRODUCTS",
     SET_IS_LOADING = "SET_IS_LOADING",
+    SET_IS_ERROR = "SET_IS_ERROR",
 }
 
 export const putMain = (main: object[]) => {
@@ -11,6 +12,7 @@ export const putMain = (main: object[]) => {
 }
 
 export const loadMain = (subCategoryIds: string[]) => async (dispatch: any) => {
+    dispatch(setIsError(false));
     dispatch(setIsLoading(true));
     let sections: object[] = [];
     for (const id of subCategoryIds) {
@@ -18,7 +20,7 @@ export const loadMain = (subCategoryIds: string[]) => async (dispatch: any) => {
             .then((res) => res.json())
             .then((json) => {
                 sections.push(json);
-            })
+            }).catch(e => dispatch(setIsError(true)))
     }
     dispatch(putMain(sections));
     dispatch(setIsLoading(false));
@@ -28,5 +30,12 @@ export const setIsLoading = (isLoading: boolean) => {
     return {
         type: HomeActions.SET_IS_LOADING,
         payload: isLoading,
+    }
+}
+
+export const setIsError = (isError: boolean) => {
+    return {
+        type: HomeActions.SET_IS_ERROR,
+        payload: isError,
     }
 }

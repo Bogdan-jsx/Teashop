@@ -8,11 +8,19 @@ import { Product } from "../../interafaces";
 interface Props {
     loadBasketProducts: (productsBasic: BasketProductBasic[]) => void,
     basketProducts: Product[],
+    isLoading: boolean,
+    isError: boolean,
 }
 
 const BasketBlockContainer: React.FC<Props> = (props) => ( <BasketBlock {...props} /> );
 
-const mapStateToProps = (state: any) => ( { basketProducts: state.basketReducer.basketProducts } );
+const mapStateToProps = (state: any) => { 
+    return { 
+        basketProducts: state.basketReducer.basketProducts,
+        isLoading: state.basketReducer.isLoading,
+        isError: state.basketReducer.isError, 
+    } 
+};
 
 const mapDispatchToProps = {
     loadBasketProducts,

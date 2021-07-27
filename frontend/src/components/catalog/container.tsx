@@ -10,6 +10,8 @@ interface ContainerProps {
     catalogProducts: Array<Product>,
     loadCatalogProducts: () => void,
     loadCategories: () => void,
+    isProductsError: boolean,
+    isCategoriesError: boolean,
 }
 
 const CatalogContainer: React.FC<ContainerProps> = (props) => {
@@ -20,6 +22,8 @@ const mapStateToProps = (state: any) => {
     return {
         categories: state.categoriesReducer.categories,
         catalogProducts: state.categoriesReducer.catalogProducts,
+        isProductsError: state.categoriesReducer.isProductsError,
+        isCategoriesError: state.categoriesReducer.isCategoriesError,
     }
 }
 

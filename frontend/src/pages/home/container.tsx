@@ -9,6 +9,7 @@ interface Props {
     mainProducts: SectionAttr[],
     isLoading: boolean,
     loadMain: (subCategoryIds: string[]) => void,
+    isError: boolean,
 }
 
 const HomeContainer: React.FC<Props> = (props) => {
@@ -20,6 +21,7 @@ const mapStateToProps = (state: any) => {
         categories: state.categoriesReducer.categories,
         mainProducts: state.homeReducer.mainProducts,
         isLoading: state.homeReducer.isLoading,
+        isError: state.homeReducer.isError,
     }
 }
 

@@ -7,11 +7,19 @@ import { loadProduct } from "../../store/product/actions";
 interface Props {
     product: Product,
     loadProduct: (id: string) => void,
+    isLoading: boolean,
+    isError: boolean,
 }
 
 const ProductContainer: React.FC<Props> = (props) => ( <ProductPage {...props} /> )
 
-const mapStateToProps = (state: any) => ({ product: state.productReducer.product })
+const mapStateToProps = (state: any) => {
+    return { 
+        product: state.productReducer.product,
+        isLoading: state.productReducer.isLoading,
+        isError: state.productReducer.isError, 
+    }
+}
 
 const mapDispatchToProps = {
     loadProduct

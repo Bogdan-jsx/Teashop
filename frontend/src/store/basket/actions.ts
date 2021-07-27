@@ -2,6 +2,8 @@ import { Product, BasketProductBasic } from './../../interafaces';
 
 export enum BasketActions {
     PUT_BASKET_PRODUCTS = "PUT_BASKET_PRODUCTS",
+    SET_IS_ERROR = "SET_IS_ERROR",
+    SET_IS_LOADING = "SET_IS_LOADING",
 }
 
 export const putBasketProducts = (products: Product[]) => {
@@ -12,18 +14,19 @@ export const putBasketProducts = (products: Product[]) => {
 }
 
 export const loadBasketProducts = (productsBasic: BasketProductBasic[]) => async (dispatch: any) => {
+    dispatch(setIsError(false));
+    dispatch(setIsLoading(true));
     let products: Product[] = [];
-    // if (productsBasic[0] !== null) {
-        for (const product of productsBasic) {
-            await fetch(`http://localhost:3000/product/one/${product.id}`)
-                .then(res => res.json())
-                .then(json => {
-                    json.weight = product.weight;
-                    products.push(json);
-                })
-        } 
-    // }
+    for (const product of productsBasic) {
+        await fetch(`http://localhost:3000/product/one/${product.id}`)
+            .then(res => res.json())
+            .then(json => {
+                json.weight = product.weight;
+                products.push(json);
+            }).catch(e => dispatch(setIsError(true)))
+    } 
     dispatch(putBasketProducts(products));
+    dispatch(setIsLoading(false));
 }
 
 export const sendOrder = (basket: BasketProductBasic[], name: string, phone: string, comment: string, address: string) => (dispatch: any) => {
@@ -35,4 +38,18 @@ export const sendOrder = (basket: BasketProductBasic[], name: string, phone: str
         body: JSON.stringify({basket, name, phone, comment, address}),
     })
     dispatch(putBasketProducts([]));
+}
+
+export const setIsLoading = (isLoading: boolean) => {
+    return {
+        type: BasketActions.SET_IS_LOADING,
+        payload: isLoading,
+    }
+}
+
+export const setIsError = (isError: boolean) => {
+    return {
+        type: BasketActions.SET_IS_ERROR,
+        payload: isError,
+    }
 }

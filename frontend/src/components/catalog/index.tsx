@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import "./catalog.css"
 import { ProductCard } from "../productCard/index";
 import { Product, CatalogCategory } from "../../interafaces";
+import { Categories } from '../categories/index';
+import { Error } from './../error/index';
 
 interface Props {
     categories: Array<CatalogCategory>,
@@ -10,9 +12,11 @@ interface Props {
     catalogProducts: Array<Product>,
     loadCatalogProducts: () => void,
     loadCategories: () => void,
+    isProductsError: boolean,
+    isCategoriesError: boolean,
 }
 
-export const Catalog: React.FC<Props> = ({isCatalogOpened, categories, catalogProducts, loadCatalogProducts, loadCategories}) => {
+export const Catalog: React.FC<Props> = ({ isCatalogOpened, categories, catalogProducts, loadCatalogProducts, loadCategories, isProductsError, isCategoriesError }) => {
     useEffect(() => loadCategories(), [loadCategories]);
     useEffect(() => loadCatalogProducts(), [loadCatalogProducts]);
 
@@ -22,28 +26,21 @@ export const Catalog: React.FC<Props> = ({isCatalogOpened, categories, catalogPr
         setSelectedItem(item.name);
     }
 
-    const selectSub = (id: string) => {
-        sessionStorage.setItem("subCategory", id);
-    }
-
     return (
         <div id="menu-catalog" className={isCatalogOpened ? "" : "hidden"}>
             <div className="catalog">
-                <ul className="main-list">
-                    {categories && categories.map((item: CatalogCategory) => {
-                        return <li key={item.id} className={selectedItem === item.name ? "main-list-item selected-item" : "main-list-item"} onClick={selectMenuItem.bind(null, item)}>{item.name}</li>
-                    })}
-                </ul>
-                <ul className="secondary-list">
-                    {categories && categories.filter((item: CatalogCategory) => item.name === selectedItem)[0]?.subCategories.map(item => {
-                        return <li key={item.id} className="secondary-list-item" onClick={selectSub.bind(null, item.id)}><Link to="/catalog" >{item.name}</Link></li>
-                    })}
-                </ul>
+                {!isCategoriesError ? 
+                    <Categories categories={categories} selectedItem={selectedItem} selectMenuItem={selectMenuItem} /> :
+                        <Error />
+                }
             </div>
             <div className="products-in-catalog">
-                {catalogProducts && catalogProducts.map(item => {
-                    return <ProductCard key={item.id} product={item} />
-                })}
+                {!isProductsError ?
+                    catalogProducts && catalogProducts.map(item => {
+                        return <ProductCard key={item.id} product={item} />
+                    }) :
+                    <Error />
+                }
             </div>
         </div>
     );
