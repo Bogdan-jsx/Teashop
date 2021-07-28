@@ -10,6 +10,22 @@
     table {
         margin-top: 20px;
         tr {
+            @media screen and (max-width: 500px) {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                input {
+                    width: 83vw !important;
+                }
+            }
+            input {
+                padding: 15px;
+                width: 29.6vw;
+                border: 1px solid #F0F0F0;
+                @media screen and (max-width: 1250px) {
+                    width: 47vw;
+                }
+            }
             >:first-child {
                 padding: 20px;
                 text-align: right;
@@ -17,11 +33,6 @@
             }
             >:last-child {
                 padding: 5px;
-                input {
-                    padding: 15px;
-                    width: 600px;
-                    border: 1px solid #F0F0F0;
-                }
             }
             .order-submit-button {
                 width: 140px !important;

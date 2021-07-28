@@ -1,6 +1,6 @@
 main .main-img {
   width: 100%;
-  height: 606px;
+  height: 28.4vw;
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
@@ -9,20 +9,59 @@ main .main-img .see-all-products {
   color: white;
   background-color: #B798FF;
   position: relative;
-  top: 469px;
-  left: 78px;
+  top: 22.05vw;
+  left: 3.6vw;
   transform: skewX(-8deg);
-  width: 245px;
+  width: 11.7vw;
 }
 main .main-img .see-all-products a {
   display: block;
-  width: 227px;
-  height: 21px;
+  width: 10.7vw;
+  height: 1vw;
   text-align: center;
-  padding: 9px;
+  padding: 0.5vw;
   color: white;
   text-decoration: none;
+  font-size: 0.75vw;
 }
 main .content {
   width: 100%;
+}
+
+@media screen and (max-width: 1200px) {
+  main .main-img {
+    height: 35.3vw;
+  }
+  main .main-img .see-all-products {
+    top: 27.4vw;
+    left: 4.5vw;
+    width: 14.4vw;
+  }
+  main .main-img .see-all-products a {
+    width: 13.4vw;
+    height: 1.25vw;
+    padding: 0.5vw;
+    font-size: 0.9vw;
+  }
+}
+@media screen and (max-width: 700px) {
+  main .main-img {
+    height: 42.2vw;
+  }
+  main .main-img .see-all-products {
+    top: 32.77vw;
+    left: 5.4vw;
+    width: 17.4vw;
+  }
+  main .main-img .see-all-products a {
+    width: 16.4vw;
+    height: 1.85vw;
+    padding: 0.5vw;
+    font-size: 1.15vw;
+  }
+}
+@media screen and (max-width: 600px) {
+  main .main-img {
+    display: none;
+  }
 }

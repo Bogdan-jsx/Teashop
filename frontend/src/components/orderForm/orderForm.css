@@ -9,6 +9,26 @@
 .order-form table {
   margin-top: 20px;
 }
+@media screen and (max-width: 500px) {
+  .order-form table tr {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .order-form table tr input {
+    width: 83vw !important;
+  }
+}
+.order-form table tr input {
+  padding: 15px;
+  width: 29.6vw;
+  border: 1px solid #F0F0F0;
+}
+@media screen and (max-width: 1250px) {
+  .order-form table tr input {
+    width: 47vw;
+  }
+}
 .order-form table tr > :first-child {
   padding: 20px;
   text-align: right;
@@ -16,11 +36,6 @@
 }
 .order-form table tr > :last-child {
   padding: 5px;
-}
-.order-form table tr > :last-child input {
-  padding: 15px;
-  width: 600px;
-  border: 1px solid #F0F0F0;
 }
 .order-form table tr .order-submit-button {
   width: 140px !important;

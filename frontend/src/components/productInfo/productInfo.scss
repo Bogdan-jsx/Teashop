@@ -72,3 +72,45 @@
         }
     }
 }
+
+@media screen and (max-width: 1440px) {
+    .product-info {
+        .product-name {
+            font-size: 24px;
+        }
+        .product-price {
+            .currently-price {
+                font-size: 24px;
+            }
+            .original-price, .discount, .weight {
+                font-size: 20px;
+            }
+        }
+        .tea-info {
+            font-size: 14px;
+        }
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .product-info {
+        width: 100%;
+        margin-top: 30px;
+
+        .product-price {
+            width: 60%;
+        }
+        
+        .tea-info {
+            font-size: 16px;
+        }
+    }
+}
+
+@media screen and (max-width: 440px) {
+    .product-info {
+        .product-price {
+            width: 100%;
+        }
+    }
+}

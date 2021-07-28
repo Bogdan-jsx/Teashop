@@ -4,53 +4,158 @@
     position: relative;
 
     .payment-blocks {
-        @include d-flex();
+        @include d-flex($align: top);
         position: relative;
         margin-top: 24px;
 
         .block:first-child {
             img {
-                width: 451px;
-                right: 21px;
-                bottom: 22px;
+                width: 21.2vw;
+                right: 1.05vw;
+                bottom: 1.1vw;
             }
 
             div {
-                margin-top: -27px;
+                margin-top: -1.3vw;
             }
         }
 
         .block:last-child {
             img {
-                width: 430px;
+                width: 100%;
                 right: 0;
-                bottom: 13px;
+                bottom: 0.6vw;
             }
 
             div {
-                margin-top: -17px;
+                margin-top: -0.8vw;
             }
         }
 
         .block {
             position: relative;
-            width: 31.25%;
+            width: 20.15vw;
             box-shadow: 0px 3px 84px rgba(0, 0, 0, 0.07);
-            height: 515px;
+            min-height: 26.85vw;
 
             img {
                 position: relative;
-                width: 439px;
-                right: 9px;
-                bottom: 5px;
+                width: 20.55vw;
+                right: 0.4vw;
+                bottom: 0.25vw;
             }
 
             div {
-                margin-top: -10px;
-                padding: 44px;
+                margin-top: -0.5vw;
+                padding: 2.1vw;
 
                 p {
                     margin-top: 12px;
+                }
+            }
+        }
+    }
+}
+@media screen and (max-width: 1200px) {
+    .payment {
+        .payment-blocks {
+            .block:first-child {
+                img {
+                    width: 26.15vw;
+                    bottom: 1.3vw;
+                    right: 1.15vw;
+                }
+            }
+            .block {
+                width: 25vw;
+                img {
+                    width: 25.4vw;
+                }
+            }
+        }
+    }
+}
+@media screen and (max-width: 850px) {
+    .payment {
+        .payment-blocks {
+            .block:first-child {
+                img {
+                    width: 39.9vw;
+                    bottom: 2vw;
+                    right: 1.9vw;
+                }
+            }
+            .block {
+                width: 38vw;
+                img {
+                    width: 38.7vw;
+                    right: 0.7vw;
+                    bottom: 0.35vw;
+                }
+            }
+            .block:last-child {
+                margin: 30px auto;
+                img {
+                    bottom: 1vw;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 700px) {
+    .payment {
+        .payment-blocks {
+            .block:first-child {
+                img {
+                    width: 47.7vw;
+                    bottom: 2.2vw;
+                    right: 2.1vw;
+                }
+            }
+            .block {
+                width: 45.5vw;
+                img {
+                    width: 46.3vw;
+                    right: 0.7vw;
+                    bottom: 0.35vw;
+                }
+            }
+            .block:last-child {
+                margin: 30px auto;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 450px) {
+    .payment {
+        .payment-blocks {
+            flex-direction: column;
+            align-items: center;
+            .block:first-child {
+                img {
+                    width: 94.6vw;
+                    bottom: 4.7vw;
+                    right: 4.6vw;
+                }
+            }
+            .block {
+                width: 90vw;
+                margin-top: 30px;
+                img {
+                    width: 91.8vw;
+                    right: 1.8vw;
+                    bottom: 1.35vw;
+                }
+                div {
+                    padding: 20px;
+                }
+            }
+            .block:last-child {
+                margin: 30px auto;
+                img {
+                    bottom: 2.5vw;
                 }
             }
         }

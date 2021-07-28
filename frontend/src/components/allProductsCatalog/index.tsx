@@ -21,13 +21,19 @@ export const AllProductsCatalog: React.FC<Props> = ({ categories, loadCategories
     }
 
     return (
-        <ul className="filter-catalog">
+        <>
+        <input id="menu__toggle" type="checkbox" />
+            <label className="menu__btn" htmlFor="menu__toggle">
+                <span></span>
+            </label>
+        <ul className="filter-catalog menu__box">
             {!isError ? categories && categories.map((item: CatalogCategory) => {
                 return <Category category={item} key={item.name} selectedSubs={selectedSubs} setSelectedSubs={setSelectedSubs} />
             }) :
                 <Error />
             }
-            <li className="clear-filters"><button onClick={clearFilters.bind(null)}>Очистить фильтры</button></li>
+            <li className="clear-filters menu__item"><button onClick={clearFilters.bind(null)}>Очистить фильтры</button></li>
         </ul>
+        </>
     )
 }

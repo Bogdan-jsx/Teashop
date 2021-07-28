@@ -19,3 +19,45 @@
         }
     }
 }
+
+@media screen and (max-width: 1024px) {
+    .you-can-like {
+        .you-can-like-products {
+            .product {
+                width: 30%;
+                margin-left: 5%;
+                .product-card-img {
+                    height: 16vw;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .you-can-like {
+        .you-can-like-products {
+            .product {
+                width: 47.5%;
+                margin-left: 5%;
+                .product-card-img {
+                    height: 23vw;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 425px) {
+    .you-can-like {
+        .you-can-like-products {
+            .product {
+                width: 100%;
+                margin-left: 0;
+                .product-card-img {
+                    height: 50vw;
+                }
+            }
+        }
+    }
+}

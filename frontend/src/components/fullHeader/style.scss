@@ -1,0 +1,6 @@
+.catalog-opened ~ div {
+    margin-top: -467px !important;
+    @media screen and (max-width: 950px) {
+        margin-top: -717px !important;
+    }
+}

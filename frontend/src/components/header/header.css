@@ -2,6 +2,7 @@ header {
   position: relative;
   box-shadow: 0px 3px 84px rgba(0, 0, 0, 0.07);
   z-index: 5;
+  background-color: white;
 }
 header .container {
   display: flex;
@@ -133,7 +134,7 @@ header .basket > a span {
     width: 75%;
   }
 }
-@media screen and (max-width: 1400px) {
+@media screen and (max-width: 1410px) {
   header .container {
     width: 85%;
   }
@@ -183,5 +184,15 @@ header .basket > a span {
   }
   header .logo {
     margin-top: 0;
+  }
+}
+
+@media screen and (max-width: 950px) {
+  header.opened-header ~ :nth-child(3) {
+    margin-top: -250px;
+  }
+
+  header.opened-header ~ :nth-child(3).product-container {
+    margin-top: -215px !important;
   }
 }

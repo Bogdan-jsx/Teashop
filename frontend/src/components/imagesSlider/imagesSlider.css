@@ -31,3 +31,17 @@
   height: 70px;
   cursor: pointer;
 }
+
+@media screen and (max-width: 768px) {
+  .images-slider {
+    width: 100%;
+  }
+}
+@media screen and (max-width: 440px) {
+  .images-slider .selected-image {
+    height: 260px;
+  }
+  .images-slider .all-slider-images li div {
+    height: 50px;
+  }
+}

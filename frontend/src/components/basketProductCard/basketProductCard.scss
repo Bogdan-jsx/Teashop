@@ -55,6 +55,10 @@
             margin-top: 25px;
         }
     }
+    .total-info {
+        @include d-flex;
+        width: 250px;
+    }
     .total-weight {
         font-size: 20px;
 
@@ -74,5 +78,84 @@
         color: #8b8b8b;
         font-size: 18px;
         cursor: pointer;
+    }
+}
+
+@media screen and (max-width: 1000px) {
+    .basket-product-card {
+        height: 230px;
+        .image {
+            width: 24%;
+        }
+        .basket-product-info {
+            width: 70%;
+        }
+        .total-info {
+            margin-top: 20px;
+        }
+    }
+}
+@media screen and (max-width: 768px) {
+    .basket-product-card {
+        .basket-product-info {
+            .product-price {
+                .currently-price {
+                    font-size: 16px;
+                }
+                .weight {
+                    font-size: 15px;
+    
+                    span {
+                        color: #A8A8A8;
+                        text-decoration: underline;
+                        margin-right: 7px;
+                    }
+                }
+                .original-price {
+                    font-size: 15px;
+                    color: red;
+                    text-decoration: line-through;
+    
+                    span {
+                        color: black;
+                    }
+                }
+                .discount {
+                    font-size: 15px;
+                    color: #FE0000;
+                }
+            }
+            .product-name {
+                font-size: 15px;
+                margin-top: 25px;
+            }
+        }
+        .total-info p, .total-info input {
+            font-size: 16px;
+        }
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .basket-product-card {
+        align-self: flex-start;
+        height: 200px;
+        padding: 10px;
+        .basket-product-info {
+            width: 67%;
+            .product-price {
+                width: 100%;
+            }
+        }
+        .image {
+            width: 30%;
+        }
+    }
+}
+@media screen and (max-width: 380px) {
+    .basket-product-card {
+        .total-info {
+            width: 100%;
+        }
     }
 }

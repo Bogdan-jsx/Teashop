@@ -25,7 +25,7 @@ export const ProductPage: React.FC<Props> = ({ product, loadProduct, isLoading, 
     return (
         <>
             <FullHeader/>
-            <div className="container" style={{display: "flex", justifyContent: "space-between", flexWrap: "wrap", marginTop: "35px"}}>
+            <div className="container product-container" style={{display: "flex", justifyContent: "space-between", flexWrap: "wrap", marginTop: "35px"}}>
                 {isLoading ? 
                     <Loader /> :
                         !isError ?
