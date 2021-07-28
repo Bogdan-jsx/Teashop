@@ -45,7 +45,7 @@ export const HomePage: React.FC<Props> = ({ categories, mainProducts, isLoading,
                 <main>
                     <div className="main-img" style={ { backgroundImage: `url(${process.env.PUBLIC_URL + "/img/mainImg.png"})` } }>
                         <div className="see-all-products">
-                            <Link to="/catalog" onClick={onButtonClick.bind(null)} >Посмотреть ассортимент</Link>
+                            <Link to="/catalog" onClick={onButtonClick.bind(null)}>Посмотреть ассортимент</Link>
                         </div>
                     </div>
                     {isLoading ? 

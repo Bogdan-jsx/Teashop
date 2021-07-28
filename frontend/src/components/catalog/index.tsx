@@ -27,7 +27,7 @@ export const Catalog: React.FC<Props> = ({ isCatalogOpened, categories, catalogP
     }
 
     return (
-        <div id="menu-catalog" className={isCatalogOpened ? "" : "hidden"}>
+        <div id="menu-catalog" className={isCatalogOpened ? "opened" : "hidden"}>
             <div className="catalog">
                 {!isCategoriesError ? 
                     <Categories categories={categories} selectedItem={selectedItem} selectMenuItem={selectMenuItem} /> :

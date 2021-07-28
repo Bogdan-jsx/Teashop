@@ -39,7 +39,7 @@ export const Header: React.FC<HeaderProps> = ({isCatalogOpened, setIsCatalogOpen
     }
 
     return (
-        <header>
+        <header className={isMenuOpened ? "opened-header" : ""}>
             <div className="container">
                 <Logo />
                 <div className="collapsed-menu-btn" onClick={toggleCollapsedMenu.bind(null)}><span className="material-icons">menu</span></div>

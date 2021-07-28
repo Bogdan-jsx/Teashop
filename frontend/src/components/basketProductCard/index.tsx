@@ -52,10 +52,12 @@ export const BasketProductCard: React.FC<Props> = ({product, deleteItem, setBask
                 </div>
                 <p className="product-name">{product.name}</p>
             </div>
-            
-            <p className="total-weight"><input defaultValue={product.weight} onKeyPress={onWeightChange} ref={weightInput} type="number" max="1000" min="100" />гр</p>
-            <p className="total-price">{totalPrice}р</p>
-            <span className="material-icons delete-item" onClick={deleteItem.bind(null, product.id)} >clear</span>
+            {/* <br className="line-break" /> */}
+            <div className="total-info">
+                <p className="total-weight"><input defaultValue={product.weight} onKeyPress={onWeightChange} ref={weightInput} type="number" max="1000" min="100" />гр</p>
+                <p className="total-price">{totalPrice}р</p>
+                <span className="material-icons delete-item" onClick={deleteItem.bind(null, product.id)} >clear</span>
+            </div> 
         </div>
     )
 }

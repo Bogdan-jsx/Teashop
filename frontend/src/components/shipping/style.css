@@ -9,8 +9,8 @@
   flex-wrap: wrap;
 }
 .shipping .shipping-blocks .block {
-  width: 48%;
-  margin-bottom: 27px;
+  width: 30.923vw;
+  margin-bottom: 1.5vw;
 }
 .shipping .shipping-blocks .block img {
   width: 100%;
@@ -20,4 +20,36 @@
 }
 .shipping .shipping-blocks .block p {
   margin-top: 5px;
+}
+.shipping .shipping-blocks .block:nth-child(2) {
+  margin-top: -1vw;
+}
+
+@media screen and (max-width: 1872px) {
+  .shipping .shipping-blocks .block:nth-child(2) {
+    margin-top: 0;
+  }
+}
+@media screen and (max-width: 1253px) {
+  .shipping .shipping-blocks .block:nth-child(2) {
+    margin-top: -1.4vw;
+  }
+}
+@media screen and (max-width: 1200px) {
+  .shipping .shipping-blocks .block {
+    width: 38vw;
+  }
+  .shipping .shipping-blocks .block:nth-child(2) {
+    margin-top: 0;
+  }
+}
+@media screen and (max-width: 1019px) {
+  .shipping .shipping-blocks .block:nth-child(2) {
+    margin-top: -1.7vw;
+  }
+}
+@media screen and (max-width: 900px) {
+  .shipping .shipping-blocks .block {
+    width: 95vw;
+  }
 }

@@ -3,11 +3,12 @@
 #menu-catalog {
     @include d-flex($align: flex-start);
     width: 100%;
-    padding: 35px 0 35px 0;
+    padding: 35px;
     background-color: white;
     position: relative;
     z-index: 3;
     height: 397px;
+    box-shadow: 0px 3px 84px rgba(0, 0, 0, 0.07);
 
     @media screen and (max-width: 550px) {
         height: 450px;
@@ -92,5 +93,11 @@
                 display: none;
             }
         }
+    }
+}
+#menu-catalog.opened ~ div {
+    margin-top: -467px !important;
+    @media screen and (max-width: 950px) {
+        margin-top: -717px !important;
     }
 }
