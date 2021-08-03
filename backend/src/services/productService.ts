@@ -63,6 +63,11 @@ export async function findManyByName(from: number = 0, to: number = 15, searchRe
     return productRepository.findAll(parameters);
 }
 
+export async function findManyByIds(ids: string[]) {
+    const parameters = { where: { id: { [Op.or]: ids } } };
+    return productRepository.findAll(parameters);
+}
+
 export async function deleteProduct(id: string) {
     return productRepository.destroy({ where: { id } });
 }

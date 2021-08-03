@@ -1,0 +1,3 @@
+{"level":"error","message":"\"discount\" must be greater than or equal to 1"}
+{"level":"error","message":"Unknown column 'productId' in 'field list'"}
+{"level":"error","message":"Unknown column 'productId' in 'field list'"}

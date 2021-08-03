@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./basketCalc.css";
 import { Product } from './../../interafaces';
 
@@ -7,23 +7,26 @@ interface Props {
 }
 
 export const BasketCalc: React.FC<Props> = ({basketProducts}) => {
-    let totalPrice = 0;
-    let totalDiscount = 0;
-    let total = 0;
+    const [totalPrice, setTotalPrice] = useState<number>(0);
+    const [totalDiscount, setTotalDiscount] = useState<number>(0);
+    const [total, setTotal] = useState<number>(0);
+    const [isFreeDelivery, setIsFreeDelivery] = useState<boolean>(false);
 
-    for (let product of basketProducts) {
-        let multiplier = product.weight / 100;
-        totalPrice += product.price * multiplier;
-        totalDiscount += product.price * multiplier / 100 * product.discount;
-    }
-    total = totalPrice - totalDiscount;
-    let isFreeDelivery: boolean = false;
-    if (total < 1500) {
-        isFreeDelivery = false;
-        total += 150;
-    } else {
-        isFreeDelivery = true;
-    }
+    useEffect(() => {
+        for (let product of basketProducts) {
+            let multiplier = product.weight / 100;
+            setTotalPrice(totalPrice + (product.price * multiplier));
+            setTotalDiscount(totalDiscount + (product.price * multiplier / 100 * product.discount));
+        }
+        setTotal(totalPrice - totalDiscount);
+        if (total < 1500) {
+            setIsFreeDelivery(false);
+            setTotal(total + 150);
+        } else {
+            setIsFreeDelivery(true);
+        }
+    }, [basketProducts, setTotalPrice, setTotalDiscount, setTotal, setIsFreeDelivery]);
+
     return (
         <>
         <table className="order-price">

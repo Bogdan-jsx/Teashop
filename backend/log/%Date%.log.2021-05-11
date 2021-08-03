@@ -1,0 +1,25 @@
+{"level":"error","message":"\"value\" must be a valid GUID"}
+{"level":"error","message":"\"value\" must be a valid GUID"}
+{"level":"error","message":"\"value\" must be a valid GUID"}
+{"level":"error","message":"\"value\" must be a valid GUID"}
+{"level":"error","message":"\"value\" must be a valid GUID"}
+{"level":"error","message":"You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''2') AS `Product` LEFT OUTER JOIN `Images` AS `images` ON `Product`.`id` = `imag' at line 1"}
+{"level":"error","message":"Undeclared variable: NaN"}
+{"level":"error","message":"Undeclared variable: NaN"}
+{"level":"error","message":"Undeclared variable: NaN"}
+{"level":"error","message":"Undeclared variable: NaN"}
+{"level":"error","message":"Undeclared variable: NaN"}
+{"level":"error","message":"Undeclared variable: NaN"}
+{"level":"error","message":"Undeclared variable: NaN"}
+{"level":"error","message":"Undeclared variable: NaN"}
+{"level":"error","message":"Undeclared variable: NaN"}
+{"level":"error","message":"Undeclared variable: NaN"}
+{"level":"error","message":"Undeclared variable: NaN"}
+{"level":"error","message":"Undeclared variable: NaN"}
+{"level":"error","message":"Undeclared variable: NaN"}
+{"level":"error","message":"Undeclared variable: NaN"}
+{"level":"error","message":"Undeclared variable: NaN"}
+{"level":"error","message":"Undeclared variable: NaN"}
+{"level":"error","message":"Undeclared variable: NaN"}
+{"level":"error","message":"Undeclared variable: NaN"}
+{"level":"error","message":"Undeclared variable: NaN"}

@@ -15,11 +15,13 @@ router.post("/", handleErrorAsyncMiddleware(async (req, res) => {
     delete info.basket;
     info.status = Statuses.inProcessing;
     const order = await orderService.addOrder(info);
-    for (const product of basketProducts) {
-        const fullProduct = await productService.findById(product.id);
-        const orderProduct = { productId: product.id as string, orderId: order.id as string, weight: product.weight as number, price: fullProduct?.price as number };
-        await orderProductService.addProductOrder(orderProduct);
-    }
+    const productsIds = basketProducts.map((item: any) => ( item.id ));
+    const fullProducts = await productService.findManyByIds(productsIds);
+    let finalBasket = basketProducts.map((item: any) => {
+        const fullProduct = fullProducts.find((tempItem) => tempItem.id === item.id);
+        return { productId: item.id as string, orderId: order.id as string, weight: item.weight as number, price: fullProduct?.price as number };
+    });
+    await orderProductService.addProductOrders(finalBasket);
     res.json(order);
 }))
 

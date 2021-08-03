@@ -21,11 +21,7 @@ router.put("/:id", handleErrorAsyncMiddleware(async (req, res) => {
     const id = await uuidValidate.validateAsync(req.params.id);
     const info = await categoryBasic.validateAsync(req.body);
     const updateResult = await categoryService.updateCategory(id, info);
-    if (updateResult != undefined) {
-        res.sendStatus(200);
-    } else {
-        res.sendStatus(404);
-    }
+    res.status(200).json(updateResult);
 }))
 
 router.delete("/:id", handleErrorAsyncMiddleware(async (req, res) => {

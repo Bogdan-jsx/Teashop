@@ -8,7 +8,7 @@ const router = Router();
 
 router.post("/", handleErrorAsyncMiddleware(async (req, res) => {
     const info = await productOrderValidation.validateAsync(req.body);
-    const newOrderProduct = await productOrderService.addProductOrder(info);
+    const newOrderProduct = await productOrderService.addProductOrders([info]);
     res.json(newOrderProduct);
 }))
 

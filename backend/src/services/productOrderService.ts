@@ -6,8 +6,8 @@ const productOrderRepository = connection.getRepository(ProductOrder);
 
 interface ProductOrderBasic extends Omit<ProductOrderAttr, "id">{};
 
-export async function addProductOrder(productOrder: ProductOrderBasic) {
-    return productOrderRepository.create(productOrder)
+export async function addProductOrders(productOrders: ProductOrderBasic[]) {
+    return productOrderRepository.bulkCreate(productOrders);
 }
 
 export async function getProductOrder(id: string) {

@@ -1,0 +1,22 @@
+{"level":"error","message":"Invalid value /Айла/"}
+{"level":"error","message":"Invalid value /Айла/"}
+{"level":"error","message":"Invalid value /%Айла%/"}
+{"level":"error","message":"Invalid value /Айла/"}
+{"level":"error","message":"Illegal argument to a regular expression."}
+{"level":"error","message":"Illegal argument to a regular expression."}
+{"level":"error","message":"Model not initialized: Member \"getTableName\" cannot be called. \"Status\" needs to be added to a Sequelize instance."}
+{"level":"error","message":"Status is not associated to Order!"}
+{"level":"error","message":"Status is not associated to Order!"}
+{"level":"error","message":"Unknown column 'id' in 'where clause'"}
+{"level":"error","message":"Unknown column 'status' in 'field list'"}
+{"level":"error","message":"Unknown column 'status' in 'field list'"}
+{"level":"error","message":"Unknown column 'status' in 'field list'"}
+{"level":"error","message":"Unknown column 'status' in 'field list'"}
+{"level":"error","message":"Unknown column 'status' in 'field list'"}
+{"level":"error","message":"Unknown column 'status' in 'field list'"}
+{"level":"error","message":"\"comment\" is not allowed to be empty"}
+{"level":"error","message":"\"comment\" is not allowed to be empty"}
+{"level":"error","message":"Unknown column 'status' in 'field list'"}
+{"level":"error","message":"Unknown column 'status' in 'field list'"}
+{"level":"error","message":"Unknown column 'status' in 'field list'"}
+{"level":"error","message":"Unknown column 'status' in 'field list'"}

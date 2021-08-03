@@ -1,0 +1,10 @@
+{"level":"error","message":"Cannot set property 'limit' of undefined"}
+{"level":"error","message":"Cannot set property 'limit' of undefined"}
+{"level":"error","message":"Cannot set property 'limit' of undefined"}
+{"level":"error","message":"Undeclared variable: NaN"}
+{"level":"error","message":"Cannot read property 'size' of undefined"}
+{"level":"error","message":"Data too long for column 'data' at row 1"}
+{"level":"error","message":"Data too long for column 'data' at row 1"}
+{"level":"error","message":"\"subCategoryId\" must be a valid GUID"}
+{"level":"error","message":"\"subCategoryId\" must be a valid GUID"}
+{"level":"error","message":"\"effect\" length must be less than or equal to 20 characters long"}
