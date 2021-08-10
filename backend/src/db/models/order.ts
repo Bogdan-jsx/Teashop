@@ -1,5 +1,4 @@
 import { Column, DataType, ForeignKey, Model, PrimaryKey, Table, } from "sequelize-typescript";
-import Status from "./status";
 
 export enum Statuses {
     inProcessing = "In processing",

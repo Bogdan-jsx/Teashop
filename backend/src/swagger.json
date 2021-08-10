@@ -398,6 +398,9 @@
         ],
         "responses": {
           "200": {
+            "schema": {
+              "$ref": "#/definitions/CategoryAttr"
+            },
             "description": "Category successfully updated"
           },
           "404": {

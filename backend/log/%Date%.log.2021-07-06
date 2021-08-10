@@ -1,0 +1,4 @@
+{"level":"error","message":"Data truncated for column 'id' at row 1"}
+{"level":"error","message":"Incorrect integer value: 'f91e39b0-10ed-46a7-b75b-ce1ede50cc1b' for column 'id' at row 1"}
+{"level":"error","message":"Data truncated for column 'id' at row 1"}
+{"level":"error","message":"\"comment\" is not allowed to be empty"}

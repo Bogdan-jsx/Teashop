@@ -15,39 +15,33 @@ router.post("/", handleErrorAsyncMiddleware(async (req, res) => {
     delete info.basket;
     info.status = Statuses.inProcessing;
     const order = await orderService.addOrder(info);
-    for (const product of basketProducts) {
-        const fullProduct = await productService.findById(product.id);
-        const orderProduct = { productId: product.id as string, orderId: order.id as string, weight: product.weight as number, price: fullProduct?.price as number };
-        await orderProductService.addProductOrder(orderProduct);
-    }
-    res.json(order);
+    const productsIds = basketProducts.map((item: any) => ( item.id ));
+    const fullProducts = await productService.findManyByIds(productsIds);
+    let finalBasket = basketProducts.map((item: any) => {
+        const fullProduct = fullProducts.find((tempItem) => tempItem.id === item.id);
+        return { productId: item.id as string, orderId: order.id as string, weight: item.weight as number, price: fullProduct?.price as number };
+    });
+    await orderProductService.addProductOrders(finalBasket);
+    res.status(200).json(order);
 }))
 
 router.get("/:id", handleErrorAsyncMiddleware(async (req, res) => {
     const id = await uuidValidate.validateAsync(req.params.id);
     const order = await orderService.getOrder(id);
-    res.json(order);
+    res.status(200).json(order);
 }))
 
 router.put("/:id", handleErrorAsyncMiddleware(async (req, res) => {
     const id = await uuidValidate.validateAsync(req.params.id);
     const info = await orderValidation.validateAsync(req.params.id);
     const updateResult = await orderService.updateOrder(info, id);
-    if (updateResult) {
-        res.sendStatus(200);
-    } else {
-        res.sendStatus(404);
-    }
+    res.status(200).json(updateResult);
 }))
 
 router.delete("/:id", handleErrorAsyncMiddleware(async (req, res) => {
     const id = await uuidValidate.validateAsync(req.params.id);
-    const deleteResult = await orderService.deleteOrder(id);
-    if (deleteResult) {
-        res.sendStatus(200);
-    } else {
-        res.sendStatus(404);
-    }
+    await orderService.deleteOrder(id);
+    res.sendStatus(200);
 }))
 
 export default router;

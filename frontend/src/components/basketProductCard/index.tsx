@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import "./basketProductCard.css";
 import { Product, BasketProductBasic } from './../../interafaces';
 
@@ -9,13 +9,18 @@ interface Props {
 }
 
 export const BasketProductCard: React.FC<Props> = ({product, deleteItem, setBasketJson}) => {
-    const discount: number = product.discount;
-    let price: number = product.price;
-    if (discount != 0) {
-        price = price - price / 100 * discount;
-    }
-
+    const [price, setPrice] = useState<number>(product.price);
     const [totalPrice, setTotalPrice] = useState<number>(product.weight / 100 * price);
+
+    useEffect(() => {
+        if (product.discount != 0) {
+            setPrice(price - price / 100 * product.discount);
+        }
+    }, [product, setPrice]);
+
+    useEffect(() => {
+        setTotalPrice(product.weight / 100 * price);
+    }, [price, setTotalPrice]);
 
     const weightInput = useRef<HTMLInputElement>(null);
 
@@ -47,8 +52,8 @@ export const BasketProductCard: React.FC<Props> = ({product, deleteItem, setBask
                 <div className="product-price">
                     <p className="currently-price">{price}р  /</p>
                     <p className="weight"><span>100</span>гр</p>
-                    <p className="original-price"><span>{discount != 0 ? `${product.price}р` : ""}</span></p>
-                    <p className="discount">{discount != 0 ? `-${discount}%` : ""}</p>
+                    <p className="original-price"><span>{product.discount != 0 ? `${product.price}р` : ""}</span></p>
+                    <p className="discount">{product.discount != 0 ? `-${product.discount}%` : ""}</p>
                 </div>
                 <p className="product-name">{product.name}</p>
             </div>
