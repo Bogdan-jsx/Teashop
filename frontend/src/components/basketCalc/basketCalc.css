@@ -26,3 +26,8 @@
   text-align: right;
   margin-top: 13px;
 }
+@media screen and (max-width: 350px) {
+  .free-delivery {
+      font-size: 13px;
+  }
+}

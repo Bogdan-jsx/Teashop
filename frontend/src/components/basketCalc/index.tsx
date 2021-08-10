@@ -13,18 +13,25 @@ export const BasketCalc: React.FC<Props> = ({basketProducts}) => {
     const [isFreeDelivery, setIsFreeDelivery] = useState<boolean>(false);
 
     useEffect(() => {
+        let tempTotalPrice = 0;
+        let tempTotalDiscount = 0;
         for (let product of basketProducts) {
             let multiplier = product.weight / 100;
-            setTotalPrice(totalPrice + (product.price * multiplier));
+            tempTotalPrice += product.price * multiplier;
+            
+            tempTotalDiscount += product.price * multiplier / 100 * product.discount;
             setTotalDiscount(totalDiscount + (product.price * multiplier / 100 * product.discount));
         }
-        setTotal(totalPrice - totalDiscount);
-        if (total < 1500) {
+        setTotalPrice(tempTotalPrice);
+        setTotalDiscount(tempTotalDiscount);
+        let tempTotal = tempTotalPrice - tempTotalDiscount;
+        if (tempTotal < 1500) {
             setIsFreeDelivery(false);
-            setTotal(total + 150);
+            tempTotal += 150;
         } else {
             setIsFreeDelivery(true);
         }
+        setTotal(tempTotal);
     }, [basketProducts, setTotalPrice, setTotalDiscount, setTotal, setIsFreeDelivery]);
 
     return (

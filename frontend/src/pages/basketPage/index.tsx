@@ -19,7 +19,7 @@ export const BasketPage: React.FC<Props> = ({ isBasketEmpty }) => {
             <FullHeader />
             <div className="container basket">
                 <BasketBlockContainer />
-                {/* {!isBasketEmpty ? <BasketCalcContainer /> : <p className="basket-empty">Корзина пустая</p>} */}
+                {!isBasketEmpty ? <BasketCalcContainer /> : <p className="basket-empty">Корзина пустая</p>}
                 {!isBasketEmpty ? <OrderFormContainer setIsModal={setIsModal} /> : ""}
                 {isModal ? <ModalOrderSubmited setIsModal={setIsModal} /> : ""}
             </div>
