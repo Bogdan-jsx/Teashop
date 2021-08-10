@@ -10,11 +10,7 @@ const router = Router();
 router.post("/", handleErrorAsyncMiddleware(async (req, res) => {
     const info = await productBasic.validateAsync(req.body);
     const product = await productService.create(info);
-    if (product) {
-        res.json(product); 
-    } else {
-        res.status(404);
-    }
+    res.status(200).json(product); 
 }))
 
 router.put("/:id", handleErrorAsyncMiddleware(async (req, res) => {
@@ -27,13 +23,10 @@ router.put("/:id", handleErrorAsyncMiddleware(async (req, res) => {
 router.get("/one/:id", handleErrorAsyncMiddleware(async (req, res) => {
     const id = await uuidValidate.validateAsync(req.params.id);
     let product = await productService.findById(id);
-    // let result;
     if (product) {
         product.images = JSON.parse(product.images); 
-        // const subCategory = await subCategoryService.getSubCategory(product.subCategoryId);
-        // result = {...product/*, type: subCategory?.name*/};
     }
-    res.json(product);
+    res.status(200).json(product);
 }))
 
 router.get("/getMany", handleErrorAsyncMiddleware(async (req, res) => {
@@ -64,7 +57,7 @@ router.get("/getSection", handleErrorAsyncMiddleware(async (req, res) => {
     const count = await subCategoryService.countProducts(findParams.subCategoryId);
     const name = sub?.name;
     const result = { name, count, products, id: sub?.id }
-    res.json(result);
+    res.status(200).json(result);
 }))
 
 router.get("/getManyBySub", handleErrorAsyncMiddleware(async (req, res) => {
@@ -78,7 +71,7 @@ router.get("/getManyBySub", handleErrorAsyncMiddleware(async (req, res) => {
             product.images = JSON.parse(product.images);
         }
     }
-    res.json(products);
+    res.status(200).json(products);
 }))
 
 router.get("/getManyByName", handleErrorAsyncMiddleware(async (req, res) => {

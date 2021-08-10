@@ -22,6 +22,7 @@ class SubCategory extends Model implements SubCategoryAttr {
 
     @Column({
         type: DataType.STRING,
+        unique: true,
         allowNull: false,
     })
     name!: string;

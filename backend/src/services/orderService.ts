@@ -1,24 +1,36 @@
 import {v4 as uuidv4} from "uuid";
 import connection from "../db/connection";
 import Order, { OrderAttr } from './../db/models/order';
+import createError from "http-errors";
 
 const orderRepository = connection.getRepository(Order)
 
 interface OrderBasic extends Omit<OrderAttr, "id">{}
 
-export function addOrder(orderParams: OrderBasic) {
+export async function addOrder(orderParams: OrderBasic) {
     const id = uuidv4();
     return orderRepository.create({ id, ...orderParams });
 }
 
-export function getOrder(id: string) {
-    return orderRepository.findOne({ where: { id } });
+export async function getOrder(id: string) {
+    const order = await orderRepository.findOne({ where: { id } });
+    if (!order) {
+        throw createError(404, "Order not found");
+    }
+    return order;
 }
 
-export function updateOrder(newOrderParams: OrderBasic, id: string) {
-    return orderRepository.update(newOrderParams, { where: { id } });
+export async function updateOrder(newOrderParams: OrderBasic, id: string) {
+    if (!await orderRepository.findByPk(id)) {
+        throw createError(404, "Order not found")
+    }
+    await orderRepository.update(newOrderParams, { where: { id } });
+    return orderRepository.findByPk(id);
 }
 
-export function deleteOrder(id: string) {
+export async function deleteOrder(id: string) {
+    if (!await orderRepository.findByPk(id)) {
+        throw createError(404, "Order not found")
+    }
     return orderRepository.destroy({ where: { id } });
 }

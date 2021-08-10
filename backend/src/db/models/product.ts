@@ -47,6 +47,7 @@ class Product extends Model implements ProductAttr {
 
     @Column({
         type: DataType.INTEGER,
+        unique: true,
         allowNull: false,
     })
     vendorCode!: string;

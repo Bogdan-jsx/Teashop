@@ -4,7 +4,6 @@ import Image from "./models/image";
 import Order from "./models/order";
 import Product from "./models/product";
 import ProductOrder from "./models/productOrder";
-// import Status from "./models/status";
 import SubCategory from "./models/subCategory";
 
 const {DB_NAME, MYSQL_USER, MYSQL_PASSWORD, DB_HOST} = process.env;
@@ -22,7 +21,6 @@ sequelize.addModels([
     Product,
     ProductOrder,
     Order,
-    // Status,
 ]);
 
 export default sequelize;
