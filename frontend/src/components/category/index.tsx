@@ -18,7 +18,7 @@ export const Category: React.FC<Props> = ({ category, selectedSubs, setSelectedS
     return (
         <li 
             className={selectedSubs.some((_selectedId) => category.subCategories.some((sub) => _selectedId === sub.id)) ? "selected menu__item" : "menu__item"}>
-            <span className="material-icons">
+            <span className="material-symbols-outlined">
                 {isOpened ? "keyboard_arrow_up" : "keyboard_arrow_down"}
             </span>
             <p onClick={toggleOpened.bind(null)}>{category.name}</p>

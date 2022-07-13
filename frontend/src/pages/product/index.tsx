@@ -13,9 +13,10 @@ interface Props {
     loadProduct: (id: string) => void,
     isLoading: boolean,
     isError: boolean,
+    increaseBasketCount: () => void,
 }
 
-export const ProductPage: React.FC<Props> = ({ product, loadProduct, isLoading, isError }) => {
+export const ProductPage: React.FC<Props> = ({ product, loadProduct, isLoading, isError, increaseBasketCount }) => {
     const url = window.location.href;
     const splitedUrl = url.split("/");
     const id = splitedUrl[splitedUrl.length - 1]; 
@@ -31,7 +32,7 @@ export const ProductPage: React.FC<Props> = ({ product, loadProduct, isLoading, 
                         !isError ?
                             <>
                             {product.images ? <ImagesSlider images={product.images} /> : ""}
-                            <ProductInfo info={product} />
+                            <ProductInfo info={product} increaseBasketCount={increaseBasketCount} />
                             <YouCanLikeContainer subCategoryId={product.subCategoryId} id={product.id} />
                             </> :
                                 <Error />

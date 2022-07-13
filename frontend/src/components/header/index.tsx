@@ -7,11 +7,12 @@ import { SearchInput } from './../searchInput/index';
 interface HeaderProps {
     isCatalogOpened: boolean,
     setIsCatalogOpened(value: boolean): void,
+    setBasketCount: (count: number) => void,
+    basketCount: number,
 }
 
-export const Header: React.FC<HeaderProps> = ({isCatalogOpened, setIsCatalogOpened}) => {
+export const Header: React.FC<HeaderProps> = ({isCatalogOpened, setIsCatalogOpened, basketCount, setBasketCount}) => {
     const [isMenuOpened, setIsMenuOpened] = useState<boolean>(false);
-    const [basketProductsCount, setBasketProductsCount] = useState<number>(0);
 
     useEffect(() => {
         const basketJson = localStorage.getItem("basket");
@@ -19,8 +20,8 @@ export const Header: React.FC<HeaderProps> = ({isCatalogOpened, setIsCatalogOpen
         if (basketJson !== null) {
             basket = JSON.parse(basketJson);
         }
-        setBasketProductsCount(basket.length);
-    }, [setBasketProductsCount]);
+        setBasketCount(basket.length);
+    }, [setBasketCount]);
 
     function toggleCollapsedMenu(): void {
         if (isMenuOpened) {
@@ -42,7 +43,7 @@ export const Header: React.FC<HeaderProps> = ({isCatalogOpened, setIsCatalogOpen
         <header className={isMenuOpened ? "opened-header" : ""}>
             <div className="container">
                 <Logo />
-                <div className="collapsed-menu-btn" onClick={toggleCollapsedMenu.bind(null)}><span className="material-icons">menu</span></div>
+                <div className="collapsed-menu-btn" onClick={toggleCollapsedMenu.bind(null)}><span className="material-symbols-outlined">menu</span></div>
                 <nav>
                     <ul id="nav-menu-list" className={isMenuOpened ? "opened" : ""}>
                         <li className={isCatalogOpened ? "menu nav-item menu-opened" : "menu nav-item"} onClick={toggleCatalog.bind(null)}>
@@ -59,8 +60,8 @@ export const Header: React.FC<HeaderProps> = ({isCatalogOpened, setIsCatalogOpen
                         <SearchInput /> 
                         <li className="basket nav-item">
                             <Link to="/basket">
-                                <span className="material-icons">shopping_cart</span>
-                                <p className="basket-products-count">{basketProductsCount}</p>
+                                <span className="material-symbols-outlined">shopping_cart</span>
+                                <p className="basket-products-count">{basketCount}</p>
                             </Link>
                         </li>
                     </ul>

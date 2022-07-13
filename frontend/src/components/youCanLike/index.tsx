@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
 import "./youCanLike.css";
-import { ProductCard } from "../productCard/index";
 import { Product } from "../../interafaces";
 import { Loader } from "../loader";
 import { Error } from "../error";
+import ProductCardContainer from './../productCard/container';
 
 interface Props {
     youCanLikeProducts: Array<Product>,
@@ -25,7 +25,7 @@ export const YouCanLike: React.FC<Props> = ({loadYouCanLike, youCanLikeProducts,
                     <Loader/> :
                         !isError ?
                             youCanLikeProducts && youCanLikeProducts.map((item: Product) => {
-                                return item.id != id ? <ProductCard product={item} key={item.id} /> : ""
+                                return item.id != id ? <ProductCardContainer product={item} key={item.id} /> : ""
                             }) :
                                 <Error/>
                 }

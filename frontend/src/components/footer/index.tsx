@@ -13,9 +13,9 @@ export const Footer: React.FC = () => {
                 </div>
                 <div className="descr"><p>Интернет-магазин зарегистрирован в Торговом реестре РБ 22/10/2015 г. ИП Клишевский Вадим Станиславович г. Минск, ул. Голубева, 22, корп.1, кв.200. Св-во о регистрации №192236137 выдано 14.03.2014 г.</p></div>
                 <div className="social">
-                    <a href="#"><span className="material-icons">face</span></a>
-                    <a href="#"><span className="material-icons">face</span></a>
-                    <a href="#"><span className="material-icons">face</span></a>
+                    <a href="#"><span className="material-symbols-outlined">face</span></a>
+                    <a href="#"><span className="material-symbols-outlined">face</span></a>
+                    <a href="#"><span className="material-symbols-outlined">face</span></a>
                 </div>
             </div>
         </footer>
