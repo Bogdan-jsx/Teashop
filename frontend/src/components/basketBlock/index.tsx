@@ -10,9 +10,10 @@ interface Props {
     basketProducts: Product[],
     isLoading: boolean,
     isError: boolean,
+    decreaseBasketCount: () => void,
 }
 
-export const BasketBlock: React.FC<Props> = ({ loadBasketProducts, basketProducts, isLoading, isError }) => {
+export const BasketBlock: React.FC<Props> = ({ loadBasketProducts, basketProducts, isLoading, isError, decreaseBasketCount }) => {
     let json = localStorage.getItem("basket");
     const [basketProductsJson, setBasketProductsJson] = useState<string>(json ? json : "[]");
 
@@ -31,6 +32,7 @@ export const BasketBlock: React.FC<Props> = ({ loadBasketProducts, basketProduct
         localStorage.setItem("basket", JSON.stringify(basket));
         json = localStorage.getItem("basket")
         setBasketProductsJson(json ? json : "[]");
+        decreaseBasketCount();
     }
 
     return (

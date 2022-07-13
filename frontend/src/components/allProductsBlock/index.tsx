@@ -4,6 +4,7 @@ import { Product } from "../../interafaces";
 import "./style.css";
 import { Loader } from '../loader';
 import { Error } from '../error/index';
+import ProductCardContainer from './../productCard/container';
 
 interface Props {
     products: Product[],
@@ -18,7 +19,7 @@ export const AllProductsBlock: React.FC<Props> = ({ products, isLoading, isError
                 <Loader/> :
                     !isError ?
                         products && products.map((item: Product) => {
-                            return <ProductCard product={item} key={item.id} />
+                            return <ProductCardContainer product={item} key={item.id} />
                         }) :
                             <Error/>
             }

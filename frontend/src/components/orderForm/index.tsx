@@ -6,9 +6,10 @@ import { putBasketProducts } from "../../store/basket/actions";
 interface Props {
     sendOrder: (basket: BasketProductBasic[], name: string, phone: string, comment: string, address: string) => void,
     setIsModal: (value: boolean) => void,
+    setBasketCount: (count: number) => void,
 }
 
-export const OrderForm: React.FC<Props> = ({ sendOrder, setIsModal }) => {
+export const OrderForm: React.FC<Props> = ({ sendOrder, setIsModal, setBasketCount }) => {
     const name = useRef<HTMLInputElement>(null);
     const phoneNumber = useRef<HTMLInputElement>(null);
     const comment = useRef<HTMLInputElement>(null);
@@ -24,6 +25,8 @@ export const OrderForm: React.FC<Props> = ({ sendOrder, setIsModal }) => {
         const addressValue = address.current?.value as string;
 
         sendOrder(basket, nameValue, phoneValue, commentValue, addressValue);
+
+        setBasketCount(0);
 
         localStorage.setItem("basket", "[]");
         setIsModal(true);

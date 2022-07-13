@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from "react-router-dom";
 import "./catalog.css"
-import { ProductCard } from "../productCard/index";
 import { Product, CatalogCategory } from "../../interafaces";
 import { Categories } from '../categories/index';
 import { Error } from './../error/index';
+import ProductCardContainer from './../productCard/container';
 
 interface Props {
     categories: Array<CatalogCategory>,
@@ -37,7 +37,7 @@ export const Catalog: React.FC<Props> = ({ isCatalogOpened, categories, catalogP
             <div className="products-in-catalog">
                 {!isProductsError ?
                     catalogProducts && catalogProducts.map(item => {
-                        return <ProductCard key={item.id} product={item} />
+                        return <ProductCardContainer key={item.id} product={item} />
                     }) :
                     <Error />
                 }

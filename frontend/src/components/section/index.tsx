@@ -1,8 +1,8 @@
 import React from "react";
 import "./section.css";
-import { ProductCard } from "../productCard/index";
 import { SectionAttr } from "../../interafaces";
 import { Link } from 'react-router-dom';
+import ProductCardContainer from './../productCard/container';
 
 interface Props {
     section: SectionAttr, 
@@ -22,7 +22,7 @@ export const Section: React.FC<Props> = ({section}) => {
             </div>
             <div className="products">
                 {section.products && section.products.map(item => {
-                    return <ProductCard product={item} key={item.id} />
+                    return <ProductCardContainer product={item} key={item.id} />
                 })}
             </div>
         </div>

@@ -4,6 +4,9 @@ export enum BasketActions {
     PUT_BASKET_PRODUCTS = "PUT_BASKET_PRODUCTS",
     SET_IS_ERROR = "SET_IS_ERROR",
     SET_IS_LOADING = "SET_IS_LOADING",
+    SET_COUNT = "SET_COUNT",
+    INCREASE_COUNT = "INCREASE_COUNT",
+    DECREASE_COUNT = "DECREASE_COUNT",
 }
 
 export const putBasketProducts = (products: Product[]) => {
@@ -51,5 +54,24 @@ export const setIsError = (isError: boolean) => {
     return {
         type: BasketActions.SET_IS_ERROR,
         payload: isError,
+    }
+}
+
+export const increaseBasketCount = () => {
+    return {
+        type: BasketActions.INCREASE_COUNT,
+    }
+}
+
+export const decreaseBasketCount = () => {
+    return {
+        type: BasketActions.DECREASE_COUNT,
+    }
+}
+
+export const setBasketCount = (count: number) => {
+    return {
+        type: BasketActions.SET_COUNT,
+        payload: count,
     }
 }

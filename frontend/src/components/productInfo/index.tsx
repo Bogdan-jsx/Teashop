@@ -5,9 +5,10 @@ import { ModalProductToBasket } from './../modalProductToBasket/index';
 
 interface Props {
     info: Product,
+    increaseBasketCount: () => void,
 }
 
-export const ProductInfo: React.FC<Props> = ({info}) => {
+export const ProductInfo: React.FC<Props> = ({info, increaseBasketCount}) => {
     const [isModal, setIsModal] = useState<boolean>(false);
     const [isSuccessful, setIsSuccessful] = useState<boolean>(true);
 
@@ -25,6 +26,7 @@ export const ProductInfo: React.FC<Props> = ({info}) => {
             localStorage.setItem("basket", JSON.stringify(basket));
             setIsSuccessful(true);
             setIsModal(true);
+            increaseBasketCount();
         } else {
             setIsSuccessful(false);
             setIsModal(true);

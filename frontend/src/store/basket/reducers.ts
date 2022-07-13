@@ -4,6 +4,7 @@ const initialState = {
     basketProducts: [],
     isLoading: false,
     isError: false,
+    basketCount: 0,
 }
 
 export const basketReducer = (state = initialState, action: { type: BasketActions, payload: any }) => {
@@ -22,6 +23,21 @@ export const basketReducer = (state = initialState, action: { type: BasketAction
             return {
                 ...state,
                 isError: action.payload,
+            }
+        case BasketActions.INCREASE_COUNT:
+            return {
+                ...state,
+                basketCount: state.basketCount + 1,
+            }
+        case BasketActions.DECREASE_COUNT:
+            return {
+                ...state,
+                basketCount: state.basketCount - 1,
+            }
+        case BasketActions.SET_COUNT:
+            return {
+                ...state,
+                basketCount: action.payload,
             }
         default:
             return state;

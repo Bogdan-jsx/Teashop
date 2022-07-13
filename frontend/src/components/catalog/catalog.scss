@@ -2,7 +2,7 @@
 
 #menu-catalog {
     @include d-flex($align: flex-start);
-    width: 100%;
+    width: calc(100% - 70px);;
     padding: 35px;
     background-color: white;
     position: relative;

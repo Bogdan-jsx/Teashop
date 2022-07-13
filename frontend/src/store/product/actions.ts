@@ -57,7 +57,11 @@ export const loadYouCanLike = (subCategoryId: string) => async (dispatch: any) =
     await fetch(`http://localhost:3000/product/getManyBySub?from=0&to=4&subCategoryIds=${subCategoryId}`)
         .then(res => res.json())
         .then(json => {
-            dispatch(putYouCanLike(json));
+            if ("error" in json) {
+                dispatch(setIsCanLikeError(true))
+            } else {
+                dispatch(putYouCanLike(json));
+            }
         }).catch(e => dispatch(setIsCanLikeError(true)))
     dispatch(setIsCanLikeLoading(false));
 }

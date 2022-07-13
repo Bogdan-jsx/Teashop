@@ -121,6 +121,7 @@ header .basket > a {
   flex-wrap: wrap;
   width: 38px;
   text-decoration: none;
+  color: black;
 }
 header .basket > a p {
   font-size: 14px;

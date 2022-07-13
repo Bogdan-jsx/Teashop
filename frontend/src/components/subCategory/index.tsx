@@ -24,7 +24,7 @@ export const SubCategory: React.FC<Props> = ({ subCategory, selectedSubs, setSel
     return (
         <li onClick={toggleSelected.bind(null)}
             className={selectedSubs.includes(subCategory.id) ? "selected sub-category" : "sub-category"}>
-            <span className="material-icons">{selectedSubs.includes(subCategory.id) ? "done" : ""}</span>
+            <span className="material-symbols-outlined">{selectedSubs.includes(subCategory.id) ? "done" : ""}</span>
             <p>{subCategory.name}</p>
         </li>
     )
