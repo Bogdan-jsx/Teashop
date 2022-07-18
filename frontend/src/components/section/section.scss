@@ -4,8 +4,8 @@
     margin-top: 45px;
 
     .section-info {
-        @include d-flex;
-        width: 335px;
+        @include d-flex($justify: "flex-start");
+        // width: 335px;
 
         .section-name {
             font-weight: 600;
@@ -23,6 +23,9 @@
             color: #927BC9;
             text-decoration: none;
             margin-left: 20px;
+        }
+        @media screen and (max-width: 500px) {
+            justify-content: center;
         }
         @media screen and (max-width: 360px) {
             width: 310px;
@@ -80,6 +83,9 @@
             .product {
                 width: 48%;
                 display: block;
+            }
+            .product:nth-child(2n+1) {
+                margin-left: 0;
             }
         }
         @media screen and (max-width: 500px) {
