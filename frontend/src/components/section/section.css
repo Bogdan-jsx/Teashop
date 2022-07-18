@@ -4,10 +4,10 @@
 .section .section-info {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-start;
   flex-direction: row;
   flex-wrap: wrap;
-  width: 335px;
+  /* width: 335px; */
 }
 .section .section-info .section-name {
   font-weight: 600;
@@ -25,6 +25,11 @@
   color: #927BC9;
   text-decoration: none;
   margin-left: 20px;
+}
+@media screen and (max-width: 500px) {
+  .section .section-info {
+    justify-content: center;
+  }
 }
 @media screen and (max-width: 360px) {
   .section .section-info {
@@ -89,6 +94,9 @@
   .section .products .product {
     width: 48%;
     display: block;
+  }
+  .section .products .product:nth-child(2n+1) {
+    margin-left: 0;
   }
 }
 @media screen and (max-width: 500px) {

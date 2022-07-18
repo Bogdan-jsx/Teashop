@@ -13,7 +13,7 @@
             width: 100%;
         }  
     }
-    .product:first-child {
+    .product:first-child, .product:nth-child(3n+1) {
         margin-left: 0;
     }
 }

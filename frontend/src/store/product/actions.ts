@@ -54,7 +54,7 @@ export const putYouCanLike = (products: Array<Product>) => {
 export const loadYouCanLike = (subCategoryId: string) => async (dispatch: any) => {
     dispatch(setIsCanLikeError(false));
     dispatch(setIsCanLikeLoading(true));
-    await fetch(`http://localhost:3000/product/getManyBySub?from=0&to=4&subCategoryIds=${subCategoryId}`)
+    await fetch(`http://localhost:3000/product/getManyBySub?from=0&to=5&subCategoryIds=${subCategoryId}`)
         .then(res => res.json())
         .then(json => {
             if ("error" in json) {

@@ -34,7 +34,8 @@ export async function update(productParams: ProductBasic, id: string) {
     if (!await subCategoryRepository.findByPk(productParams.subCategoryId)) {
         throw createError(404, "Subcategory not found");
     }
-    if (await productRepository.findOne({ where: { vendorCode: productParams.vendorCode } })) {
+    const productWithVendor = await productRepository.findOne({ where: { vendorCode: productParams.vendorCode } });
+    if (productWithVendor && productWithVendor.id !== id) {
         throw createError(400, "Product with this vendor code is already exists");
     }
     if (!await productRepository.findByPk(id)) {
@@ -58,6 +59,7 @@ export async function findMany(from: number = 0, to: number = 15) {
 
 export async function findManyBySub(from: number = 0, to: number = 15, subCategoryIds: Array<string>, sort?: string) {
     let parameters: any = {offset: from, limit: to};
+    console.log(subCategoryIds);
     if (subCategoryIds[0] != undefined && subCategoryIds != ['']) {
         for (const sub of subCategoryIds) {
             if (!await subCategoryRepository.findByPk(sub)) {
@@ -73,6 +75,7 @@ export async function findManyBySub(from: number = 0, to: number = 15, subCatego
     if (sort != "popular" && sort != undefined) {
         parameters.order = [[ Sequelize.literal(`price - price / 100 * discount ${sort === 'cheap' ? 'ASC' : 'DESC'}`) ]]; //"price - price / 100 * discount", `${sort === 'cheap' ? 'ASC' : 'DESC'}`
     }
+    console.log(parameters);
     return productRepository.findAll(parameters);
 }
 

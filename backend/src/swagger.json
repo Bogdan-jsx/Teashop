@@ -205,7 +205,7 @@
             "type": "integer"
           },
           {
-            "name": "subCategoryId",
+            "name": "subCategoryIds",
             "in": "query",
             "description": "Subcategory ID for search products",
             "required": true,
